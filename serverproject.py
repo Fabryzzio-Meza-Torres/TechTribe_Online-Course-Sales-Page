@@ -33,4 +33,18 @@ class Trabajadores(db.Model):
     firstname = db.Column(db.String(30), nullable=False)
     lastname = db.Column(db.string(35), nullable=False)
 
-    
+
+class Producto(db.Model):
+    __tablename__ = 'Producto'
+    id = db.Column(db.String(7), nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
+    nombre = db.Column(db.String(30), nullable=False)
+    precio = db.Column(db.Float, nullable=False)
+    descripcion = db.Column(db.String(500), nullable=False)
+    foto = db.Column(db.String(500), nullable=True)
+    cantidad = db.Column(db.Integer, nullable=False)
+    def __init__(self, nombre, precio, descripcion, foto, cantidad):
+        self.nombre = nombre
+        self.precio = precio
+        self.descripcion = descripcion
+        self.foto = foto
+        self.cantidad = cantidad
