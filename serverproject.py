@@ -32,7 +32,7 @@ class Trabajadores(db.Model):
     id = db.Column(db.String(7), nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
     firstname = db.Column(db.String(30), nullable=False)
     lastname = db.Column(db.string(35), nullable=False)
-
+    email= db.Column(db.String(60), nullable=False, unique=True)
 
 class Producto(db.Model):
     __tablename__ = 'Producto'
