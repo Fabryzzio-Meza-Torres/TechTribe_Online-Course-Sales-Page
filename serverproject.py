@@ -10,7 +10,7 @@ from flask_migrate import Migrate
 import uuid;
 #Config 
 dev=Flask(__name__)
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:1234//postgres@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
 db= SQLAlchemy(dev)
 
 #Models
