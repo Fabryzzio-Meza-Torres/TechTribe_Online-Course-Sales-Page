@@ -27,13 +27,18 @@ class Clients(db.Model):
         self.lastname= lastname
         self.email= email
         self.foto= foto
+
 class Trabajadores(db.Model):
     __tablename__ = 'trabajadores'
     id = db.Column(db.String(7), nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
     firstname = db.Column(db.String(30), nullable=False)
-    lastname = db.Column(db.string(50), nullable=False, unique=True)
-  
+    lastname = db.Column(db.String(50), nullable=False, unique=True)
 
+    def __init__(self, id, firstname, lastname):
+        self.id = id 
+        self.firstname = firstname
+        self.lastname = lastname
+    
 class Producto(db.Model):
     __tablename__ = 'Producto'
     id = db.Column(db.String(7), nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
@@ -42,6 +47,7 @@ class Producto(db.Model):
     descripcion = db.Column(db.String(500), nullable=False)
     foto = db.Column(db.String(500), nullable=True)
     cantidad = db.Column(db.Integer, nullable=False)
+
     def __init__(self, nombre, precio, descripcion, foto, cantidad):
         self.nombre = nombre
         self.precio = precio
@@ -58,16 +64,30 @@ class Tarjeta(db.Model):
     dni = db.Column(db.Integer(8), nullable=False)
     banco_emisor = db.Column(db.String(30), nullable=False)
 
+    def __init__(self, numero_tarjeta, fecha_vencimiento,clave,id_cliente, dni, banco_emisor):
+        self.numero_tarjeta = numero_tarjeta
+        self.fecha_vencimiento = fecha_vencimiento
+        self.clave = clave
+        self.dni = dni 
+        self.banco_emisor = banco_emisor
+
 class Carrito(db.Model):
     __tablename__ = 'carrito'
     id_carrito = db.Column(db.String(20),nullable=False)
     nombre_producto = db.Column(db.String(30), nullable=False)
     precio_total = db.Column(db.Integer(10000), nullable=False)
 
+    def __init__(self, id_carrito, nombre_producto, precio_total):
+        self.id_carrito = id_carrito
+        self.nombre_producto = nombre_producto
+        self.precio_total = precio_total
+        
 
-# Run the app
-if __name__ == '__main__':
-    app.run(debug=True)
-else:
-    print('Importing {}'.format(__name__))
+
+
+
+
+
+
+
 
