@@ -12,7 +12,7 @@ import os
 from datetime import datetime,timedelta
 import sys
 #Config 
-dev=Flask(_name_)
+dev=Flask(__name__)
 dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
