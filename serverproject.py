@@ -55,7 +55,7 @@ class Producto(db.Model):
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(50.90), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
-    description = db.Column(db.String(400), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
     duration = db.Column(db.datetime.timedelta(hours=2, minutes=30), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
