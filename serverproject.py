@@ -51,7 +51,7 @@ class Trabajadores(db.Model):
 class Producto(db.Model):
     __tablename__ = 'producto'
     id = db.Column(db.String(10), nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
-    id_worker = db.Column(db.String(10), db.ForeignKey('id_worker'), nullable=False)
+    id_worker = db.Column(db.String(10), db.ForeignKey('trabajadores.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(50.90), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
@@ -60,8 +60,7 @@ class Producto(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
-    def __init__(self,id,id_worker, name, price, type_product, description, duration, created_at, modified_at):
-        self.id = id
+    def __init__(self,id_worker, name, price, type_product, description, duration):
         self.id_worker = id_worker
         self.name = name
         self.price = price 
