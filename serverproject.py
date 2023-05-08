@@ -35,7 +35,7 @@ class Clients(db.Model):
         self.created_at = datetime.utcnow()
 
 class Trabajadores(db.Model):
-    _tablename_ = 'trabajadores'
+    _tablename_ = 'workers'
     id = db.Column(db.String(10),primary_key=True, nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
     firstname = db.Column(db.String(30), nullable=False,unique=True)
     lastname = db.Column(db.String(30), nullable=False, unique=True)
@@ -49,9 +49,9 @@ class Trabajadores(db.Model):
         self.created_at = datetime.utcnow()
     
 class Producto(db.Model):
-    __tablename__ = 'producto'
+    __tablename__ = 'products'
     id = db.Column(db.String(10), nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
-    id_worker = db.Column(db.String(10), db.ForeignKey('trabajadores.id'), nullable=False)
+    id_worker = db.Column(db.String(10), db.ForeignKey('workers.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(50.90), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
@@ -73,7 +73,7 @@ class Producto(db.Model):
 class Tarjeta(db.Model):
     _tablename_ = "credit_card"
     id = db.Column(db.String(10), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
-    creditcard_number = db.Column(db.String(18), nullable=False)
+    creditcard_number = db.Column(db.String(20), nullable=False)
     expiration_date= db.Column(db.Interval, nullable=False)
     password = db.Column(db.String(30), nullable=False)
     id_client = db.Column(db.String(10),db.ForeignKey('clients.id'), nullable=False)
@@ -92,8 +92,9 @@ class Tarjeta(db.Model):
 class Orden_de_Compra(db.Model):
     _tablename_ = 'purchase_order'
     id= db.Column(db.String(10), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
-    product_name = db.Column(db.String(40), nullable=False)
+    product_name = db.Column(db.String(50), nullable=False)
     total_price = db.Column(db.Integer(10000), nullable=False)
+    id_product = db.Column(db.String(10), db.ForeignKey('products.id'), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
@@ -103,4 +104,13 @@ class Orden_de_Compra(db.Model):
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
 
+# Routes
+@dev.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
+# Run the app
+if __name__ == '__main__':
+    dev.run(debug=True)
+else:
+    print('Importing {}'.format(__name__))
