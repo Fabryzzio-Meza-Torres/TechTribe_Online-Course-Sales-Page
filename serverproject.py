@@ -104,8 +104,3 @@ class Orden_de_Compra(db.Model):
         self.created_at = datetime.utcnow()
 
 
-
-
-
-
-
