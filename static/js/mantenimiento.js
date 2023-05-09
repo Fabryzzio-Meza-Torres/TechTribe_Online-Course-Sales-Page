@@ -44,3 +44,24 @@ function showContent(index){
         }
     }
 }
+
+function fetchClients(){
+
+}
+
+function fetchTrabajadores(){
+
+}
+
+function fetchProducto(){
+
+}
+
+function fetchTarjeta(){
+
+}
+
+function fetchOrden_de_Compra(){
+
+}
+
