@@ -23,7 +23,7 @@ class Clients(db.Model):
     id = db.Column(db.String(10), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()") )
     firstname= db.Column(db.String(30), nullable=False)
     lastname= db.Column(db.String(50), nullable=False, unique=False)
-    email= db.Column(db.String(100), nullable=False, unique=True)
+    email= db.Column(db.String(99), nullable=False, unique=True)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
     
