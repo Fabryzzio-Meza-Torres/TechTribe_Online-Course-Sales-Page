@@ -1,67 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TechTribe</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="static\css\style.css">
-  </head>
-  <body>
-    <header class="header">
-      <nav>
-        <img src="static/images/Logo_TechTribe.png" alt="Logo" style="height: 50px;">
-        <ul>
-          <li><a href="#cursos">Cursos</a></li>
-          <li><a href="#asesorias">Asesorías</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-      <div class="header__cta">
-        <a href="#cursos" class="btn btn-primary">Ver Cursos</a>
-        <a href="#asesorias" class="btn btn-secondary">Ver Asesorías</a>
-      </div>
-    </header>
-    <main>
-      <section id="cursos">
-        <h1>Cursos de Programación</h1>
-        <p>Descubre nuestra oferta de cursos de programación y mejora tus habilidades.</p>
-        <ul>
-          <li>Curso de Python</li>
-          <li>Curso de Java</li>
-          <li>Curso de JavaScript</li>
-          <li>Curso de C++</li>
-          <li>Curso de Ruby</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary">Contactar</a>
-      </section>
-      <section id="asesorias">
-        <h1>Asesorías de Programación</h1>
-        <p>¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos y te asesoramos.</p>
-        <a href="#contacto" class="btn btn-primary">Contactar</a>
-      </section>
-      <section id="contacto">
-        <h1>Contacto</h1>
-        <form id="formContacto">
-          <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" required>
-          </div>
-          <div>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
-          </div>
-          <div>
-            <label for="mensaje">Mensaje:</label>
-            <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
-          </div>
-          <div>
-            <input type="submit" value="Enviar">
-          </div>
-        </form>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; TechTribe 2023</p>
-    </footer>
-  </body>
+<head>
+	<title>TechTribe</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<header class="header">
+		<img src="logo.jpeg" alt="Logo" style="height: 50px;">
+		<nav>
+			<a href="#python">Introducción a Python</a>
+			<a href="#html-css">Desarrollo web con HTML/CSS</a>
+			<a href="#cpp">Programación avanzada en C++</a>
+		</nav>
+	</header>
+	<main class="main">
+		<section id="python">
+			<h2>Introducción a Python</h2>
+			<img src="python.jpg" alt="Introducción a Python">
+			<p>Descripción del curso...</p>
+			<a href="python.html">Más información</a>
+		</section>
+		<section id="html-css">
+			<h2>Desarrollo web con HTML/CSS</h2>
+			<img src="html-css.jpg" alt="Desarrollo web con HTML/CSS">
+			<p>Descripción del curso...</p>
+			<a href="html-css.html">Más información</a>
+		</section>
+		<section id="cpp">
+			<h2>Programación avanzada en C++</h2>
+			<img src="cpp.jpg" alt="Programación avanzada en C++">
+			<p>Descripción del curso...</p>
+			<a href="cpp.html">Más información</a>
+		</section>
+	</main>
+</body>
 </html>
