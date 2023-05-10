@@ -109,6 +109,9 @@ class Orden_de_Compra(db.Model):
 def index():
     return render_template('index.html')
 
+@dev.route('/cursos', methods=['GET'])
+def cursos():
+    return render_template('index.html')
 # Run the app
 if __name__ == '__main__':
     dev.run(debug=True)

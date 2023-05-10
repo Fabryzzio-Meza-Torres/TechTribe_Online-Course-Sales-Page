@@ -13,56 +13,45 @@
   <body>
     <header class="header">
       <nav>
-        <img src="..\static\images\Logo_TechTribe.png" alt="Logo" style="height: 50px;">
-        <ul>
+        <ul class="menu">
+        <img src="..\static\images\Logo2.png" alt="Logo">
           <li><a href="#cursos">Cursos</a></li>
           <li><a href="#asesorias">Asesorías</a></li>
-          <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
-      <div class="header__cta">
-        <a href="#cursos" class="btn btn-primary">Ver Cursos</a>
-        <a href="#asesorias" class="btn btn-secondary">Ver Asesorías</a>
-      </div>
     </header>
     <main>
       <section id="cursos">
         <h1>Cursos de Programación</h1>
         <p>Descubre nuestra oferta de cursos de programación y mejora tus habilidades.</p>
-        <ul>
-          <li>Curso de Python</li>
-          <li>Curso de Java</li>
-          <li>Curso de JavaScript</li>
-          <li>Curso de C++</li>
-          <li>Curso de Ruby</li>
-        </ul>
-        <a href="#contacto" class="btn btn-primary">Contactar</a>
+        <div class="curso_python" style="background-color: #E0115F;">
+          <img src="..\static\images\python.jpg" alt="Python">
+          <h2>Python</h2>
+          <p>Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis elegante, fácil de leer y recursos accesibles hacen que el aprendizaje sea divertido. ¡Únete ahora!</p>
+          <a href="enlace_al_curso">Ver curso</a>
+        </div>
+        <div class="curso_cplusplus" style="background-color: #E0115F;">
+          <img src="..\static\images\C++.png" alt="C++">
+          <h2>C++</h2>
+          <p>Únete a nuestro curso de C++ y descubre cómo crear aplicaciones de alto rendimiento con una sintaxis poderosa y eficiente. ¡Aprender es desafiante pero gratificante!</p>
+          <a href="enlace_al_curso">Ver curso</a>
+        </div>
+        <div class="curso_html" style="background-color: #E0115F;">
+          <img src="..\static\images\html.jpg" alt="html and css">
+          <h2>HTML y CSS</h2>
+          <p>Aprende HTML y CSS para crear sitios web impresionantes y atractivos. Únete a nuestro curso para mejorar tus habilidades de diseño web y destacar en el mercado.</p>
+          <a href="enlace_al_curso">Ver curso</a>
+        </div>
       </section>
       <section id="asesorias">
         <h1>Asesorías de Programación</h1>
         <p>¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos y te asesoramos.</p>
-        <a href="#contacto" class="btn btn-primary">Contactar</a>
-      </section>
-      <section id="contacto">
-        <h1>Contacto</h1>
-        <form id="formContacto">
-          <div>
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" id="nombre" required>
-          </div>
-          <div>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" required>
-          </div>
-          <div>
-            <label for="mensaje">Mensaje:</label>
-            <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
-          </div>
-          <div>
-            <input type="submit" value="Enviar">
-          </div>
-        </form>
-      </section>
+        <div class="asesoria_python" style="background-color: blue;">
+          <img src="..\static\images\asesoria.jpg" alt="Asesoria1">
+          <h2>Asesoria Python</h2>
+          <p>Obtén ayuda experta en Python y mejora tus habilidades de programación. Con nuestras asesorías personalizadas, resuelve tus problemas y lleva tus proyectos al siguiente nivel.</p>
+          <a href="enlace_al_curso">Ver curso</a>
+        </div>
     </main>
     <footer>
       <p>&copy; TechTribe 2023</p>
