@@ -3,24 +3,30 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #11111F;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Estilos para el header */
 header {
-  background-color: #333;
+  background-color: #11111F;
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 12px;
 }
 
 .header__item {
   cursor: pointer;
 }
+
 .body__item {
   display: none;
 }
+
 .body__item__active {
   display: block;
 }
@@ -28,48 +34,6 @@ header {
 header a {
   color: #fff;
   text-decoration: none;
-}
-
-/* Estilos para la imagen del logo */
-header img {
-  margin-right: 10px;
-}
-
-/* Estilos para la lista de navegación */
-header ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-header li {
-  margin-left: 20px;
-}
-
-/* Estilos para el botón de llamado a la acción */
-.header__cta {
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  color: #fff;
 }
 
 /* Estilos para las secciones */
@@ -97,46 +61,235 @@ section li {
   margin-bottom: 10px;
 }
 
-/* Estilos para el formulario de contacto */
-form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 50px;
-}
-
-label {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-}
-
-input[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-input[type="submit"]:hover {
-  background-color: #0069d9;
-}
-
 /* Estilos para el footer */
 footer {
-  background-color: #333;
+  background-color: #01051B;
   color: #fff;
   text-align: center;
   padding: 20px;
+}
+
+/* Estilos para cursos*/
+/* Curso Python */
+.curso_python {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.curso_python img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.curso_python h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.curso_python p {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.curso_python a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: black;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.curso_python a:hover {
+  background-color: #E0115F;
+}
+
+/* Curso C++ */
+
+.curso_cplusplus {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.curso_cplusplus img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.curso_cplusplus h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.curso_cplusplus p {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.curso_cplusplus a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: black;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.curso_cplusplus a:hover {
+  background-color: #E0115F;
+}
+
+/* Curso html y Css */
+
+.curso_html {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.curso_html img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.curso_html h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.curso_html p {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.curso_html a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: black;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.curso_html a:hover {
+  background-color: #E0115F;
+}
+/* Asesoria Python*/
+.asesoria_python {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.asesoria_python img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.asesoria_python h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.asesoria_python p {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.asesoria_python a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: black;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.asesoria_python a:hover {
+  background-color: #E0115F;
+}
+
+/* Menu y nav */
+nav {
+  background-color: #11111F;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+ul.menu img {
+  display: flex;
+  height: 150px;
+  width: auto;
+  padding: 0px;
+  margin-right: 20px;
+}
+
+ul.menu {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  margin: 0px;
+  margin-left: 20px;
+  padding: 0px;
+
+}
+
+ul.menu li {
+  margin-right: 40px;
+}
+
+ul.menu li:last-child {
+  margin-right: 0;
+}
+
+ul.menu a {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+ul.menu a:hover {
+  color: #b3b3b3;
 }
