@@ -13,7 +13,7 @@ from datetime import datetime,timedelta
 import sys
 #Config 
 dev=Flask(__name__)
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres1234@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
@@ -50,13 +50,13 @@ class Trabajadores(db.Model):
     
 class Producto(db.Model):
     __tablename__ = 'products'
-    id = db.Column(db.String(10), nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(db.String(10),primary_key=True,nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
     id_worker = db.Column(db.String(10), db.ForeignKey('workers.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(50.90), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
     description = db.Column(db.String(500), nullable=False)
-    duration = db.Column(db.datetime.timedelta(hours=2, minutes=30), nullable=False)
+    duration = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
@@ -93,7 +93,7 @@ class Orden_de_Compra(db.Model):
     _tablename_ = 'purchase_order'
     id= db.Column(db.String(10), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
     product_name = db.Column(db.String(50), nullable=False)
-    total_price = db.Column(db.Integer(10000), nullable=False)
+    total_price = db.Column(db.Float(10000), nullable=False)
     id_product = db.Column(db.String(10), db.ForeignKey('products.id'), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
