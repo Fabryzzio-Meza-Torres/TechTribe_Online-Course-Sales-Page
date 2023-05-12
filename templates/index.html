@@ -1,60 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TechTribe</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link 
-    rel="stylesheet" 
-    type="text/css" 
-    href="..\static\css\style.css">
-    <script src = "..\static\js\actions.js"></script>
-  </head>
-  <body>
-    <header class="header">
-      <nav>
-        <ul class="menu">
-        <img src="..\static\images\Logo2.png" alt="Logo">
-          <li><a href="#cursos">Cursos</a></li>
-          <li><a href="#asesorias">Asesorías</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section id="cursos">
+
+<head>
+  <title>TechTribe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="TechTribe ofrece cursos y asesorías de programación en línea. Descubre nuestra oferta de cursos de Python, C++, HTML y CSS.">
+  <link rel="stylesheet" type="text/css" href="..\static\css\style.css">
+  <script src="..\static\js\actions.js"></script>
+</head>
+
+<body>
+  <header class="header">
+
+    <a href="index.html" class="logo">
+      <img src="..\static\images\Logo2.png" alt="Logo" >
+    </a>
+
+    <div style="display: flex;" class="navbar-container">
+      <a href="#cursos">Cursos</a>
+      <a href="#asesorias">Asesorias</a>
+      <a href="#profesores">Profesores</a>
+      <a href="#inicio">Iniciar Sesion</a>
+      <a href="#registro">Registrate</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="hcontainer">
+      <div class="header-txt">
+        <h1>Desarrolla tu <strong>mente</strong> y tu <strong>creatividad</strong> con nuestra educación tecnológica de vanguardia_
+        </h1>
+    </div>
+    
+    <div class="button-container">
+      <button class="button"><a class= "text-b"href="#cursos">Inscríbete ahora</a></button>
+    </div>
+
+    <section id="cursos" class="body__item">
         <h1>Cursos de Programación</h1>
         <p>Descubre nuestra oferta de cursos de programación y mejora tus habilidades.</p>
         <div class="curso_python" style="background-color: #E0115F;">
           <img src="..\static\images\python.jpg" alt="Python">
           <h2>Python</h2>
-          <p>Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis elegante, fácil de leer y recursos accesibles hacen que el aprendizaje sea divertido. ¡Únete ahora!</p>
+          <p>Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis elegante, fácil de leer y recursos
+            accesibles hacen que el aprendizaje sea divertido. ¡Únete ahora!</p>
           <a href="enlace_al_curso">Ver curso</a>
         </div>
         <div class="curso_cplusplus" style="background-color: #E0115F;">
           <img src="..\static\images\C++.png" alt="C++">
           <h2>C++</h2>
-          <p>Únete a nuestro curso de C++ y descubre cómo crear aplicaciones de alto rendimiento con una sintaxis poderosa y eficiente. ¡Aprender es desafiante pero gratificante!</p>
+          <p>Únete a nuestro curso de C++ y descubre cómo crear aplicaciones de alto rendimiento con una sintaxis
+            poderosa
+            y eficiente. ¡Aprender es desafiante pero gratificante!</p>
           <a href="enlace_al_curso">Ver curso</a>
         </div>
         <div class="curso_html" style="background-color: #E0115F;">
           <img src="..\static\images\html.jpg" alt="html and css">
           <h2>HTML y CSS</h2>
-          <p>Aprende HTML y CSS para crear sitios web impresionantes y atractivos. Únete a nuestro curso para mejorar tus habilidades de diseño web y destacar en el mercado.</p>
+          <p>Aprende HTML y CSS para crear sitios web impresionantes y atractivos. Únete a nuestro curso para mejorar
+            tus
+            habilidades de diseño web y destacar en el mercado.</p>
           <a href="enlace_al_curso">Ver curso</a>
         </div>
-      </section>
-      <section id="asesorias">
+    </section>
+      <section id="asesorias" class="body__item">
         <h1>Asesorías de Programación</h1>
         <p>¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos y te asesoramos.</p>
         <div class="asesoria_python" style="background-color: blue;">
           <img src="..\static\images\asesoria.jpg" alt="Asesoria1">
           <h2>Asesoria Python</h2>
-          <p>Obtén ayuda experta en Python y mejora tus habilidades de programación. Con nuestras asesorías personalizadas, resuelve tus problemas y lleva tus proyectos al siguiente nivel.</p>
+          <p>Obtén ayuda experta en Python y mejora tus habilidades de programación. Con nuestras asesorías
+            personalizadas, resuelve tus problemas y lleva tus proyectos al siguiente nivel.</p>
           <a href="enlace_al_curso">Ver curso</a>
         </div>
-    </main>
-    <footer>
-      <p>&copy; TechTribe 2023</p>
-    </footer>
-  </body>
+      </section>
+  </div></main>
+  <footer>
+    <p>&copy; TechTribe 2023</p>
+  </footer>
+</body>
+
 </html>

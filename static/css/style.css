@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Mono:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Wix+Madefor+Text&display=swap');
 /* Estilos para el body */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #11111F;
@@ -8,20 +11,132 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.header-txt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+h1 {
+  width: 50%;
+  text-align: center;
+  /* margin: 87px; */
+}
+h1 strong {
+  color: #4cbfdc;
+}
+strong {
+  font-weight: bold;
+}
+.logo img {
+  width: 79%;
+}
 
+a.logo {
+  width: 92px;
+  height: 92px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+element.style {
+  display: flex;
+}
+.container {
+  max-width: 12000px;
+  margin: 0 auto;
+}
+
+.hcontainer {
+  display: flex;
+  background-image: linear-gradient(45deg, black, transparent);
+  background-position: center center;
+  background-color: #29293e;
+  background-size: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 20px;
+  padding: 20px;
+  min-height: 80vh;
+}
+
+.button-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 25rem;
+}
+
+.button {
+  background-color: #21214c;
+  font-family: 'Wix Madefor Text', sans-serif;  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  transition: background-color 0.3s ease;
+  margin-left: -92rem;
+}
+
+.button:hover {
+  background-color: #1f1f2f;
+}
+
+
+.navbar-container *:hover {
+  background: #080810;
+  transition: 0.5s ease;
+}
+.navbar-container * {
+  padding: 28px;
+  margin: 1px;
+  border-radius: 5px;
+  transition: 0.5s ease;
+}
+
+.text-b{
+  color: white; 
+  text-decoration: none;
+}
 /* Estilos para el header */
-header {
-  background-color: #11111F;
+
+.header {
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
+}
+
+.hcontainer {
+  display: flex;
+  background-image: linear-gradient(45deg, black, transparent);
+  background-position: center center;
+  background-color: #29293e;
+  background-size: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 20px;
+  padding: 20px;
+  min-height: 80vh;
 }
 
 .header__item {
   cursor: pointer;
 }
+
+
+
+
 
 .body__item {
   display: none;
