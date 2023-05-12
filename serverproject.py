@@ -20,7 +20,7 @@ migrate = Migrate(dev, db)
 #Models
 class Clients(db.Model):
     __tablename__ = 'clients'
-    id = db.Column(db.String(20), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(db.String(15), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     firstname= db.Column(db.String(30), nullable=False)
     lastname= db.Column(db.String(50), nullable=False, unique=False)
     email= db.Column(db.String(99), nullable=False, unique=True)
@@ -36,21 +36,23 @@ class Clients(db.Model):
 
 class Trabajadores(db.Model):
     __tablename__ = 'workers'
-    id = db.Column(db.String(10),primary_key=True, nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
-    firstname = db.Column(db.String(30), nullable=False,unique=True)
+    id = db.Column(db.String(15), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
+    firstname = db.Column(db.String(30), nullable=False,unique=False)
     lastname = db.Column(db.String(30), nullable=False, unique=True)
+    especializacion= db.Column(db.String(30), nullable=False, unique=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
-    def __init__(self, firstname, lastname):
+    def __init__(self, firstname, lastname, especializacion):
         self.firstname = firstname
         self.lastname = lastname
+        self.especializacion=especializacion
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
     
 class Producto(db.Model):
     __tablename__ = 'products'
-    id = db.Column(db.String(10),primary_key=True,nullable=False, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(db.String(15), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     id_worker = db.Column(db.String(10), db.ForeignKey('workers.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(precision=2  ), nullable=False)
@@ -72,7 +74,7 @@ class Producto(db.Model):
 
 class Tarjeta(db.Model):
     __tablename__ = "credit_card"
-    id = db.Column(db.String(10), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(db.String(15), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     creditcard_number = db.Column(db.String(20), nullable=False)
     expiration_date= db.Column(db.Date, nullable=False)
     password = db.Column(db.String(30), nullable=False)
@@ -91,9 +93,9 @@ class Tarjeta(db.Model):
 
 class Orden_de_Compra(db.Model):
     __tablename__ = 'purchase_order'
-    id= db.Column(db.String(10), primary_key=True, default=lambda: str(uuid.uuid4()), server_default=db.text("uuid_generate_v4()"))
+    id = db.Column(db.String(15), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     product_name = db.Column(db.String(50), nullable=False)
-    total_price = db.Column(db.Float(10000), nullable=False)
+    total_price = db.Column(db.Float(), nullable=False)
     id_product = db.Column(db.String(10), db.ForeignKey('products.id'), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))

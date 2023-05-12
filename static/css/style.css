@@ -13,8 +13,15 @@ body {
 }
 .header-txt {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+main {
+  padding: 64px;
+  background: linear-gradient(186deg, #11111f, #0e0e24);
+  min-height: 54vh;
 }
 h1 {
   display: block;
@@ -65,27 +72,31 @@ element.style {
   background-size: auto;
   background-size: cover;
   background-repeat: no-repeat;
-  font-size: 20px;
+  font-size: 50px;
   padding: 20px;
-  min-height: 80vh;
+  min-height: 10rem;
+  flex-direction: column;
 }
 
 .button-container {
-  align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: 25rem;
+  align-items: center;
+  margin-top: 30px;
+  /* flex-grow: 1; */
+  /* margin-top: 25rem; */
 }
 
 .button {
   background-color: #21214c;
-  font-family: 'Wix Madefor Text', sans-serif;  border-radius: 5px;
+  font-family: 'Wix Madefor Text', sans-serif;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
   font-size: 1.2rem;
   padding: 1rem 2rem;
   transition: background-color 0.3s ease;
-  margin-left: -92rem;
+  /* margin-left: 12rem; */
 }
 
 .button:hover {
@@ -178,12 +189,19 @@ section li {
 
 /* Estilos para el footer */
 footer {
-  background-color: #01051B;
+  background: linear-gradient(186deg, #11111f, #0e0e24);
   color: #fff;
   text-align: center;
   padding: 20px;
 }
 
+.cursos{
+  display: none;
+}
+
+.asesorias{
+  display: none;
+}
 /* Estilos para cursos*/
 /* Curso Python */
 .curso_python {

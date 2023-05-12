@@ -1,8 +1,8 @@
 // Obtener elementos del DOM
 const menu = document.querySelector('.header');
 const logo = document.querySelector('img');
-const cursosLink = document.querySelector('a[href="#cursos"]');
-const asesoriasLink = document.querySelector('a[href="#asesorias"]');
+const cursosLink = document.querySelector('#cursos');
+const asesoriasLink = document.querySelector('#asesorias"]');
 const cursoPython = document.querySelector('.curso_python');
 const cursoCplusplus = document.querySelector('.curso_cplusplus');
 const cursoHtml = document.querySelector('.curso_html');
@@ -64,9 +64,23 @@ window.addEventListener('load', ajustarMenu);
 // Ajustar margen del menú al redimensionar la ventana
 window.addEventListener('resize', ajustarMenu);
 */
+
+//Secciones
+function defaultCursos(){
+  var curso =document.getElementById("cursos")
+  curso.style.display=none
+}
+
+function defaultAsesoria(){
+  var asesoria =document.getElementById("asesoria")
+  asesoria.style.display=none
+} 
+
+
+
+
 // Animación del enlace a Cursos
-cursosLink.addEventListener('click', (event) => {
-  event.preventDefault();
+cursosLink.addEventListener('click', () => {
   cursoPython.classList.add('animate__fadeInLeft');
   cursoCplusplus.classList.add('animate__fadeInUp');
   cursoHtml.classList.add('animate__fadeInRight');
