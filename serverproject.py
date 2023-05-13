@@ -13,7 +13,7 @@ from datetime import datetime,timedelta
 import sys
 #Config 
 dev=Flask(__name__)
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
@@ -42,14 +42,16 @@ class Trabajadores(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     firstname = db.Column(db.String(30), nullable=False,unique=False)
     lastname = db.Column(db.String(30), nullable=False, unique=True)
+    age = db.Column(db.Integer, unique=False, nullable=False)
     especializacion= db.Column(db.String(30), nullable=False, unique=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
-    def __init__(self, firstname, lastname, especializacion):
+    def __init__(self, firstname, lastname, age, especializacion):
         self.firstname = firstname
         self.lastname = lastname
-        self.especializacion=especializacion
+        self.age = age
+        self.especializacion = especializacion
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
     
