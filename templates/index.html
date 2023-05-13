@@ -12,33 +12,42 @@
 </head>
 
 <body>
-  <header class="header">
+  <header class="header" id="Menu">
 
-    <a href="index.html" class="logo">
+    <a href="#" class="logo" onclick="mostrarDefault()">
       <img src="..\static\images\Logo2.png" alt="Logo" >
     </a>
 
     <div style="display: flex;" class="navbar-container">
-      <a href="#cursos">Cursos</a>
-      <a href="#asesorias">Asesorias</a>
-      <a href="#profesores">Profesores</a>
-      <a href="#inicio">Iniciar Sesion</a>
-      <a href="#registro">Registrate</a>
+      <a href="#" onclick="mostrarCurso()">Cursos</a>
+      <a href="#" onclick="mostrarAsesoria()">Asesorias</a>
+      <a href="#" onclick="mostrarProfesores()">Profesores</a>
+      <a href="#" onclick="mostrarInicio()">Iniciar Sesion</a>
+      <a href="#" onclick="mostrarRegistro()">Registrate</a>
     </div>
   </header>
 
   <main>
-    <div class="hcontainer">
-      <div class="header-txt">
+      <div class="header-txt" id="textdefault">
         <h1>Desarrolla tu <strong>mente</strong> y tu <strong>creatividad</strong> con nuestra educación tecnológica de vanguardia_
         </h1>
-    </div>
-    
-    <div class="button-container">
-      <button class="button"><a class= "text-b"href="#cursos">Inscríbete ahora</a></button>
-    </div>
+      </div>
 
-    <section id="cursos" class="body__item">
+      <div class="header-txt" id="textcurso">
+        <h1>Cada curso esta diseñado para ayudarte a alcanzar tus <strong>objetivos</strong> de aprendizaje y avanzar en tu carrera en  <strong>tecnonologia</strong> _
+        </h1>
+      </div>
+
+      <div class="header-txt" id="textasesoria">
+        <h1>Nuestros expertos en <strong>tecnonologia</strong> están disponibles para ayudarte a superar tus desafíos más <strong>dificiles</strong> _
+        </h1>
+      </div>
+    
+      <div class="button-container" id="botonmenuin">
+      <button class="button" onclick="mostrarInicio()"><a class= "text-b"href="#cursos">Inscríbete ahora</a></button>
+      </div>
+
+      <section id="cursos" >
         <h1>Cursos de Programación</h1>
         <p>Descubre nuestra oferta de cursos de programación y mejora tus habilidades.</p>
         <div class="curso_python" style="background-color: #E0115F;">
@@ -64,8 +73,9 @@
             habilidades de diseño web y destacar en el mercado.</p>
           <a href="enlace_al_curso">Ver curso</a>
         </div>
-    </section>
-      <section id="asesorias" class="body__item">
+      </section>
+
+      <section id="asesorias">
         <h1>Asesorías de Programación</h1>
         <p>¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos y te asesoramos.</p>
         <div class="asesoria_python" style="background-color: blue;">
@@ -76,6 +86,7 @@
           <a href="enlace_al_curso">Ver curso</a>
         </div>
       </section>
+      
       <section id="Python">
         <h2>Curso de Python</h2>
         <p>En este curso de Python aprenderás a programar con uno de los lenguajes más populares y versátiles del mundo. Desde conceptos básicos hasta proyectos avanzados, este curso tiene todo lo que necesitas para convertirte en un programador Python experto.</p>
@@ -168,7 +179,7 @@
             <h3 id="proyectos">Proyectos prácticos</h3>
             <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el curso. Entre ellos se encuentra la creación de una página web personal, la implementación de un menú de navegación y la creación de una página de contacto con un formulario de contacto.</p>
       </section>
- </main>
+  </main>
   <footer>
     <p>&copy; TechTribe 2023</p>
   </footer>
