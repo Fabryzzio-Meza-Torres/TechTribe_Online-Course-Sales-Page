@@ -67,15 +67,99 @@ window.addEventListener('resize', ajustarMenu);
 
 //Secciones
 function defaultCursos(){
-  var curso =document.getElementById("cursos")
-  curso.style.display=none
+  document.getElementById("cursos").style.display = "none";
 }
 
 function defaultAsesoria(){
-  var asesoria =document.getElementById("asesoria")
-  asesoria.style.display=none
+  document.getElementById("asesorias").style.display = "none";
 } 
 
+
+function defaultProfesores(){
+  document.getElementById("profesor").style.display = "none";
+} 
+
+function defaultInicio(){
+  document.getElementById("inicio").style.display = "none";
+} 
+function defaultRegistro(){
+  document.getElementById("registro").style.display = "none";
+} 
+
+
+//Mostrar Secciones
+function mostrarDefault() {
+  //Texto
+  document.getElementById("textdefault").style.display = "flex";
+  document.getElementById("textcurso").style.display = "none";
+  document.getElementById("textasesoria").style.display = "none";
+  //Boton
+document.getElementById("botonmenuin").style.display = "flex";
+  //Secciones
+  document.getElementById("cursos").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
+  document.getElementById("profesores").style.display = "none";
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("registro").style.display = "none";
+
+
+}
+
+function mostrarCurso() {
+//Texto
+document.getElementById("textdefault").style.display = "none";
+document.getElementById("textcurso").style.display = "flex";
+document.getElementById("textasesoria").style.display = "none";
+
+//Boton
+document.getElementById("botonmenuin").style.display = "none";
+//Secciones
+document.getElementById("cursos").style.display = "block";
+document.getElementById("asesorias").style.display = "none";
+document.getElementById("profesores").style.display = "none";
+document.getElementById("inicio").style.display = "none";
+document.getElementById("registro").style.display = "none";
+
+}
+
+function mostrarAsesoria() {
+//Texto
+document.getElementById("textdefault").style.display = "none";
+document.getElementById("textcurso").style.display = "none";
+document.getElementById("textasesoria").style.display = "flex";
+//Boton
+document.getElementById("botonmenuin").style.display = "none";
+//Secciones
+document.getElementById("cursos").style.display = "none";
+document.getElementById("asesorias").style.display = "block";
+document.getElementById("profesores").style.display = "none";
+document.getElementById("inicio").style.display = "none";
+document.getElementById("registro").style.display = "none";
+}
+
+function mostrarProfesores() {
+  document.getElementById("cursos").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
+  document.getElementById("profesores").style.display = "block";
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("registro").style.display = "none";
+}
+
+function mostrarInicio() {
+  document.getElementById("cursos").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
+  document.getElementById("profesores").style.display = "none";
+  document.getElementById("inicio").style.display = "block";
+  document.getElementById("registro").style.display = "none";
+}
+
+function mostrarRegistro() {
+  document.getElementById("cursos").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
+  document.getElementById("profesores").style.display = "none";
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("registro").style.display = "block";
+}
 
 
 

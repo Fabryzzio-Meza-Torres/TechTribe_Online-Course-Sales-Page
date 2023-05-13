@@ -194,8 +194,13 @@ footer {
   text-align: center;
   padding: 20px;
 }
-
-.cursos{
+#textcurso,
+#textasesoria,
+#cursos,
+#asesorias,
+#profesores,
+#inicio,
+#registro{
   display: none;
 }
 
