@@ -15,7 +15,7 @@
   <header class="header" id="Menu">
 
     <a href="#" class="logo" onclick="mostrarDefault()">
-      <img src="..\static\images\Logo2.png" alt="Logo" >
+      <img src="..\static\images\Logo2-remove.png" alt="Logo">
     </a>
 
     <div style="display: flex;" class="navbar-container">
@@ -28,52 +28,71 @@
   </header>
 
   <main>
-      <div class="header-txt" id="textdefault">
-        <h1>Desarrolla tu <strong>mente</strong> y tu <strong>creatividad</strong> con nuestra educación tecnológica de vanguardia_
-        </h1>
-      </div>
+    <div class="header-txt" id="textdefault">
+      <h1>Desarrolla tu <strong>mente</strong> y tu <strong>creatividad</strong> con nuestra educación tecnológica de
+        vanguardia_
+      </h1>
+    </div>
 
-      <div class="header-txt" id="textcurso">
-        <h1>Cada curso esta diseñado para ayudarte a alcanzar tus <strong>objetivos</strong> de aprendizaje y avanzar en tu carrera en  <strong>tecnonologia</strong> _
-        </h1>
-      </div>
+    <div class="header-txt" id="textcurso">
+      <h1>Cada curso esta diseñado para ayudarte a alcanzar tus <strong>objetivos</strong> de aprendizaje y avanzar en
+        tu carrera en <strong>tecnonologia</strong> _
+      </h1>
+    </div>
 
-      <div class="header-txt" id="textasesoria">
-        <h1>Nuestros expertos en <strong>tecnonologia</strong> están disponibles para ayudarte a superar tus desafíos más <strong>dificiles</strong> _
-        </h1>
-      </div>
-    
-      <div class="button-container" id="botonmenuin">
-      <button class="button" onclick="mostrarInicio()"><a class= "text-b"href="#cursos">Inscríbete ahora</a></button>
-      </div>
+    <div class="header-txt" id="textasesoria">
+      <h1>Nuestros expertos en <strong>tecnonologia</strong> están disponibles para ayudarte a superar tus desafíos más
+        <strong>dificiles</strong> _
+      </h1>
+    </div>
 
-      <section id="cursos" >
-        <h1>Cursos de Programación</h1>
-        <p>Descubre nuestra oferta de cursos de programación y mejora tus habilidades.</p>
-        <div class="curso_python" style="background-color: #E0115F;">
-          <img src="..\static\images\python.jpg" alt="Python">
-          <h2>Python</h2>
-          <p>Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis elegante, fácil de leer y recursos
-            accesibles hacen que el aprendizaje sea divertido. ¡Únete ahora!</p>
-          <a href="enlace_al_curso">Ver curso</a>
-        </div>
-        <div class="curso_cplusplus" style="background-color: #E0115F;">
-          <img src="..\static\images\C++.png" alt="C++">
-          <h2>C++</h2>
-          <p>Únete a nuestro curso de C++ y descubre cómo crear aplicaciones de alto rendimiento con una sintaxis
-            poderosa
-            y eficiente. ¡Aprender es desafiante pero gratificante!</p>
-          <a href="enlace_al_curso">Ver curso</a>
-        </div>
-        <div class="curso_html" style="background-color: #E0115F;">
-          <img src="..\static\images\html.jpg" alt="html and css">
-          <h2>HTML y CSS</h2>
-          <p>Aprende HTML y CSS para crear sitios web impresionantes y atractivos. Únete a nuestro curso para mejorar
-            tus
-            habilidades de diseño web y destacar en el mercado.</p>
-          <a href="enlace_al_curso">Ver curso</a>
-        </div>
-      </section>
+    <div class="header-txt" id="Tpython">
+      <h1>Curso: Python desde cero 2023</h1>
+    </div>
+
+    <div class="header-txt" id="TCp">
+      <h1>Curso: C++ desde cero 2023</h1>
+    </div>
+
+    <div class="header-txt" id="THC">
+      <h1>Curso: HTML y CSS desde cero 2023</h1>
+    </div>
+
+    <div class="button-container" id="botonmenuin">
+      <button class="button" onclick="mostrarInicio()"><a class="text-b" href="#">Inscríbete ahora</a></button>
+    </div>
+
+    <div class="button-container" id="atrascursos">
+      <button class="button" onclick="mostrarCurso()"><a class="text-b" href="#">Ver todos los cursos</a></button>
+    </div>
+
+    <section id="cursos">
+      <h1>Cursos de Programación</h1>
+      <p>Descubre nuestra oferta de cursos de programación y mejora tus habilidades.</p>
+      <div class="curso_python" style="background-color: #E0115F;">
+        <img src="..\static\images\python.jpg" alt="Python">
+        <h2>Python</h2>
+        <p>Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis elegante, fácil de leer y recursos
+          accesibles hacen que el aprendizaje sea divertido</p>
+        <a href="#" onclick="MPython()">Ver curso</a>
+      </div>
+      <div class="curso_cplusplus" style="background-color: #E0115F;">
+        <img src="..\static\images\C++.png" alt="C++">
+        <h2>C++</h2>
+        <p>Únete a nuestro curso de C++ y descubre cómo crear aplicaciones de alto rendimiento con una sintaxis
+          poderosa
+          y eficiente. ¡Aprender es desafiante pero gratificante!</p>
+        <a href="#" onclick="MCPP()">Ver curso</a>
+      </div>
+      <div class="curso_html" style="background-color: #E0115F;">
+        <img src="..\static\images\html.jpg" alt="html and css">
+        <h2>HTML y CSS</h2>
+        <p>Aprende HTML y CSS para crear sitios web impresionantes y atractivos. Únete a nuestro curso para mejorar
+          tus
+          habilidades de diseño web y destacar en el mercado.</p>
+        <a href="#" onclick="MHTMLCSS()">Ver curso</a>
+      </div>
+    </section>
 
       <section id="asesorias">
         <h1>Asesorías de Programación</h1>
@@ -178,7 +197,35 @@
             <p>En esta sección se cubren las propiedades CSS que se utilizan para dar formato y estilo a la tipografía en una página web. Se explican las propiedades para crear estilos de fuente personalizados, como familias de fuente, pesos de fuente, tamaño de línea y más.</p>
             <h3 id="proyectos">Proyectos prácticos</h3>
             <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el curso. Entre ellos se encuentra la creación de una página web personal, la implementación de un menú de navegación y la creación de una página de contacto con un formulario de contacto.</p>
-
+      </section>
+      <section id="registro">
+        <div class="formulario">
+          <h1>Inicio Sesión</h1>
+          <form id="IngresoInicio">
+            <label for="InputCorreo">Correo Electronico</label>
+            <input type="email" id="InputCorreo" placeholder="Correo Electronico" required>
+  
+            <label for="InputContraseña">Contraseña</label>
+            <input type="password" id="InputContraseña" placeholder="Contraseña" required>     
+            <button type="submit" class="button">Iniciar Sesion</button>
+          </form>  
+        </div>
+      </section>
+  
+      <section id="inicio">
+        <div class="formulario">
+          <h1>Inicio Sesión</h1>
+          <form id="IngresoInicio">
+            <label for="InputCorreo">Correo Electronico</label>
+            <input type="email" id="InputCorreo" placeholder="Correo Electronico" required>
+  
+            <label for="InputContraseña">Contraseña</label>
+            <input type="password" id="InputContraseña" placeholder="Contraseña" required>
+  
+            <button type="submit" class="button">Iniciar Sesion</button>
+          </form>
+        </div>
+      </section>
       <section id="asesory_python">
         <h2>Asesoría de Python</h2>
         <p>En esta asesoría de Python tendrás la oportunidad de resolver tus dudas y problemas con el lenguaje de programación Python. Nuestros expertos te ayudarán a entender conceptos avanzados, resolver errores de código y mejorar tus habilidades de programación.</p>
@@ -197,7 +244,7 @@
         <h3 id="avance-temas">Avance de temas de Python</h3>
         <p>Si ya tienes experiencia en Python y estás buscando avanzar en tus habilidades, nuestros expertos pueden ayudarte a aprender temas avanzados de Python, como programación orientada a objetos, estructuras de datos avanzadas, funciones avanzadas y más. Estamos aquí para ayudarte a avanzar en tus habilidades de programación en Python.</p>
       </section>
-  </main>
+    </main>
   <footer>
     <p>&copy; TechTribe 2023</p>
   </footer>

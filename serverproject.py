@@ -24,15 +24,18 @@ class Clients(db.Model):
     firstname= db.Column(db.String(30), nullable=False)
     lastname= db.Column(db.String(50), nullable=False, unique=False)
     email= db.Column(db.String(99), nullable=False, unique=True)
+    contrasena = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
-    
-    def __init__(self, firstname, lastname, email):
+
+    def __init__(self, firstname, lastname, email, contrasena):
         self.firstname= firstname
         self.lastname= lastname
         self.email= email
+        self.contrasena = contrasena
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
+
 
 class Trabajadores(db.Model):
     __tablename__ = 'workers'
@@ -120,9 +123,9 @@ def crear_profesores():
 def index():
     return render_template('index.html')
 
-@dev.route('/cursos', methods=['GET'])
+@dev.route('/login', methods=['POST'])
 def cursos():
-    return render_template('index.html')
+    return render_template('form.user.html')
 
 @dev.route('/asesorias', methods=['GET'])
 def asesoria():
