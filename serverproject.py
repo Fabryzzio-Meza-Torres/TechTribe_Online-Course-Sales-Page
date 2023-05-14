@@ -8,9 +8,11 @@ from flask import (
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import uuid
+import traceback
 import os
 from datetime import datetime,timedelta
 import sys
+import psycopg2
 #Config 
 dev=Flask(__name__)
 dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
@@ -91,7 +93,6 @@ class Tarjeta(db.Model):
         self.id_client = id_client
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
-        
 
 class Orden_de_Compra(db.Model):
     __tablename__ = 'purchase_order'
@@ -112,6 +113,33 @@ class Orden_de_Compra(db.Model):
 @dev.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+# ----------------------------------------------------------------
+@dev.route('/profesores')
+def get_profesores():
+    conn = psycopg2.connect(
+        host = "localhost",
+        database = "project",
+        user="postgres",
+        password = "1234"
+    )
+
+    cur = conn.cursor()
+    cur.execute("SELECT firstname, lastname, age, especializacion FROM workers")
+
+    results = []
+    for row in cur.fetchall():
+        results.append({
+            'firstname': row[0],
+            'lastname': row[1],
+            'age': row[2],
+            'especializacion': row[3]
+        })
+
+    cur.close()
+    conn.close()
+    return jsonify(results)
+#----------------------------------------------------------------
 
 @dev.route('/cursos', methods=['GET'])
 def cursos():
