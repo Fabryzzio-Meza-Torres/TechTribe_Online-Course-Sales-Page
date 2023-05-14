@@ -24,6 +24,7 @@ main {
   min-height: 54vh;
 }
 h1 {
+  text-align: center;
   display: block;
   font-size: 2em;
   margin-block-start: 0.67em;
@@ -34,7 +35,6 @@ h1 {
 }
 h1 {
   width: 50%;
-  text-align: center;
   /* margin: 87px; */
 }
 h1 strong {
@@ -202,9 +202,24 @@ footer {
 #asesorias,
 #profesores,
 #inicio,
-#registro{
+#registro,
+#Python,
+#Cplusplus,
+#htmlcss,
+#atrascursos,
+#Tpython,
+#TCp,
+#THC{
   display: none;
 }
+
+div#Tpython,
+div#TCp,
+div#THC {
+  text-align: center;
+  color: #99b9f3;
+}
+
 
 .asesorias{
   display: none;

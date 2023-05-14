@@ -116,9 +116,9 @@ class Orden_de_Compra(db.Model):
 def index():
     return render_template('index.html')
 
-@dev.route('/cursos', methods=['GET'])
+@dev.route('/login', methods=['POST'])
 def cursos():
-    return render_template('index.html')
+    return render_template('form.user.html')
 
 @dev.route('/asesorias', methods=['GET'])
 def asesori():
