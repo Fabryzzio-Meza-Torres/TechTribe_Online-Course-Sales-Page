@@ -118,7 +118,7 @@ def cursos():
     return render_template('index.html')
 
 @dev.route('/asesorias', methods=['GET'])
-def asesori():
+def asesoria():
     return render_template('index.html')
 # Run the app
 if __name__ == '__main__':
