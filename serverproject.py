@@ -112,13 +112,14 @@ class Orden_de_Compra(db.Model):
         self.created_at = datetime.utcnow()
 
 # Routes
-@dev.route('/', methods=['GET'])
+@dev.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
-@dev.route('/login', methods=['POST'])
-def cursos():
-    return render_template('form.user.html')
+@dev.route('/register')
+def register():
+    return render_template('register.html')
+
 
 @dev.route('/asesorias', methods=['GET'])
 def asesori():
