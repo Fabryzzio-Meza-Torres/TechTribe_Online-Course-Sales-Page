@@ -108,6 +108,13 @@ class Orden_de_Compra(db.Model):
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
 
+def crear_profesores():
+    if not exits(Trabajadores):
+        profesor1 = Trabajadores(firstname="Marvin",lastname="Abisrror",age="23",especializacion="python")
+        with dev.app_context():
+            db.session.add_all([profesor1,profesor2,profesor3])
+            db.session.commit()
+
 # Routes
 @dev.route('/', methods=['GET'])
 def index():
