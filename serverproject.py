@@ -24,18 +24,15 @@ class Clients(db.Model):
     firstname= db.Column(db.String(30), nullable=False)
     lastname= db.Column(db.String(50), nullable=False, unique=False)
     email= db.Column(db.String(99), nullable=False, unique=True)
-    contrasena = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
-
-    def __init__(self, firstname, lastname, email, contrasena):
+    
+    def __init__(self, firstname, lastname, email):
         self.firstname= firstname
         self.lastname= lastname
         self.email= email
-        self.contrasena = contrasena
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
-
 
 class Trabajadores(db.Model):
     __tablename__ = 'workers'
@@ -111,21 +108,16 @@ class Orden_de_Compra(db.Model):
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
 
-def crear_profesores():
-    if not exits(Trabajadores):
-        profesor1 = Trabajadores(firstname="Marvin",lastname="Abisrror",age="23",especializacion="python")
-        with dev.app_context():
-            db.session.add_all([profesor1,profesor2,profesor3])
-            db.session.commit()
+
 
 # Routes
 @dev.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
-@dev.route('/login', methods=['POST'])
+@dev.route('/cursos', methods=['GET'])
 def cursos():
-    return render_template('form.user.html')
+    return render_template('index.html')
 
 @dev.route('/asesorias', methods=['GET'])
 def asesoria():
