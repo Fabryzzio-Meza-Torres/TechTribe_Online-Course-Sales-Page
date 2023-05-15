@@ -3,8 +3,11 @@ from flask import (
     Flask, 
     render_template, 
     request,
-    jsonify
+    jsonify,
+    redirect, 
+    url_for
 )
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import uuid
@@ -33,6 +36,9 @@ class Clients(db.Model):
         self.email= email
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
+    @classmethod
+    def check_password(self, hashed_password,password):
+        return check_password_hash(hashed_password, password)
 
 class Trabajadores(db.Model):
     __tablename__ = 'workers'
@@ -152,9 +158,47 @@ def crear_datos_por_defecto():
 def index():
     return render_template('index.html')
 
-@dev.route('/cursos', methods=['GET'])
-def cursos():
-    return render_template('index.html')
+@dev.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        try:
+            name = request.form.get('nombres')
+            lastname = request.form.get('apellidos')
+            email = request.form.get('correo')
+            contrasena = request.form.get('contrasena')
+            campos_validar = ['nombres', 'apellidos', 'contrasena']
+            errors = []
+            for campo in campos_validar:
+                if not request.form.get(campo):
+                    errors.append(f'El campo {campo} es obligatorio')
+            
+            if not email:
+                errors.append('Ingrese su correo electrónico')
+            elif not email.endswith('@gmail.com'):
+                errors.append('Ingrese un correo de Gmail válido')
+            else:
+                user = Clients.query.filter_by(email=email).first()
+                if user:
+                    errors.append('El correo electrónico ya ha sido registrado')
+
+            if errors:
+                return jsonify({'success': False, 'message': errors}), 400
+            else:
+                hash_contrasena = generate_password_hash(contrasena, salt_length=8)
+                print(hash_contrasena)
+                new_user = Clients(name, lastname, email, hash_contrasena)
+                db.session.add(new_user)
+                db.session.commit()
+                return jsonify({'id': new_user.id, 'success': True, 'message': 'Usuario creado exitosamente'}), 200
+
+        except Exception as e:
+            print(e)
+            print(sys.exc_info())
+            db.session.rollback()
+            return jsonify({'success': False, 'message': 'Error al crear usuario'}), 500
+
+    return render_template('register.html')
+
 
 @dev.route('/asesorias', methods=['GET'])
 def asesoria():

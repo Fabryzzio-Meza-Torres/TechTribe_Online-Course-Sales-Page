@@ -1,3 +1,4 @@
+
 //Mostrar Secciones
 function mostrarDefault() {
   const secciones = {
@@ -76,7 +77,7 @@ for (const id in secciones) {
 }
 
 function mostrarProfesores() {
-  
+
   document.getElementById("cursos").style.display = "none";
   document.getElementById("asesorias").style.display = "none";
   //document.getElementById("profesores").style.display = "block";
@@ -134,9 +135,9 @@ function MPython(){  const secciones = {
   "asesoriapython": "none"
 };
 
-for (const id in secciones) {
-  document.getElementById(id).style.display = secciones[id];
-}
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
 }
 
 function MCPP(){  const secciones = {
@@ -157,9 +158,9 @@ function MCPP(){  const secciones = {
   "asesoriapython": "none"
 };
 
-for (const id in secciones) {
-  document.getElementById(id).style.display = secciones[id];
-}
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
 }
 
 function MHTMLCSS(){  const secciones = {
@@ -230,7 +231,84 @@ function mate(){  const secciones = {
   "MAT": "flex"
 };
 
-for (const id in secciones) {
-  document.getElementById(id).style.display = secciones[id];
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
 }
+
+
+function prueba() {
+  const secciones = {
+    "textdefault": "none",
+    "textcurso": "none",
+    "textasesoria": "none",
+    "botonmenuin": "none",
+    "cursos": "none",
+    "textasesoria": "none",
+    "atrascursos": "none",
+    "asesorias": "none",
+    "inicio": "none",
+    "Python": "none",
+    "Cplusplus": "none",
+    "htmlcss": "block",
+    "TCp": "none",
+    "THC": "none"
+  };
+
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
+}
+
+
+//Enviar formulario
+function createUser() {
+  const form_register = document.getElementById('form_register');
+  form_register.addEventListener('submit', SubmitForm)
+
+
+}
+const pendingsController = new WeakMap()
+
+function SubmitForm(evento) {
+  //para evitar que el formulario se envíe y se recargue la página.
+  evento.preventDefault();
+  //para evitar que el evento se propague hacia otros elementos.
+  evento.stopPropagation();
+
+  const formre = evento.currentTarget;
+  const previusController = pendingsController.get(formre)
+  if (previusController) {
+    previusController.abort();
+  }
+
+  const controller = new AbortController()
+  pendingsController.set(formre, controller)
+  const formData = new FormData(formre)
+  fetch('/register', {
+    'method': 'POST',
+    'body': formData,
+    'signal': controller.signal,
+  })
+    .then(function (response) {
+      console.log('response:', response)
+      return response.json();
+    })
+    .then(function (responseJson) {
+      if (!responseJson.success) {
+        const errorCreateClient = document.getElementById('errorCreateClient');
+        errorCreateClient.style.display = 'block';
+        errorCreateClient.innerHTML = responseJson.message;
+      }
+      else {
+        const succesCreateClient = document.getElementById('succesCreateClient');
+        succesCreateClient.style.display = 'block';
+        succesCreateClient.innerHTML = responseJson.message;
+        setTimeout(() => {
+          formre.reset()
+          successEmployeeMessage.style.display = 'none'
+        }, 15000)
+      }
+    })
+
 }
