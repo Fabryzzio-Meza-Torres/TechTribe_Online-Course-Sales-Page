@@ -159,7 +159,33 @@ def crear_datos_por_defecto():
 def index():
     return render_template('index.html')
 
-<<<<<<< HEAD
+# ----------------------------------------------------------------
+@dev.route('/profesores')
+def get_profesores():
+    conn = psycopg2.connect(
+        host = "localhost",
+        database = "project",
+        user="postgres",
+        password = "1234"
+    )
+
+    cur = conn.cursor()
+    cur.execute("SELECT firstname, lastname, age, especializacion FROM workers")
+
+    results = []
+    for row in cur.fetchall():
+        results.append({
+            'firstname': row[0],
+            'lastname': row[1],
+            'age': row[2],
+            'especializacion': row[3]
+        })
+
+    cur.close()
+    conn.close()
+    return jsonify(results)
+#----------------------------------------------------------------
+
 @dev.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -200,37 +226,6 @@ def register():
             return jsonify({'success': False, 'message': 'Error al crear usuario'}), 500
 
     return render_template('register.html')
-
-=======
-# ----------------------------------------------------------------
-@dev.route('/profesores')
-def get_profesores():
-    conn = psycopg2.connect(
-        host = "localhost",
-        database = "project",
-        user="postgres",
-        password = "1234"
-    )
-
-    cur = conn.cursor()
-    cur.execute("SELECT firstname, lastname FROM workers")
-
-    results = []
-    for row in cur.fetchall():
-        results.append({
-            'firstname': row[0],
-            'lastname': row[1]
-        })
-
-    cur.close()
-    conn.close()
-    return jsonify(results)
-#----------------------------------------------------------------
-
-@dev.route('/cursos', methods=['GET'])
-def cursos():
-    return render_template('index.html')
->>>>>>> origin/rama_Josue
 
 @dev.route('/asesorias', methods=['GET'])
 def asesoria():
