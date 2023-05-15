@@ -7,9 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="TechTribe ofrece cursos y asesorías de programación en línea. Descubre nuestra oferta de cursos de Python, C++, HTML y CSS.">
-  <link rel="stylesheet" type="text/css" href="..\static\css\style.css">
-  <link rel="stylesheet" type="text/css" href="..\static\css\register.css">
-  <script src="..\static\js\actions.js"></script>
 </head>
 
 <body>
@@ -23,16 +20,16 @@
       <a href="#" onclick="mostrarCurso()">Cursos</a>
       <a href="/#" onclick="mostrarAsesoria()">Asesorias</a>
       <a href="/#" onclick="mostrarProfesores()">Profesores</a>
-      <a href="/#" onclick="mostrarInicio()">Iniciar Sesion</a>
-      <a href="/#" onclick="mostrarRegistro()">Registrate</a>
+      <a href="/login" onclick="mostrarInicio()">Iniciar Sesion</a>
+      <a href="/register" onclick="mostrarRegistro()">Registrate</a>
       
     </div>
   </header>
 
   <main>
     <section class="form_register">
-      <form action="" method="post">
-        <h4>Formulario Registro</h4>
+      <form id="form_register">
+        <h4>Registrate sin costo</h4>
         <label for="nombres">Nombre:</label>
         <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre" required>
         <label for="apellidos">Apellido:</label>
@@ -41,11 +38,14 @@
         <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo" required>
         <label for="contrasena">Contraseña:</label>
         <input class="controls" type="password" name="contrasena" id="contrasena" placeholder="Ingrese su Contraseña" required>
-        <div id="errorCreateClient" style="display: none; color: green;"></div>
-        <div id="succesCreateClient" style="display: none; color: red;"></div>
-        <div><input class="botons" type="submit" value="Registrar"></div>
-        <p><a href="#">¿Ya tengo Cuenta?</a></p>
+        <div id="errorCreateClient" style="display: none; color: red;"></div>
+        <div id="succesCreateClient" style="display: none; color: green;"></div>
+        <div><input class="botons" onclick="createUser()" type="submit" value="Registrar"></div>
+        <p><a href="/login">¿Ya tengo Cuenta?</a></p>
       </form>
+      <link rel="stylesheet" type="text/css" href="..\static\css\style.css">
+      <link rel="stylesheet" type="text/css" href="..\static\css\register.css">
+      <script src="..\static\js\actions.js"></script>
     </section>
     
   </main>

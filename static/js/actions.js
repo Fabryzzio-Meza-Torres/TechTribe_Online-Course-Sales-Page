@@ -104,14 +104,6 @@ function mostrarInicio() {
   }
 }
 
-function mostrarRegistro() {
-  document.getElementById("cursos").style.display = "none";
-  document.getElementById("asesorias").style.display = "none";
-  //document.getElementById("profesores").style.display = "none";
-  document.getElementById("inicio").style.display = "none";
-  //document.getElementById("registro").style.display = "block";
-}
-
 function MPython() {
   const secciones = {
     "textdefault": "none",
