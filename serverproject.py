@@ -227,6 +227,7 @@ def register():
 
     return render_template('register.html')
 
+
 @dev.route('/asesorias', methods=['GET'])
 def asesoria():
     return render_template('index.html')
