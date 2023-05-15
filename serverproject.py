@@ -108,6 +108,43 @@ class Orden_de_Compra(db.Model):
         self.created_at = datetime.utcnow()
 
 
+def crear_datos_por_defecto():
+   with dev.app_context():
+    trabajadores = Trabajadores.query.all()
+    cursos = Producto.query.all()
+    
+    if not trabajadores:
+        profesor1=Trabajadores("Marvin","Abisrror","25","Python")
+        profesor2=Trabajadores("Jesus","Bellido","38","Python")
+        profesor3=Trabajadores("Jose","Fiestas","35","C++")
+        profesor4=Trabajadores("Ruben","Rivas","55","C++")
+        profesor5=Trabajadores("Alan","Morante","42","HTML/CSS")
+        profesor6=Trabajadores("Jorge","Villavicencio","38","HTML/CSS")
+        profesor7=Trabajadores("Jose Miguel","Renom","38","Matematica para CS")
+        profesor8=Trabajadores("Jorge","Tipe","35","Matematica para CS")
+        db.session.add_all([profesor1,profesor2,profesor3,profesor4,profesor5,profesor6,profesor7,profesor8])
+
+    if not cursos:
+        profesor1=Trabajadores.query.filter_by(firstname="Marvin").first()
+        profesor2=Trabajadores.query.filter_by(firstname="Jesus").first()
+        profesor3=Trabajadores.query.filter_by(firstname="Jose").first()
+        profesor4=Trabajadores.query.filter_by(firstname="Ruben").first()
+        profesor5=Trabajadores.query.filter_by(firstname="Alan").first()
+        profesor6=Trabajadores.query.filter_by(firstname="Jorge").first()
+        profesor7=Trabajadores.query.filter_by(firstname="Jose Miguel").first()
+        profesor8=Trabajadores.query.filter_by(firstname="Jorge").first()
+        curso1=Producto(profesor1.id,"Curso Python", 350.00, "Curso", "6 semanas")
+        asesoria1=Producto(profesor2.id,"Asesoria Python", 40.00, "Asesoria", "2 horas")
+        curso2=Producto(profesor3.id,"Curso C++", 350.00, "Curso", "8 semanas")
+        asesoria2=Producto(profesor4.id,"Asesoria C++", 40.00, "Asesoria", "2 horas")
+        curso3=Producto(profesor5.id,"HTML/CSS", 150.00, "Curso", "2 semanas")
+        asesoria3=Producto(profesor6.id,"Asesoria HTML/CSS", 40.00, "Asesoria", "2 horas")
+        curso4=Producto(profesor7.id,"Matematica para CS", 400.00, "Curso", "10 semanas")
+        asesoria4=Producto(profesor8.id,"Asesoria Matematica para CS", 40.00, "Asesoria", "2 horas")
+        db.session.add_all([curso1,asesoria1,curso2,asesoria2,curso3,asesoria3,curso4,asesoria4])
+
+    db.session.commit()
+    db.session.close()
 
 
 # Routes
