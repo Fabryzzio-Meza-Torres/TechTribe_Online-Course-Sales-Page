@@ -4,8 +4,8 @@
 
 ## Integrantes:
 - Fabryzzio Jossue Meza Torres
-- Fernando Usurin 
-- Josue Velo
+- Fernando Alonso Usurin Arias 
+- Josue Nehemias Velo Poma
 
 ## Introduccion
 <p align="justify">El proyecto en cuestión es un servicio web diseñado para satisfacer la creciente demanda en el mercado educativo de cursos y asesorías en programación. Con el fin de garantizar la calidad de la capacitación, se cuenta con un equipo altamente calificado de instructores profesionales que imparten cursos de una amplia gama de temas, desde conceptos fundamentales hasta técnicas especializadas. Además, la plataforma ofrece una experiencia de usuario atractiva, con una interfaz amigable y fácil de usar, y garantiza una compra segura y fiable a través de múltiples opciones de pago. El servicio también proporciona información detallada sobre los cursos y las asesorías para que los usuarios puedan tomar decisiones informadas.La plataforma cuenta con un formulario seguro de registro y un sistema de compra confiable para garantizar la seguridad de los datos personales y financieros de los usuarios. Además, la empresa emplea una base de datos Postgres altamente segura para almacenar y proteger la información de sus clientes.</p>
