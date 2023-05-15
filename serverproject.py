@@ -57,9 +57,8 @@ class Producto(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     id_worker = db.Column(db.String(10), db.ForeignKey('workers.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
-    price = db.Column(db.Float(precision=2  ), nullable=False)
+    price = db.Column(db.Float(precision=2 ), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
-    description = db.Column(db.String(500), nullable=False)
     duration = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
@@ -107,6 +106,7 @@ class Orden_de_Compra(db.Model):
         self.total_price = total_price
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
+
 
 
 

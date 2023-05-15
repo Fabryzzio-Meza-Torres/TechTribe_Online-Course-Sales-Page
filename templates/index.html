@@ -58,12 +58,16 @@
       <h1>Curso: HTML y CSS desde cero 2023</h1>
     </div>
 
-    <div class="button-container" id="botonmenuin">
-      <button class="button" onclick="mostrarInicio()"><a class="text-b" href="#">Inscríbete ahora</a></button>
+    <div class="header-txt" id="TAP">
+      <h1>Asesoria: Python</h1>
     </div>
 
-    <div class="button-container" id="atrascursos">
-      <button class="button" onclick="mostrarCurso()"><a class="text-b" href="#">Ver todos los cursos</a></button>
+    <div class="header-txt" id="MAT">
+      <h1>Curso: Matematicas para Computer Science</h1>
+    </div>
+
+    <div class="button-container" id="botonmenuin">
+      <button class="button" onclick="mostrarInicio()"><a class="text-b" href="#">Inscríbete ahora</a></button>
     </div>
 
     <section id="cursos">
@@ -84,6 +88,7 @@
           y eficiente. ¡Aprender es desafiante pero gratificante!</p>
         <a href="#" onclick="MCPP()">Ver curso</a>
       </div>
+
       <div class="curso_html" style="background-color: #E0115F;">
         <img src="..\static\images\html.jpg" alt="html and css">
         <h2>HTML y CSS</h2>
@@ -94,6 +99,14 @@
       </div>
     </section>
 
+    <div class="curso_matematicaCS" style="background-color: #E0115F;">
+      <img src="..\static\images\mathematics.jpg" alt="mathematics">
+      <h2>Matematica para Computer Science/h2>
+      <p>Este curso de matemáticas para ciencias de la computación cubre temas esenciales como cálculo, álgebra lineal, probabilidad y estadística para mejorar la comprensión de algoritmos y estructuras de datos en la programación.</p>
+      <a href="#" onclick="mate()">Ver curso</a>
+    </div>
+  </section>
+
       <section id="asesorias">
         <h1>Asesorías de Programación</h1>
         <p>¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos y te asesoramos.</p>
@@ -102,29 +115,22 @@
           <h2>Asesoria Python</h2>
           <p>Obtén ayuda experta en Python y mejora tus habilidades de programación. Con nuestras asesorías
             personalizadas, resuelve tus problemas y lleva tus proyectos al siguiente nivel.</p>
-          <a href="enlace_al_curso">Ver curso</a>
+          <a href="#" onclick="python_asesory()">Ver curso</a>
         </div>
       </section>
       
       <section id="Python">
         <h2>Curso de Python</h2>
         <p>En este curso de Python aprenderás a programar con uno de los lenguajes más populares y versátiles del mundo. Desde conceptos básicos hasta proyectos avanzados, este curso tiene todo lo que necesitas para convertirte en un programador Python experto.</p>
-        <div style="display:flex;">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLyAv661xWVxCFjXzOdA_lM_zzzGyiW8NE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          <p>En este video introductorio, nuestro instructor te dará una introducción a Python y a lo que puedes esperar de este curso.</p>
-        </div>
-        <h3>Tabla de contenidos</h3>
-        <ul>
-          <li><a href="#introduccion">Introducción a Python</a></li>
-          <li><a href="#variables">Variables y tipos de datos</a></li>
-          <li><a href="#condicionales">Condicionales y bucles</a></li>
-          <li><a href="#listas">Listas y tuplas</a></li>
-          <li><a href="#diccionarios">Diccionarios</a></li>
-          <li><a href="#funciones">Funciones</a></li>
-            <li><a href="#objetos">Programación orientada a objetos</a></li>
-          <li><a href="#proyectos">Proyectos prácticos</a></li>
-        </ul>
-        <h3 id="introduccion">Introducción a Python</h3>
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/rfscVS0vtbw" title="video python" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div style="flex: 1;">
+            <p>Deja volar tu imaginacion al abanico de posibilidades con Python, con el siguiente video se explicara a detalle lo que se enseñara en el curso</p>
+          </div>
+        </div>  
+            <h3 id="introduccion">Introducción a Python</h3>
         <p>En esta sección se introduce Python y se explica cómo instalarlo y configurarlo en tu ordenador. También se cubren los conceptos básicos de programación, como variables y estructuras de control.</p>
         <h3 id="variables">Variables y tipos de datos</h3>
         <p>En esta sección se cubren los diferentes tipos de datos que puedes manejar en Python, como cadenas de texto, números y booleanos. También se explica cómo utilizar variables para almacenar y manipular datos.</p>
@@ -141,23 +147,18 @@
         <h3 id="proyectos">Proyectos prácticos</h3>
         <p>En esta sección se presentan algunos proyectos prácticos que puedes realizar para aplicar lo que has aprendido en el curso. Entre ellos, se incluyen proyectos como un juego de adivinanza y una aplicación de gestión de tareas.</p>
         </section>
+        
       <section id="Cplusplus">
         <h2>Curso de C++</h2>
         <p>Este curso te enseñará los conceptos básicos de programación en C++. Aprenderás a escribir programas utilizando la sintaxis de este lenguaje y conocerás las principales estructuras de control de flujo y tipos de datos.</p>
-        <div>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/YUxj6Uzna6U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <h3>Tabla de contenidos</h3>
-        <ul>
-          <li><a href="#intro">Introducción a C++</a></li>
-          <li><a href="#tipos-datos">Tipos de datos</a></li>
-          <li><a href="#estructuras-control">Estructuras de control de flujo</a></li>
-          <li><a href="#arrays">Arrays</a></li>
-          <li><a href="#funciones">Funciones</a></li>
-          <li><a href="#punteros">Punteros</a></li>
-          <li><a href="#clases">Clases y objetos</a></li>
-          <li><a href="#proyectos">Proyectos prácticos</a></li>
-        </ul>
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/vLnPwxZdW4Y" title="video Cpluplus" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div style="flex: 1;">
+            <p>En el presente video uno de nuestros docentes te enseñara el contenido del curso de C++</p>
+            </div>
+        </div> 
         <h3 id="intro">Introducción a C++</h3>
         <p>En esta sección se presenta una introducción al lenguaje de programación C++, sus características principales y cómo se diferencia de otros lenguajes. También se aborda la configuración del entorno de desarrollo y la forma de compilar y ejecutar programas.</p>
         <h3 id="tipos-datos">Tipos de datos</h3>
@@ -181,7 +182,7 @@
             <p>En este curso de HTML y CSS aprenderás los conceptos básicos de la creación de páginas web utilizando los lenguajes HTML y CSS. Con este conocimiento podrás crear tus propias páginas web y darles formato y estilo de manera profesional.</p>
             <div style="display: flex;">
               <div style="flex: 1;">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/vQWlgd7hV4A" title="Curso de HTML y CSS" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/vQWlgd7hV4A" title="video de HTML y CSS" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
               </div>
               <div style="flex: 1;">
                 <p>Este video te ofrece una introducción al curso de HTML y CSS y te muestra algunos ejemplos básicos de cómo se estructura una página web utilizando HTML y se le da estilo utilizando CSS.</p>
@@ -198,6 +199,47 @@
             <h3 id="proyectos">Proyectos prácticos</h3>
             <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el curso. Entre ellos se encuentra la creación de una página web personal, la implementación de un menú de navegación y la creación de una página de contacto con un formulario de contacto.</p>
       </section>
+
+      <section id="matecs">
+        <h2>Curso de Matemática para Computer Science</h2>
+        <p>En este curso de Matemática para Computer Science aprenderás los conceptos básicos de cálculo, álgebra lineal, probabilidades y estadística, y cómo se aplican en la resolución de problemas en el campo de la informática. Con este conocimiento podrás diseñar algoritmos más eficientes y comprender mejor los fundamentos de la inteligencia artificial y la criptografía.</p>
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/eSFA1Fp8jcU" title="video de Matemática para Computer Science" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div style="flex: 1;">
+            <p>Este video te ofrece una introducción a nuestro curso de Matemática para Computer Science y te muestra algunos ejemplos básicos de cómo se aplican los conceptos matemáticos en la informática.</p>
+          </div>
+        </div>
+        <h3 id="calculo">Cálculo</h3>
+        <p>En esta sección se cubren los conceptos básicos de cálculo, como límites, derivadas e integrales, y cómo se aplican en la optimización de algoritmos y la comprensión de los fundamentos de la inteligencia artificial.</p>
+        <h3 id="algebra-lineal">Álgebra Lineal</h3>
+        <p>En esta sección se cubren los conceptos básicos de álgebra lineal, como sistemas de ecuaciones lineales, matrices y determinantes, y cómo se aplican en la resolución de problemas de programación lineal y la comprensión de los fundamentos de la criptografía.</p>
+        <h3 id="probabilidades">Probabilidades y Estadística</h3>
+        <p>En esta sección se cubren los conceptos básicos de probabilidades y estadística, como variables aleatorias, distribuciones de probabilidad, estadística descriptiva e inferencial, y cómo se aplican en la resolución de problemas de análisis de datos y la comprensión de los fundamentos de la inteligencia artificial.</p>
+        <h3 id="proyectos">Proyectos prácticos</h3>
+        <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el curso. Entre ellos se encuentra la optimización de algoritmos de búsqueda y ordenamiento, la implementación de técnicas de programación lineal y la aplicación de técnicas de análisis de datos en conjuntos de datos reales.</p>
+      </section>
+
+      <section id="asesoriapython">
+        <h2>Asesoría de Python</h2>
+        <p>En esta asesoría de Python tendrás la oportunidad de resolver tus dudas y problemas con el lenguaje de programación Python. Nuestros expertos te ayudarán a entender conceptos avanzados, resolver errores de código y mejorar tus habilidades de programación.</p>
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/6tNS--WetLI" title="Asesoría de Python" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div style="flex: 1;">
+            <p>Este video te ofrece una introducción a nuestra asesoría de Python y te muestra cómo nuestros expertos pueden ayudarte a mejorar tus habilidades de programación y resolver problemas complejos en Python.</p>
+          </div>
+        </div>
+        <h3 id="resolucion-dudas">Resolución de dudas</h3>
+        <p>Nuestros expertos están disponibles para ayudarte en la resolución de cualquier duda que tengas sobre Python. Desde preguntas básicas hasta dudas avanzadas, estamos aquí para ayudarte a entender mejor el lenguaje y resolver cualquier problema que tengas en tus proyectos.</p>
+        <h3 id="apoyo-proyectos">Apoyo en proyectos</h3>
+        <p>Si estás trabajando en un proyecto de Python y necesitas ayuda, nuestros expertos están disponibles para apoyarte en el desarrollo del proyecto. Ya sea que necesites ayuda en la planificación, diseño, implementación o resolución de problemas, estamos aquí para ayudarte a tener éxito en tu proyecto.</p>
+        <h3 id="avance-temas">Avance de temas de Python</h3>
+        <p>Si ya tienes experiencia en Python y estás buscando avanzar en tus habilidades, nuestros expertos pueden ayudarte a aprender temas avanzados de Python, como programación orientada a objetos, estructuras de datos avanzadas, funciones avanzadas y más. Estamos aquí para ayudarte a avanzar en tus habilidades de programación en Python.</p>
+      </section>
+
       <section id="registro">
         <div class="formulario">
           <h1>Inicio Sesión</h1>
@@ -225,24 +267,6 @@
             <button type="submit" class="button">Iniciar Sesion</button>
           </form>
         </div>
-      </section>
-      <section id="asesory_python">
-        <h2>Asesoría de Python</h2>
-        <p>En esta asesoría de Python tendrás la oportunidad de resolver tus dudas y problemas con el lenguaje de programación Python. Nuestros expertos te ayudarán a entender conceptos avanzados, resolver errores de código y mejorar tus habilidades de programación.</p>
-        <div style="display: flex;">
-          <div style="flex: 1;">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/6tNS--WetLI" title="Asesoría de Python" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-          <div style="flex: 1;">
-            <p>Este video te ofrece una introducción a nuestra asesoría de Python y te muestra cómo nuestros expertos pueden ayudarte a mejorar tus habilidades de programación y resolver problemas complejos en Python.</p>
-          </div>
-        </div>
-        <h3 id="resolucion-dudas">Resolución de dudas</h3>
-        <p>Nuestros expertos están disponibles para ayudarte en la resolución de cualquier duda que tengas sobre Python. Desde preguntas básicas hasta dudas avanzadas, estamos aquí para ayudarte a entender mejor el lenguaje y resolver cualquier problema que tengas en tus proyectos.</p>
-        <h3 id="apoyo-proyectos">Apoyo en proyectos</h3>
-        <p>Si estás trabajando en un proyecto de Python y necesitas ayuda, nuestros expertos están disponibles para apoyarte en el desarrollo del proyecto. Ya sea que necesites ayuda en la planificación, diseño, implementación o resolución de problemas, estamos aquí para ayudarte a tener éxito en tu proyecto.</p>
-        <h3 id="avance-temas">Avance de temas de Python</h3>
-        <p>Si ya tienes experiencia en Python y estás buscando avanzar en tus habilidades, nuestros expertos pueden ayudarte a aprender temas avanzados de Python, como programación orientada a objetos, estructuras de datos avanzadas, funciones avanzadas y más. Estamos aquí para ayudarte a avanzar en tus habilidades de programación en Python.</p>
       </section>
     </main>
   <footer>

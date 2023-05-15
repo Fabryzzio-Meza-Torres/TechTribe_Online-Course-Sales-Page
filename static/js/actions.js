@@ -5,7 +5,6 @@ function mostrarDefault() {
     "textcurso": "none",
     "Tpython": "none",
     "textasesoria": "none",
-    "atrascursos": "none",
     "botonmenuin": "flex",
     "cursos": "none",
     "asesorias": "none",
@@ -14,7 +13,9 @@ function mostrarDefault() {
     "Cplusplus": "none",
     "htmlcss": "none",
     "TCp": "none",
-    "THC": "none"
+    "THC": "none",
+    "TAP": "none",
+    "asesoriapython": "none"
   };
 
   for (const id in secciones) {
@@ -30,7 +31,6 @@ function mostrarCurso() {
     "Tpython": "none",
     "botonmenuin": "none",
     "textasesoria": "none",
-    "atrascursos": "none",
     "cursos": "block",
     "asesorias": "none",
     "inicio": "none",
@@ -38,7 +38,9 @@ function mostrarCurso() {
     "Cplusplus": "none",
     "htmlcss": "none",
     "TCp": "none",
-    "THC": "none"
+    "THC": "none",
+    "TAP": "none",
+    "asesoriapython": "none"
   };
 
   for (const id in secciones) {
@@ -54,7 +56,6 @@ const secciones = {
   "textasesoria": "flex",
   "botonmenuin": "none",
   "Tpython": "none",
-  "atrascursos": "none",
   "cursos": "none",
   "asesorias": "block",
   "inicio": "none",
@@ -62,8 +63,11 @@ const secciones = {
   "Cplusplus": "none",
   "htmlcss": "none",
   "TCp": "none",
-  "THC": "none"
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none"
 };
+
 
 for (const id in secciones) {
   document.getElementById(id).style.display = secciones[id];
@@ -87,7 +91,6 @@ function mostrarInicio() {
     "textasesoria": "none",
     "botonmenuin": "none",
     "Tpython": "none",
-    "atrascursos": "none",
     "cursos": "none",
     "asesorias": "none",
     "inicio": "block",
@@ -95,7 +98,9 @@ function mostrarInicio() {
     "Cplusplus": "none",
     "htmlcss": "none",
     "TCp": "none",
-    "THC": "none"
+    "THC": "none",
+    "TAP": "none",
+    "asesoriapython": "none"
   };
 
   for (const id in secciones) {
@@ -117,7 +122,6 @@ function MPython(){  const secciones = {
   "textasesoria": "none",
   "botonmenuin": "none",
   "Tpython": "flex",
-  "atrascursos": "flex",
   "cursos": "none",
   "asesorias": "none",
   "inicio": "none",
@@ -125,7 +129,9 @@ function MPython(){  const secciones = {
   "Cplusplus": "none",
   "htmlcss": "none",
   "TCp": "none",
-  "THC": "none"
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none"
 };
 
 for (const id in secciones) {
@@ -138,7 +144,6 @@ function MCPP(){  const secciones = {
   "textcurso": "none",
   "textasesoria": "none",
   "textasesoria": "none",
-  "atrascursos": "flex",
   "botonmenuin": "none",
   "cursos": "none",
   "asesorias": "none",
@@ -147,7 +152,9 @@ function MCPP(){  const secciones = {
   "Cplusplus": "block",
   "htmlcss": "none",
   "TCp": "flex",
-  "THC": "none"
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none"
 };
 
 for (const id in secciones) {
@@ -162,14 +169,65 @@ function MHTMLCSS(){  const secciones = {
   "botonmenuin": "none",
   "cursos": "none",
   "textasesoria": "none",
-  "atrascursos": "flex",
   "asesorias": "none",
   "inicio": "none",
   "Python": "none",
   "Cplusplus": "none",
   "htmlcss": "block",
   "TCp": "flex",
-  "THC": "none"
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none"
+};
+
+
+for (const id in secciones) {
+  document.getElementById(id).style.display = secciones[id];
+}
+}
+
+function python_asesory(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "textasesoria": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "flex",
+  "asesoriapython": "block"
+};
+
+
+for (const id in secciones) {
+  document.getElementById(id).style.display = secciones[id];
+}
+}
+
+function mate(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "textasesoria": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "block",
+  "MAT": "flex"
 };
 
 for (const id in secciones) {

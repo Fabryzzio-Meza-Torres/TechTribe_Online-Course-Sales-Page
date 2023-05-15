@@ -209,13 +209,17 @@ footer {
 #atrascursos,
 #Tpython,
 #TCp,
-#THC{
+#THC,
+#TAP,
+#asesoriapython
+{
   display: none;
 }
 
 div#Tpython,
 div#TCp,
-div#THC {
+div#THC,
+div#TAP{
   text-align: center;
   color: #99b9f3;
 }
