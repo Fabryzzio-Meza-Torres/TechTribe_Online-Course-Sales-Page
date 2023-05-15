@@ -11,9 +11,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import uuid
+import traceback
 import os
 from datetime import datetime,timedelta
 import sys
+import psycopg2
 #Config 
 dev=Flask(__name__)
 dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
@@ -96,7 +98,6 @@ class Tarjeta(db.Model):
         self.id_client = id_client
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
-        
 
 class Orden_de_Compra(db.Model):
     __tablename__ = 'purchase_order'
@@ -158,6 +159,7 @@ def crear_datos_por_defecto():
 def index():
     return render_template('index.html')
 
+<<<<<<< HEAD
 @dev.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -199,6 +201,36 @@ def register():
 
     return render_template('register.html')
 
+=======
+# ----------------------------------------------------------------
+@dev.route('/profesores')
+def get_profesores():
+    conn = psycopg2.connect(
+        host = "localhost",
+        database = "project",
+        user="postgres",
+        password = "1234"
+    )
+
+    cur = conn.cursor()
+    cur.execute("SELECT firstname, lastname FROM workers")
+
+    results = []
+    for row in cur.fetchall():
+        results.append({
+            'firstname': row[0],
+            'lastname': row[1]
+        })
+
+    cur.close()
+    conn.close()
+    return jsonify(results)
+#----------------------------------------------------------------
+
+@dev.route('/cursos', methods=['GET'])
+def cursos():
+    return render_template('index.html')
+>>>>>>> origin/rama_Josue
 
 @dev.route('/asesorias', methods=['GET'])
 def asesoria():
