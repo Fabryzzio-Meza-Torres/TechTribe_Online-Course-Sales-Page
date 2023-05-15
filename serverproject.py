@@ -125,15 +125,13 @@ def get_profesores():
     )
 
     cur = conn.cursor()
-    cur.execute("SELECT firstname, lastname, age, especializacion FROM workers")
+    cur.execute("SELECT firstname, lastname FROM workers")
 
     results = []
     for row in cur.fetchall():
         results.append({
             'firstname': row[0],
-            'lastname': row[1],
-            'age': row[2],
-            'especializacion': row[3]
+            'lastname': row[1]
         })
 
     cur.close()
