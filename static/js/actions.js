@@ -16,7 +16,10 @@ function mostrarDefault() {
     "TCp": "none",
     "THC": "none",
     "TAP": "none",
-    "asesoriapython": "none"
+    "asesoriapython": "none",
+    "matecs": "none",
+    "MAT": "none",
+    "profesores": "none"
   };
 
   for (const id in secciones) {
@@ -41,7 +44,10 @@ function mostrarCurso() {
     "TCp": "none",
     "THC": "none",
     "TAP": "none",
-    "asesoriapython": "none"
+    "asesoriapython": "none",
+    "matecs": "none",
+    "MAT": "none",
+    "profesores": "none"
   };
 
   for (const id in secciones) {
@@ -66,7 +72,10 @@ const secciones = {
   "TCp": "none",
   "THC": "none",
   "TAP": "none",
-  "asesoriapython": "none"
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none"
 };
 
 
@@ -76,14 +85,7 @@ for (const id in secciones) {
 
 }
 
-function mostrarProfesores() {
 
-  document.getElementById("cursos").style.display = "none";
-  document.getElementById("asesorias").style.display = "none";
-  //document.getElementById("profesores").style.display = "block";
-  document.getElementById("inicio").style.display = "none";
-  //document.getElementById("registro").style.display = "none";
-}
 
 function mostrarInicio() {
   const secciones = {
@@ -101,7 +103,10 @@ function mostrarInicio() {
     "TCp": "none",
     "THC": "none",
     "TAP": "none",
-    "asesoriapython": "none"
+    "asesoriapython": "none",
+    "matecs": "none",
+    "MAT": "none",
+    "profesores": "none"
   };
 
   for (const id in secciones) {
@@ -132,7 +137,10 @@ function MPython(){  const secciones = {
   "TCp": "none",
   "THC": "none",
   "TAP": "none",
-  "asesoriapython": "none"
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none"
 };
 
   for (const id in secciones) {
@@ -155,7 +163,10 @@ function MCPP(){  const secciones = {
   "TCp": "flex",
   "THC": "none",
   "TAP": "none",
-  "asesoriapython": "none"
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none"
 };
 
   for (const id in secciones) {
@@ -178,7 +189,10 @@ function MHTMLCSS(){  const secciones = {
   "TCp": "flex",
   "THC": "none",
   "TAP": "none",
-  "asesoriapython": "none"
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none"
 };
 
 
@@ -202,7 +216,10 @@ function python_asesory(){  const secciones = {
   "TCp": "none",
   "THC": "none",
   "TAP": "flex",
-  "asesoriapython": "block"
+  "asesoriapython": "block",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none"
 };
 
 
@@ -228,7 +245,34 @@ function mate(){  const secciones = {
   "TAP": "none",
   "asesoriapython": "none",
   "matecs": "block",
-  "MAT": "flex"
+  "MAT": "flex",
+  "profesores": "none"
+};
+
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
+}
+
+function mostrarProfesores(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "textasesoria": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "block"
 };
 
   for (const id in secciones) {
