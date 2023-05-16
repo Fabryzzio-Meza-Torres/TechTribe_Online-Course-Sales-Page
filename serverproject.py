@@ -88,16 +88,16 @@ class Tarjeta(db.Model):
     __tablename__ = "credit_card"
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     creditcard_number = db.Column(db.String(20), nullable=False)
-    expiration_date= db.Column(db.Date, nullable=False)
+    expiration_date= db.Column(db.String(36), nullable=False)
     password = db.Column(db.String(30), nullable=False)
     monto= db.Column(db.Float(), nullable=False)
     id_client = db.Column(db.String(10),db.ForeignKey('clients.id'), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
-    def __init__(self, creditcard_number, password, id_client):
+    def __init__(self, creditcard_number, expiration_date,password, id_client):
         self.creditcard_number = creditcard_number
-        self.expiration_date = timedelta(days=30,weeks=0,months=0,year=4) # rango de 4 años y un mes desde hoy
+        self.expiration_date = expiration_date
         self.password = password
         self.id_client = id_client
         self.modified_at = datetime.utcnow()
@@ -108,7 +108,7 @@ class Orden_de_Compra(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     product_name = db.Column(db.String(50), nullable=False)
     total_price = db.Column(db.Float(), nullable=False)
-    id_product = db.Column(db.String(10), db.ForeignKey('products.id'), nullable=False)
+    id_product = db.Column(db.String(36), db.ForeignKey('products.id'), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
@@ -117,6 +117,21 @@ class Orden_de_Compra(db.Model):
         self.total_price = total_price
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
+
+class Administracion(db.Model):
+    __tablename__ = 'administration'
+    id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
+    id_compra = db.Column(db.String(36),db.ForeignKey('purchase_order.id'), nullable=False)
+    ganancia= db.Column(db.Float(), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
+    modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
+
+    def __init__(self, id_compra,ganancia):
+        self.id_compra = id_compra
+        self.ganancia = ganancia
+        self.modified_at = datetime.utcnow()
+        self.created_at = datetime.utcnow()
+
 
 def crear_datos_por_defecto():
    with dev.app_context():
@@ -267,6 +282,34 @@ def login():
 @dev.route('/contentclient')
 def resource():
     return render_template('contentclient.html')
+
+
+@dev.route('/compra', methods=['GET', 'POST'])
+def compra():
+    if request.method == 'POST':
+        creditcard_number = request.form.get('numero_tarjeta')
+        expiration_date = request.form.get('fecha_vencimiento')
+        password = request.form.get('contrasena')
+        
+        # Obtener el ID del cliente actualmente autenticado (puedes modificar esto según tu implementación de autenticación)
+        #id_client = 'ID_DEL_CLIENTE'
+
+        # Validar los datos del formulario (puedes agregar más validaciones según tus requisitos)
+        if not creditcard_number or not expiration_date or not password:
+            return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
+
+        # Crear una nueva instancia de la tarjeta
+        try:
+            new_tarjeta = Tarjeta(creditcard_number, expiration_date, password)
+            db.session.add(new_tarjeta)
+            db.session.commit()
+            return jsonify({'success': True, 'message': 'Transaccion realizada correctamente'}), 200
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+            return jsonify({'success': False, 'message': 'Error en la transaccion'}), 500
+
+    return render_template('compra.html')
 
 # Run the app
 if __name__ == '__main__':
