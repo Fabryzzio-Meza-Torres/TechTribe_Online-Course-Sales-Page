@@ -118,7 +118,6 @@ class Orden_de_Compra(db.Model):
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
 
-
 def crear_datos_por_defecto():
    with dev.app_context():
     trabajadores = Trabajadores.query.all()
@@ -170,7 +169,7 @@ def get_profesores():
         host = "localhost",
         database = "project",
         user="postgres",
-        password = "1234"
+        password = "mezatorres123"
     )
 
     cur = conn.cursor()
