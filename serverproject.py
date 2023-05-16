@@ -175,9 +175,7 @@ def get_profesores():
     for row in cur.fetchall():
         results.append({
             'firstname': row[0],
-            'lastname': row[1],
-            'age': row[2],
-            'especializacion': row[3]
+            'lastname': row[1]
         })
 
     cur.close()
