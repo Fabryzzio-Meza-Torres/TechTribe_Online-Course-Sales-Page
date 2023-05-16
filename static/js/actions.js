@@ -7,7 +7,6 @@ function mostrarDefault() {
     "textcurso": "none",
     "Tpython": "none",
     "textasesoria": "none",
-    "atrascursos": "none",
     "botonmenuin": "flex",
     "cursos": "none",
     "asesorias": "none",
@@ -16,7 +15,17 @@ function mostrarDefault() {
     "Cplusplus": "none",
     "htmlcss": "none",
     "TCp": "none",
-    "THC": "none"
+    "THC": "none",
+    "TAP": "none",
+    "asesoriapython": "none",
+    "matecs": "none",
+    "MAT": "none",
+    "profesores": "none",
+    "AS1":"nome",
+    "AS2":"nome",
+    "AS3":"nome",
+    "asesoriahtmlcss":"none",
+    "asesoriamathcs":"none"
   };
 
   for (const id in secciones) {
@@ -32,7 +41,6 @@ function mostrarCurso() {
     "Tpython": "none",
     "botonmenuin": "none",
     "textasesoria": "none",
-    "atrascursos": "none",
     "cursos": "block",
     "asesorias": "none",
     "inicio": "none",
@@ -40,7 +48,17 @@ function mostrarCurso() {
     "Cplusplus": "none",
     "htmlcss": "none",
     "TCp": "none",
-    "THC": "none"
+    "THC": "none",
+    "TAP": "none",
+    "asesoriapython": "none",
+    "matecs": "none",
+    "MAT": "none",
+    "profesores": "none",
+    "AS1":"nome",
+    "AS2":"nome",
+    "AS3":"nome",
+    "asesoriahtmlcss":"none",
+    "asesoriamathcs":"none"
   };
 
   for (const id in secciones) {
@@ -50,37 +68,40 @@ function mostrarCurso() {
 
 
 function mostrarAsesoria() {
-  const secciones = {
-    "textdefault": "none",
-    "textcurso": "none",
-    "textasesoria": "flex",
-    "botonmenuin": "none",
-    "Tpython": "none",
-    "atrascursos": "none",
-    "cursos": "none",
-    "asesorias": "block",
-    "inicio": "none",
-    "Python": "none",
-    "Cplusplus": "none",
-    "htmlcss": "none",
-    "TCp": "none",
-    "THC": "none"
-  };
+const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "flex",
+  "botonmenuin": "none",
+  "Tpython": "none",
+  "cursos": "none",
+  "asesorias": "block",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "AS1":"nome",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
 
-  for (const id in secciones) {
-    document.getElementById(id).style.display = secciones[id];
-  }
+
+for (const id in secciones) {
+  document.getElementById(id).style.display = secciones[id];
+}
 
 }
 
-function mostrarProfesores() {
 
-  document.getElementById("cursos").style.display = "none";
-  document.getElementById("asesorias").style.display = "none";
-  //document.getElementById("profesores").style.display = "block";
-  document.getElementById("inicio").style.display = "none";
-  //document.getElementById("registro").style.display = "none";
-}
 
 function mostrarInicio() {
   const secciones = {
@@ -89,7 +110,6 @@ function mostrarInicio() {
     "textasesoria": "none",
     "botonmenuin": "none",
     "Tpython": "none",
-    "atrascursos": "none",
     "cursos": "none",
     "asesorias": "none",
     "inicio": "block",
@@ -97,7 +117,17 @@ function mostrarInicio() {
     "Cplusplus": "none",
     "htmlcss": "none",
     "TCp": "none",
-    "THC": "none"
+    "THC": "none",
+    "TAP": "none",
+    "asesoriapython": "none",
+    "matecs": "none",
+    "MAT": "none",
+    "profesores": "none",
+    "AS1":"nome",
+    "AS2":"nome",
+    "AS3":"nome",
+    "asesoriahtmlcss":"none",
+    "asesoriamathcs":"none"
   };
 
   for (const id in secciones) {
@@ -105,69 +135,196 @@ function mostrarInicio() {
   }
 }
 
-function MPython() {
-  const secciones = {
-    "textdefault": "none",
-    "textcurso": "none",
-    "textasesoria": "none",
-    "botonmenuin": "none",
-    "Tpython": "flex",
-    "atrascursos": "flex",
-    "cursos": "none",
-    "asesorias": "none",
-    "inicio": "none",
-    "Python": "block",
-    "Cplusplus": "none",
-    "htmlcss": "none",
-    "TCp": "none",
-    "THC": "none"
-  };
+function mostrarRegistro() {
+  document.getElementById("cursos").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
+  //document.getElementById("profesores").style.display = "none";
+  document.getElementById("inicio").style.display = "none";
+  //document.getElementById("registro").style.display = "block";
+}
+
+function MPython(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "Tpython": "flex",
+  "cursos": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "block",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "AS1":"nome",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
 
   for (const id in secciones) {
     document.getElementById(id).style.display = secciones[id];
   }
 }
 
-function MCPP() {
-  const secciones = {
-    "textdefault": "none",
-    "textcurso": "none",
-    "textasesoria": "none",
-    "textasesoria": "none",
-    "atrascursos": "flex",
-    "botonmenuin": "none",
-    "cursos": "none",
-    "asesorias": "none",
-    "inicio": "none",
-    "Python": "none",
-    "Cplusplus": "block",
-    "htmlcss": "none",
-    "TCp": "flex",
-    "THC": "none"
-  };
+function MCPP(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "block",
+  "htmlcss": "none",
+  "TCp": "flex",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "AS1":"nome",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
 
   for (const id in secciones) {
     document.getElementById(id).style.display = secciones[id];
   }
 }
 
-function MHTMLCSS() {
-  const secciones = {
-    "textdefault": "none",
-    "textcurso": "none",
-    "textasesoria": "none",
-    "botonmenuin": "none",
-    "cursos": "none",
-    "textasesoria": "none",
-    "atrascursos": "flex",
-    "asesorias": "none",
-    "inicio": "none",
-    "Python": "none",
-    "Cplusplus": "none",
-    "htmlcss": "block",
-    "TCp": "flex",
-    "THC": "none"
-  };
+function MHTMLCSS(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "textasesoria": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "block",
+  "TCp": "flex",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "AS1":"nome",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
+
+
+for (const id in secciones) {
+  document.getElementById(id).style.display = secciones[id];
+}
+}
+
+function python_asesory(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "textasesoria": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "flex",
+  "asesoriapython": "block",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "AS1":"nome",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
+
+
+for (const id in secciones) {
+  document.getElementById(id).style.display = secciones[id];
+}
+}
+
+function mate(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "textasesoria": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "block",
+  "MAT": "flex",
+  "profesores": "none",
+  "AS1":"nome",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
+
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
+}
+
+function mostrarProfesores(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "textasesoria": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "block",
+  "AS1":"nome",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
 
   for (const id in secciones) {
     document.getElementById(id).style.display = secciones[id];
@@ -190,7 +347,13 @@ function prueba() {
     "Cplusplus": "none",
     "htmlcss": "block",
     "TCp": "none",
-    "THC": "none"
+    "THC": "none",
+    "asesoriacpp": "none",
+    "AS1":"nome",
+    "AS2":"nome",
+    "AS3":"nome",
+    "asesoriahtmlcss":"none",
+    "asesoriamathcs":"none"
   };
 
   for (const id in secciones) {
@@ -198,6 +361,102 @@ function prueba() {
   }
 }
 
+
+function cplus_asesory(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "asesoriacpp": "block",
+  "AS1":"flex",
+  "AS2":"nome",
+  "AS3":"nome",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"none"
+};
+
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
+}
+
+function html_asesory(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "asesoriacpp": "none",
+  "AS1":"none",
+  "AS2":"flex",
+  "AS3":"nome",
+  "asesoriahtmlcss":"block",
+  "asesoriamathcs":"none"
+};
+
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
+}
+
+function mat_asesory(){  const secciones = {
+  "textdefault": "none",
+  "textcurso": "none",
+  "textasesoria": "none",
+  "textasesoria": "none",
+  "botonmenuin": "none",
+  "cursos": "none",
+  "asesorias": "none",
+  "inicio": "none",
+  "Python": "none",
+  "Cplusplus": "none",
+  "htmlcss": "none",
+  "TCp": "none",
+  "THC": "none",
+  "TAP": "none",
+  "asesoriapython": "none",
+  "matecs": "none",
+  "MAT": "none",
+  "profesores": "none",
+  "asesoriacpp": "none",
+  "AS1":"none",
+  "AS2":"none",
+  "AS3":"flex",
+  "asesoriahtmlcss":"none",
+  "asesoriamathcs":"block"
+};
+
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
+}
 
 //Enviar formulario
 function createUser() {
