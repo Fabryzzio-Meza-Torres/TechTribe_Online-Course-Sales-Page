@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="TechTribe ofrece cursos y asesorías de programación en línea. Descubre nuestra oferta de cursos de Python, C++, HTML y CSS.">
-  <link rel="stylesheet" type="text/css" href="..\static\css\style.css">
-  <link rel="stylesheet" type="text/css" href="..\static\css\register.css">
-  <script src="..\static\js\actions.js"></script>
+    <link  k rel="stylesheet" type="text/css" href="..\static\css\style.css">
+    <link rel="stylesheet" type="text/css" href="..\static\css\login.css">
+    <script src="..\static\js\actions.js"></script>
 </head>
 
 <body>
@@ -20,33 +20,28 @@
     </a>
 
     <div style="display: flex;" class="navbar-container">
-      <a href="/#" onclick="PreesCursos()">Cursos</a>
+      <a href="#" onclick="mostrarCurso()">Cursos</a>
       <a href="/#" onclick="mostrarAsesoria()">Asesorias</a>
       <a href="/#" onclick="mostrarProfesores()">Profesores</a>
-      <a href="/login" >Iniciar Sesion</a>
+      <a href="/login" onclick="mostrarInicio()">Iniciar Sesion</a>
       <a href="/register" onclick="mostrarRegistro()">Registrate</a>
       
     </div>
   </header>
 
   <main>
-    <section class="form_register">
-      <form id="form_register">
-        <h4>Registrate sin costo</h4>
-        <label for="nombres">Nombre:</label>
-        <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre" required>
-        <label for="apellidos">Apellido:</label>
-        <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido" required>
+    <section class="loginform">
+      <form id="loginform">
+        <h4>Inicar Sesion</h4>
         <label for="correo">Correo electrónico:</label>
         <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo" required>
         <label for="contrasena">Contraseña:</label>
         <input class="controls" type="password" name="contrasena" id="contrasena" placeholder="Ingrese su Contraseña" required>
-        <div id="errorCreateClient" style="display: none; color: red;"></div>
-        <div id="succesCreateClient" style="display: none; color: green;"></div>
-        <div><input class="botons" onclick="createUser()" type="submit" value="Registrar"></div>
-        <p><a href="/login">¿Ya tengo Cuenta?</a></p>
+        <div id="errorLogin" style="display: none; color: red;"></div>
+        <div id="succesLogin" style="display: none; color: green;"></div>
+        <div><input class="botons" onclick="" type="submit" value="Iniciar Sesion"></div>
+        <p><a href="/register">¿Aun no tienes Cuenta?</a></p>
       </form>
-
     </section>
     
   </main>

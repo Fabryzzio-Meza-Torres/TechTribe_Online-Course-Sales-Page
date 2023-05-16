@@ -1,4 +1,5 @@
 
+
 //Mostrar Secciones
 function mostrarDefault() {
   const secciones = {
@@ -236,6 +237,10 @@ function SubmitForm(evento) {
         const errorCreateClient = document.getElementById('errorCreateClient');
         errorCreateClient.style.display = 'block';
         errorCreateClient.innerHTML = responseJson.message;
+        setTimeout(() => {
+          errorCreateClient.style.display = 'none'
+        }
+          , 1059)
       }
       else {
         const succesCreateClient = document.getElementById('succesCreateClient');
@@ -244,7 +249,68 @@ function SubmitForm(evento) {
         setTimeout(() => {
           formre.reset()
           successEmployeeMessage.style.display = 'none'
-        }, 15000)
+        }, 1059)
+      }
+    })
+
+}
+
+
+
+//Enviar formulario
+  setTimeout(() => {
+  const form_login = document.getElementById('loginform');
+  form_login.addEventListener('submit', SubmitLoginn)
+  }, 1000)
+
+
+const pendingsControl = new WeakMap()
+
+function SubmitLoginn(evento) {
+  //para evitar que el formulario se envíe y se recargue la página.
+  evento.preventDefault();
+  //para evitar que el evento se propague hacia otros elementos.
+  evento.stopPropagation();
+
+  const formrLo = evento.currentTarget;
+  const previusController = pendingsControl.get(formrLo)
+  if (previusController) {
+    previusController.abort();
+  }
+
+  const controller = new AbortController()
+  pendingsControl.set(formrLo, controller)
+  const formData = new FormData(formrLo)
+
+  fetch('/login', {
+    'method': 'POST',
+    'body': formData,
+    'signal': controller.signal,
+  })
+    .then(function (response) {
+      console.log('response:', response)
+      return response.json();
+    })
+    .then(function (responseJson) {
+      if (!responseJson.success) {
+        const errorCreateClient = document.getElementById('errorLogin');
+        errorCreateClient.style.display = 'block';
+        errorCreateClient.innerHTML = responseJson.message;
+        setTimeout(() => {
+          const form_login = document.getElementById('loginform');
+          form_login.addEventListener('submit', SubmitLoginn);
+        }, 5000);
+        
+      }
+      else {
+        const succesCreateClient = document.getElementById('succesLogin');
+        succesCreateClient.style.display = 'block';
+        succesCreateClient.innerHTML = responseJson.message;
+        setTimeout(() => {
+          formrLo.reset()
+          successEmployeeMessage.style.display = 'none'
+        }, 2000)
+        window.location.href = '/'
       }
     })
 
