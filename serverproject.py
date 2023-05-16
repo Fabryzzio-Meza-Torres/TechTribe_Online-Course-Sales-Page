@@ -63,7 +63,7 @@ class Trabajadores(db.Model):
 class Producto(db.Model):
     __tablename__ = 'products'
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
-    id_worker = db.Column(db.String(10), db.ForeignKey('workers.id'), nullable=False)
+    id_worker = db.Column(db.String(36), db.ForeignKey('workers.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(precision=2 ), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
@@ -71,12 +71,11 @@ class Producto(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
 
-    def ___init___(self,id_worker, name, price, type_product, description, duration):
+    def __init__(self,id_worker, name, price, type_product, duration):
         self.id_worker = id_worker
         self.name = name
         self.price = price 
         self.type_product = type_product
-        self.description = description
         self.duration = duration
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
@@ -126,9 +125,9 @@ def crear_datos_por_defecto():
         profesor3=Trabajadores("Jose","Fiestas","35","C++")
         profesor4=Trabajadores("Ruben","Rivas","55","C++")
         profesor5=Trabajadores("Alan","Morante","42","HTML/CSS")
-        profesor6=Trabajadores("Jorge","Villavicencio","38","HTML/CSS")
-        profesor7=Trabajadores("Jose Miguel","Renom","38","Matematica para CS")
-        profesor8=Trabajadores("Jorge","Tipe","35","Matematica para CS")
+        profesor6=Trabajadores("Jorge","Villavicencio","36","HTML/CSS")
+        profesor7=Trabajadores("Jose Miguel","Renom","55","Matematica para CS")
+        profesor8=Trabajadores("Jorge","Tipe","36","Matematica para CS")
         db.session.add_all([profesor1,profesor2,profesor3,profesor4,profesor5,profesor6,profesor7,profesor8])
 
     if not cursos:
@@ -150,9 +149,9 @@ def crear_datos_por_defecto():
         asesoria4=Producto(profesor8.id,"Asesoria Matematica para CS", 40.00, "Asesoria", "2 horas")
         db.session.add_all([curso1,asesoria1,curso2,asesoria2,curso3,asesoria3,curso4,asesoria4])
 
-    db.session.commit()
-    db.session.close()
+        db.session.commit()
 
+crear_datos_por_defecto()
 
 # Routes
 @dev.route('/', methods=['GET'])
