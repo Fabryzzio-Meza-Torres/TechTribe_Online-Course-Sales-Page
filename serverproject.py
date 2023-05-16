@@ -218,7 +218,7 @@ def register():
                 errors.append('Ingrese su correo electrónico')
             elif not re.match(r'^[a-zA-Z\s]+$', name):
                 errors.append('El nombre solo puede contener letras y espacios')
-            elif not email.endswith('@gmail.com'):
+            elif not email.endswith('@gmail.com', '@utec.edu.pe', '@hotmail.com'):
                 errors.append('Ingrese un correo de Gmail válido')
             elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
                 errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
