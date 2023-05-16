@@ -139,6 +139,7 @@ def get_profesores():
     return jsonify(results)
 #----------------------------------------------------------------
 
+
 @dev.route('/cursos', methods=['GET'])
 def cursos():
     return render_template('index.html')
