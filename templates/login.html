@@ -20,8 +20,8 @@
     </a>
 
     <div style="display: flex;" class="navbar-container">
-      <a href="#" onclick="mostrarCurso()">Cursos</a>
-      <a href="/#" onclick="mostrarAsesoria()">Asesorias</a>
+      <a href="/cursos" onclick="mostrarCurso()">Cursos</a>
+      <a href="/asesorias" onclick="mostrarAsesoria()">Asesorias</a>
       <a href="/#" onclick="mostrarProfesores()">Profesores</a>
       <a href="/login" onclick="mostrarInicio()">Iniciar Sesion</a>
       <a href="/register" onclick="mostrarRegistro()">Registrate</a>
@@ -39,7 +39,7 @@
         <input class="controls" type="password" name="contrasena" id="contrasena" placeholder="Ingrese su Contraseña" required>
         <div id="errorLogin" style="display: none; color: red;"></div>
         <div id="succesLogin" style="display: none; color: green;"></div>
-        <div><input class="botons" onclick="" type="submit" value="Iniciar Sesion"></div>
+        <div><input class="botons" id="InicioButon"type="submit" value="Iniciar Sesion"></div>
         <p><a href="/register">¿Aun no tienes Cuenta?</a></p>
       </form>
     </section>

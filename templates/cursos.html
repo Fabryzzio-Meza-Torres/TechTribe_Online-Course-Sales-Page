@@ -7,43 +7,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="TechTribe ofrece cursos y asesorías de programación en línea. Descubre nuestra oferta de cursos de Python, C++, HTML y CSS.">
-  <link rel="stylesheet" type="text/css" href="..\static\css\style.css">
+  <link rel="stylesheet" type="text/css" href="..\static\css\cursos.css">
   <script src="..\static\js\actions.js"></script>
 </head>
 
 <body>
   <header class="header" id="Menu">
 
-    <a href="#" class="logo" onclick="mostrarDefault()">
+    <a href="/" class="logo" onclick="mostrarDefault()">
       <img src="..\static\images\Logo2-remove.png" alt="Logo">
     </a>
 
     <div style="display: flex;" class="navbar-container">
-      <a id="Cursodef"href="#" onclick="mostrarCurso()">Cursos</a>
-      <a href="#" onclick="mostrarAsesoria()">Asesorias</a>
+      <a id="Cursodef" href="/cursos" onclick="ocultarCursos()">Cursos</a>
+      <a href="/asesorias" onclick="mostrarAsesoria()">Asesorias</a>
       <a href="#" onclick="mostrarProfesores()">Profesores</a>
-      <a href="/login" onclick="mostrarInicio()">Iniciar Sesion</a>
+      <a href="/login">Iniciar Sesion</a>
       <a href="/register">Registrate</a>
 
     </div>
   </header>
 
   <main>
-    <div class="header-txt" id="textdefault">
-      <h1>Desarrolla tu <strong>mente</strong> y tu <strong>creatividad</strong> con nuestra educación tecnológica de
-        vanguardia_
-      </h1>
-    </div>
-
     <div class="header-txt" id="textcurso">
       <h1>Cada curso esta diseñado para ayudarte a alcanzar tus <strong>objetivos</strong> de aprendizaje y avanzar en
         tu carrera en <strong>tecnonologia</strong> _
-      </h1>
-    </div>
-
-    <div class="header-txt" id="textasesoria">
-      <h1>Nuestros expertos en <strong>tecnonologia</strong> están disponibles para ayudarte a superar tus desafíos más
-        <strong>dificiles</strong> _
       </h1>
     </div>
 
@@ -59,12 +47,8 @@
       <h1>Curso: HTML y CSS desde cero 2023</h1>
     </div>
 
-    <div class="button-container" id="botonmenuin">
-      <button class="button" onclick="mostrarInicio()"><a class="text-b" href="/login">Inscríbete ahora</a></button>
-    </div>
-
-    <div class="button-container" id="atrascursos">
-      <button class="button" onclick="mostrarCurso()"><a class="text-b" href="#">Ver todos los cursos</a></button>
+    <div class="header-txt" id="MAT">
+      <h1>Curso: Matematicas para Computer Science</h1>
     </div>
 
     <section id="cursos">
@@ -85,6 +69,15 @@
           y eficiente. ¡Aprender es desafiante pero gratificante!</p>
         <a href="#" onclick="MCPP()">Ver curso</a>
       </div>
+
+      <div class="curso_matematicaCS" style="background-color: #E0115F;">
+        <img src="..\static\images\mathematics.jpg" alt="mathematics">
+        <h2>Matematica para Computer Science</h2>
+        <p>Mejora tu programación con matemáticas. Aprende cálculo, álgebra y estadística aplicada en nuestro curso para
+          CS.</p>
+        <a href="#" onclick="MATECSs()">Ver curso</a>
+      </div>
+
       <div class="curso_html" style="background-color: #E0115F;">
         <img src="..\static\images\html.jpg" alt="html and css">
         <h2>HTML y CSS</h2>
@@ -93,42 +86,25 @@
           habilidades de diseño web y destacar en el mercado.</p>
         <a href="#" onclick="MHTMLCSS()">Ver curso</a>
       </div>
-    </section>
 
-    <section id="asesorias">
-      <h1>Asesorías de Programación</h1>
-      <p>¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos y te asesoramos.</p>
-      <div class="asesoria_python" style="background-color: blue;">
-        <img src="..\static\images\asesoria.jpg" alt="Asesoria1">
-        <h2>Asesoria Python</h2>
-        <p>Obtén ayuda experta en Python y mejora tus habilidades de programación. Con nuestras asesorías
-          personalizadas, resuelve tus problemas y lleva tus proyectos al siguiente nivel.</p>
-        <a href="enlace_al_curso">Ver curso</a>
-      </div>
+
     </section>
 
     <section id="Python">
+      <h2>Curso de Python</h2>
       <p>En este curso de Python aprenderás a programar con uno de los lenguajes más populares y versátiles del mundo.
         Desde conceptos básicos hasta proyectos avanzados, este curso tiene todo lo que necesitas para convertirte en un
         programador Python experto.</p>
-      <div style="display:flex;">
-        <iframe width="560" height="315"
-          src="https://www.youtube.com/embed/videoseries?list=PLyAv661xWVxCFjXzOdA_lM_zzzGyiW8NE" frameborder="0"
-          allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <p>En este video introductorio, nuestro instructor te dará una introducción a Python y a lo que puedes esperar
-          de este curso.</p>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/rfscVS0vtbw" title="video python"
+            frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div style="flex: 1;">
+          <p>Deja volar tu imaginacion al abanico de posibilidades con Python, con el siguiente video se explicara a
+            detalle lo que se enseñara en el curso</p>
+        </div>
       </div>
-      <h3>Tabla de contenidos</h3>
-      <ul>
-        <li><a href="#introduccion">Introducción a Python</a></li>
-        <li><a href="#variables">Variables y tipos de datos</a></li>
-        <li><a href="#condicionales">Condicionales y bucles</a></li>
-        <li><a href="#listas">Listas y tuplas</a></li>
-        <li><a href="#diccionarios">Diccionarios</a></li>
-        <li><a href="#funciones">Funciones</a></li>
-        <li><a href="#objetos">Programación orientada a objetos</a></li>
-        <li><a href="#proyectos">Proyectos prácticos</a></li>
-      </ul>
       <h3 id="introduccion">Introducción a Python</h3>
       <p>En esta sección se introduce Python y se explica cómo instalarlo y configurarlo en tu ordenador. También se
         cubren los conceptos básicos de programación, como variables y estructuras de control.</p>
@@ -160,23 +136,18 @@
     </section>
 
     <section id="Cplusplus">
+      <h2>Curso de C++</h2>
       <p>Este curso te enseñará los conceptos básicos de programación en C++. Aprenderás a escribir programas utilizando
         la sintaxis de este lenguaje y conocerás las principales estructuras de control de flujo y tipos de datos.</p>
-      <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/YUxj6Uzna6U" frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/vLnPwxZdW4Y" title="video Cpluplus"
+            frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div style="flex: 1;">
+          <p>En el presente video uno de nuestros docentes te enseñara el contenido del curso de C++</p>
+        </div>
       </div>
-      <h3>Tabla de contenidos</h3>
-      <ul>
-        <li><a href="#intro">Introducción a C++</a></li>
-        <li><a href="#tipos-datos">Tipos de datos</a></li>
-        <li><a href="#estructuras-control">Estructuras de control de flujo</a></li>
-        <li><a href="#arrays">Arrays</a></li>
-        <li><a href="#funciones">Funciones</a></li>
-        <li><a href="#punteros">Punteros</a></li>
-        <li><a href="#clases">Clases y objetos</a></li>
-        <li><a href="#proyectos">Proyectos prácticos</a></li>
-      </ul>
       <h3 id="intro">Introducción a C++</h3>
       <p>En esta sección se presenta una introducción al lenguaje de programación C++, sus características principales y
         cómo se diferencia de otros lenguajes. También se aborda la configuración del entorno de desarrollo y la forma
@@ -210,7 +181,6 @@
         de una lista de tareas con clases y objetos, y la creación de un juego de adivinanza de números.</p>
     </section>
 
-
     <section id="htmlcss">
       <h2>Curso de HTML y CSS</h2>
       <p>En este curso de HTML y CSS aprenderás los conceptos básicos de la creación de páginas web utilizando los
@@ -218,8 +188,8 @@
         manera profesional.</p>
       <div style="display: flex;">
         <div style="flex: 1;">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/vQWlgd7hV4A" title="Curso de HTML y CSS"
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/vQWlgd7hV4A" title="video de HTML y CSS"
+            frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
         </div>
         <div style="flex: 1;">
           <p>Este video te ofrece una introducción al curso de HTML y CSS y te muestra algunos ejemplos básicos de cómo
@@ -245,40 +215,42 @@
       <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el
         curso. Entre ellos se encuentra la creación de una página web personal, la implementación de un menú de
         navegación y la creación de una página de contacto con un formulario de contacto.</p>
-    </section> 
-
-
-
-    <section id="registro">
-      <div class="formulario">
-        <h1>Inicio Sesión</h1>
-        <form id="IngresoInicio">
-          <label for="InputCorreo">Correo Electronico</label>
-          <input type="email" id="InputCorreo" placeholder="Correo Electronico" required>
-
-          <label for="InputContraseña">Contraseña</label>
-          <input type="password" id="InputContraseña" placeholder="Contraseña" required>     
-          <button type="submit" class="button">Iniciar Sesion</button>
-        </form>  
-      </div>
     </section>
 
-    <section id="inicio">
-      <div class="formulario">
-        <h1>Inicio Sesión</h1>
-        <form id="IngresoInicio">
-          <label for="InputCorreo">Correo Electronico</label>
-          <input type="email" id="InputCorreo" placeholder="Correo Electronico" required>
-
-          <label for="InputContraseña">Contraseña</label>
-          <input type="password" id="InputContraseña" placeholder="Contraseña" required>
-
-          <button type="submit" class="button">Iniciar Sesion</button>
-        </form>
+    <section id="csMat">
+      <h2>Curso de Matemática para Computer Science</h2>
+      <p>En este curso de Matemática para Computer Science aprenderás los conceptos básicos de cálculo, álgebra lineal,
+        probabilidades y estadística, y cómo se aplican en la resolución de problemas en el campo de la informática. Con
+        este conocimiento podrás diseñar algoritmos más eficientes y comprender mejor los fundamentos de la inteligencia
+        artificial y la criptografía.</p>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/eSFA1Fp8jcU"
+            title="video de Matemática para Computer Science" frameborder="0" allow="encrypted-media"
+            allowfullscreen></iframe>
+        </div>
+        <div style="flex: 1;">
+          <p>Este video te ofrece una introducción a nuestro curso de Matemática para Computer Science y te muestra
+            algunos ejemplos básicos de cómo se aplican los conceptos matemáticos en la informática.</p>
+        </div>
       </div>
+      <h3 id="calculo">Cálculo</h3>
+      <p>En esta sección se cubren los conceptos básicos de cálculo, como límites, derivadas e integrales, y cómo se
+        aplican en la optimización de algoritmos y la comprensión de los fundamentos de la inteligencia artificial.</p>
+      <h3 id="algebra-lineal">Álgebra Lineal</h3>
+      <p>En esta sección se cubren los conceptos básicos de álgebra lineal, como sistemas de ecuaciones lineales,
+        matrices y determinantes, y cómo se aplican en la resolución de problemas de programación lineal y la
+        comprensión de los fundamentos de la criptografía.</p>
+      <h3 id="probabilidades">Probabilidades y Estadística</h3>
+      <p>En esta sección se cubren los conceptos básicos de probabilidades y estadística, como variables aleatorias,
+        distribuciones de probabilidad, estadística descriptiva e inferencial, y cómo se aplican en la resolución de
+        problemas de análisis de datos y la comprensión de los fundamentos de la inteligencia artificial.</p>
+      <h3 id="proyectos">Proyectos prácticos</h3>
+      <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el
+        curso. Entre ellos se encuentra la optimización de algoritmos de búsqueda y ordenamiento, la implementación de
+        técnicas de programación lineal y la aplicación de técnicas de análisis de datos en conjuntos de datos reales.
+      </p>
     </section>
-
-
   </main>
   <footer>
     <p>&copy; TechTribe 2023</p>

@@ -163,6 +163,15 @@ crear_datos_por_defecto()
 def index():
     return render_template('index.html')
 
+@dev.route('/cursos', methods=['GET'])
+def showcursos():
+    return render_template('cursos.html')
+
+@dev.route('/asesorias', methods=['GET'])
+def showasesoria():
+    return render_template('asesoria.html')
+
+
 # ----------------------------------------------------------------
 @dev.route('/profesores')
 def get_profesores():
@@ -207,6 +216,8 @@ def register():
             
             if not email:
                 errors.append('Ingrese su correo electrónico')
+            elif not re.match(r'^[a-zA-Z\s]+$', name):
+                errors.append('El nombre solo puede contener letras y espacios')
             elif not email.endswith('@gmail.com'):
                 errors.append('Ingrese un correo de Gmail válido')
             elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
