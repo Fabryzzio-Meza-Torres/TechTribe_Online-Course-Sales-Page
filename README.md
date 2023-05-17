@@ -71,8 +71,6 @@ __Errores de Servidor en nuestro sitio web__
   
  ***Ejemplo 2:***
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
-<div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">Este código captura excepciones, imprime el mensaje de error, realiza un rollback en la transacción de base de datos y devuelve una respuesta JSON indicando que ha ocurrido un error en la transacción.</p>
   
