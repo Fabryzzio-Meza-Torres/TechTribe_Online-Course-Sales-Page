@@ -91,6 +91,12 @@ Este código devuelve una respuesta JSON con dos elementos: "success" y "message
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
 <p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que el inicio de sesión no fue exitoso porque el usuario no fue encontrado en el sistema.</p>
+  
+ <div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error5_400.png?raw=true" alt="texto alternativo" width="400">
+</div>
+<p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message".Si alguna de las variables "creditcard_number", "expiration_date" o "password" es nula o está vacía, significa que uno o más campos requeridos no se proporcionaron en la solicitud.</p>
+
 
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
