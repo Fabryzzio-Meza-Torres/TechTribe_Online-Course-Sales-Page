@@ -87,6 +87,11 @@ Este código devuelve una respuesta JSON con dos elementos: "success" y "message
 </div>
 <p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que el inicio de sesión no fue exitoso debido a que las credenciales proporcionadas son inválidas.</p>
 
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400.png?raw=true" alt="texto alternativo" width="400">
+</div>
+<p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que el inicio de sesión no fue exitoso porque el usuario no fue encontrado en el sistema.</p>
+
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
 
