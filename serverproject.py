@@ -72,7 +72,6 @@ class Producto(db.Model):
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(precision=2  ), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
-    description = db.Column(db.String(500), nullable=False)
     duration = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
@@ -195,7 +194,7 @@ def get_profesores():
         host = "localhost",
         database = "project",
         user="postgres",
-        password = "mezatorres123"
+        password = "1234"
     )
 
     cur = conn.cursor()
@@ -210,8 +209,10 @@ def get_profesores():
 
     cur.close()
     conn.close()
-    return jsonify(results)
+    return render_template('profesores.html', results=results)
+
 #----------------------------------------------------------------
+
 
 @dev.route('/register', methods=['GET', 'POST'])
 def register():
@@ -231,6 +232,8 @@ def register():
                 errors.append('Ingrese su correo electrónico')
             elif not email.endswith('@gmail.com'):
                 errors.append('Ingrese un correo de Gmail válido')
+            elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
+                errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
             else:
                 user = Clients.query.filter_by(email=email).first()
                 if user:
@@ -239,9 +242,11 @@ def register():
             if errors:
                 return jsonify({'success': False, 'message': errors}), 400
             else:
-                hash_contrasena = generate_password_hash(contrasena, salt_length=8)
-                print(hash_contrasena)
-                new_user = Clients(name, lastname, email, hash_contrasena)
+                hash_object = hashlib.sha256()
+                hash_object.update(contrasena.encode('utf-8'))
+                password_hash = hash_object.hexdigest()
+                print(password_hash)
+                new_user = Clients(name, lastname, email, password_hash)
                 db.session.add(new_user)
                 db.session.commit()
                 return jsonify({'id': new_user.id, 'success': True, 'message': 'Usuario creado exitosamente'}), 200
@@ -281,6 +286,7 @@ def login():
         
     else:
         return render_template('login.html')
+
 
 
 @dev.route('/contentclient')
