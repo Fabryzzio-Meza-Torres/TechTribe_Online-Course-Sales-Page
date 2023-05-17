@@ -108,6 +108,10 @@ Este código devuelve una respuesta JSON con dos elementos: "success" y "message
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_200.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "True", lo que indica que el inicio de sesión fue exitoso.</p>
+  
+  <div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_200.png?raw=true" alt="texto alternativo" width="400">
+   <p align="justify">Si la transacción se realiza correctamente, se devuelve un valor de "success" igual a "True" y un mensaje de "Transacción realizada correctamente". Esto indica que la operación de crear una nueva tarjeta y guardarla en la base de datos fue exitosa.</p>
 
 ### __Informacional__:
 <p align="justify">El código de estado 100, específicamente, se utiliza para indicar al cliente que el servidor ha recibido la solicitud inicial y está esperando que el cliente envíe datos adicionales antes de continuar con el proceso.</p>
