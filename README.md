@@ -61,11 +61,13 @@ localhost
 ## Manejo de errores HTTP:
 ### __Errores en el Servidor__:
 <p align="justify">Cuando un sitio web devuelve un código de estado 500, generalmente se muestra una página de error genérica al usuario para indicar que ha ocurrido un problema técnico y que el servidor no pudo procesar la solicitud.</p>
-
 #### __Errores de Servidor en nuestro sitio web__:
+***Ejemplo 1:***
+<div align="left">
+  <img src="?raw=true" alt="texto alternativo" width="400">
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">Este código devuelve una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que la operación (crear un usuario) no fue exitosa.</p>
+   <p align="justify">En caso de que ocurra una excepción, se imprime la información de la excepción y se realiza un rollback en la sesión de la base de datos. Se devuelve un objeto JSON indicando el fallo en la creación del usuario, con un mensaje de error y un código de estado HTTP 500.</p>
   
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_500.png?raw=true" alt="texto alternativo" width="400">
