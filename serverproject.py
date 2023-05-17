@@ -13,6 +13,7 @@ import hashlib
 import re
 import json
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 from flask_migrate import Migrate
 import uuid
 import traceback
@@ -190,6 +191,10 @@ def index():
 
 @dev.route('/cursos', methods=['GET'])
 def showcursos():
+    consulta_precio= text("SELECT price FROM products")
+    resultado= db.session.execute(consulta_precio)
+    precios = [row[0] for row in resultado]
+
     logged_in = request.cookies.get('logged_in')
 
     if logged_in == 'true':
@@ -197,22 +202,26 @@ def showcursos():
         user_name = request.cookies.get('user_name')
         data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
 
-        return render_template('cursos.html',  logged_in=logged_in, data=data) 
+        return render_template('cursos.html',  logged_in=logged_in, data=data,  precios=precios)
     else:   
-        return render_template('cursos.html')
+        return render_template('cursos.html', precios=precios)
 
 @dev.route('/asesorias', methods=['GET'])
 def showasesoria():
     logged_in = request.cookies.get('logged_in')
+    consulta_precio= text("SELECT price FROM products")
+    resultado= db.session.execute(consulta_precio)
+    precios = [row[0] for row in resultado]
+
 
     if logged_in == 'true':
         user_id = request.cookies.get('user_id')
         user_name = request.cookies.get('user_name')
         data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
 
-        return render_template('asesoria.html',  logged_in=logged_in, data=data) 
+        return render_template('asesoria.html',  logged_in=logged_in, data=data, precios=precios) 
     else:
-        return render_template('asesoria.html')
+        return render_template('asesoria.html',precios=precios)
 
 
 # ----------------------------------------------------------------

@@ -403,6 +403,17 @@ div#asesoriamathcs
   padding:0px;
 }
 
+.precio {
+  font-size: 18px;
+  color: #fff; /* Cambiar a color blanco */
+  font-weight: bold;
+  /* Otros estilos CSS que desees aplicar */
+  
+  /* Estilos de posicionamiento y alineación */
+  position: absolute;
+  left: 7rem; /* Ajustar el valor según sea necesario */
+}
+
 .curso_matematicaCS p {
   font-size: 16px;
   line-height: 1.4;

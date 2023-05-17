@@ -833,6 +833,17 @@ h1 {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
   transition: background-color 0.3s ease;
 }
+.precio {
+  font-size: 18px;
+  color: #fff; /* Cambiar a color blanco */
+  font-weight: bold;
+  /* Otros estilos CSS que desees aplicar */
+  
+  /* Estilos de posicionamiento y alineación */
+  position: absolute;
+  left: 7rem; /* Ajustar el valor según sea necesario */
+}
+
 
 #Logout,
 #botonexplor,

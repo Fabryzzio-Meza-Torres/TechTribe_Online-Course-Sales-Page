@@ -42,23 +42,34 @@
     <div class="header-txt" id="Tpython">
       <h1>Curso: Python desde cero 2023</h1>
       <p><a href="/register" id="cu1">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[0] }}</p>
+    {% endif %}
+    
     </div>
 
     <div class="header-txt" id="TCp">
       <h1>Curso: C++ desde cero 2023</h1>
       <p><a href="/register" id="cu2">¿Quieres una asesoria con nosotros?</a></p>
-
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[2] }}</p>
+    {% endif %}
     </div>
 
     <div class="header-txt" id="THC">
       <h1>Curso: HTML y CSS desde cero 2023</h1>
       <p><a href="/register" id="cu3">¿Quieres una asesoria con nosotros?</a></p>
-
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[4] }}</p>
+    {% endif %}
     </div>
 
     <div class="header-txt" id="MAT">
       <h1>Curso: Matematicas para Computer Science</h1>
       <p><a href="/register" id="cu4">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[5] }}</p>
+    {% endif %}
     </div>
 
     <section id="cursos">

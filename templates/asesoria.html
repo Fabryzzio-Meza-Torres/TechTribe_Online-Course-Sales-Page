@@ -44,21 +44,33 @@
     <div class="header-txt" id="TAP">
       <h1>Asesoria: Python</h1>
       <p><a href="/register" id="ta1">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[1] }}</p>
+    {% endif %}
     </div>
 
     <div class="header-txt" id="AS1">
       <h1>Asesoria C++</h1>
       <p><a href="/register" id="ta2">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[3] }}</p>
+    {% endif %}
     </div>
 
     <div class="header-txt" id="AS2">
       <h1>Asesoria HTML/CSS</h1>
       <p><a href="/register" id="ta3">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[5] }}</p>
+    {% endif %}
     </div>
 
     <div class="header-txt" id="AS3">
       <h1>Asesoria Matematica par Computer Science</h1>
       <p><a href="/register" id="ta4">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[7] }}</p>
+    {% endif %}
     </div>
 
 
