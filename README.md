@@ -69,7 +69,7 @@ localhost
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
-<p align="justify">Se verifica si existe algún error en el contexto actual. Si se detectan errores, devuelve una respuesta JSON que indica un fallo (success: False) y proporciona un mensaje que describe los errores específicos (message: errors). Además, establece el código de estado HTTP de la respuesta en 400, que representa un error de solicitud incorrecta.</p>
+*<p align="justify">Se verifica si existe algún error en el contexto actual. Si se detectan errores, devuelve una respuesta JSON que indica un fallo (success: False) y proporciona un mensaje que describe los errores específicos (message: errors). Además, establece el código de estado HTTP de la respuesta en 400, que representa un error de solicitud incorrecta.</p>
 
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
