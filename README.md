@@ -145,9 +145,14 @@ __Errores de Servidor en nuestro sitio web__
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">La función "login" gestiona el inicio de sesión en una aplicación web. Verifica si la solicitud es de tipo "POST", obtiene el correo electrónico y la contraseña proporcionados y consulta la base de datos en busca del usuario. Si se encuentra y las contraseñas coinciden y cumplen los requisitos, devuelve un objeto JSON con un mensaje de inicio de sesión exitoso y código HTTP 200.</p>
 
+***Ejemplo 3:***
+  <div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error3_200.png?raw=true" alt="texto alternativo" width="400">
+   <p align="justify">Este código intenta crear una nueva tarjeta en la base de datos con la información proporcionada, confirma la transacción y devuelve una respuesta JSON indicando que la transacción se ha realizado correctamente.</p>
+    
 ### __Informacional__:
 <p align="justify">El código de estado 100, específicamente, se utiliza para indicar al cliente que el servidor ha recibido la solicitud inicial y está esperando que el cliente envíe datos adicionales antes de continuar con el proceso.</p>
-
+    
 ## Cómo ejecutar el sistema (Deployment scripts):
 1. git clone git@github.com:Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP.git 
 2. Correr en el terminal para instalar todas las dependencias:
