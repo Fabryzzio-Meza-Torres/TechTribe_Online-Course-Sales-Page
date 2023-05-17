@@ -68,8 +68,6 @@ localhost
    <p align="justify">
 Este código devuelve una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que la operación (crear un usuario) no fue exitosa.</p>
 
-
-
 ### __Errores en el Cliente__:
 <p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
 
@@ -85,6 +83,11 @@ Este código devuelve una respuesta JSON con dos elementos: "success" y "message
 
 ### __Exitoso__:
 <p align="justify">Cuando un servidor devuelve un código de estado 200, significa que la solicitud del cliente ha sido recibida, entendida y procesada correctamente, y el resultado se incluye en la respuesta.</p>
+  
+ #### __Errores de Exitoso en nuestro sitio web__:
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_200.png?raw=true" alt="texto alternativo" width="400">
+   <p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "True", lo que indica que el inicio de sesión fue exitoso.</p>
 
 ### __Informacional__:
 <p align="justify">El código de estado 100, específicamente, se utiliza para indicar al cliente que el servidor ha recibido la solicitud inicial y está esperando que el cliente envíe datos adicionales antes de continuar con el proceso.</p>
