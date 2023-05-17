@@ -535,7 +535,10 @@ function Compra_8(){document.getElementById("comprar_asesoriamathcs").addEventLi
   window.location.href = url;
 });}
 
-
+function formulario(){document.getElementById("formulariocompra").addEventListener("click", function(){
+var url="/compra"
+window.location.href = url;
+});}
 
 document.addEventListener('DOMContentLoaded', function() {
   var logged_in = getCookie('logged_in');
