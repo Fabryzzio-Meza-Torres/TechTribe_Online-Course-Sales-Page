@@ -12,18 +12,22 @@
 </head>
 
 <body>
-  <header class="header" id="Menu">
+  <header class="header">
 
     <a href="/" class="logo" onclick="mostrarDefault()">
       <img src="..\static\images\Logo2-remove.png" alt="Logo">
     </a>
 
     <div style="display: flex;" class="navbar-container">
+      <p id="user_name"></p>
       <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
       <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
       <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
-      <a href="/login" onclick="mostrarInicio()">Iniciar Sesion</a>
-      <a href="/register">Registrate</a>
+      <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+      <a href="/register" id="RegistroDef">Registrate</a>
+      <a href="/compra" id="OrdenC">Orden de Compra</a>
+      <a href="/logout" id="Logout">Cerrar sesión</a>
+
 
     </div>
   </header>
@@ -40,18 +44,22 @@
 
     <div class="header-txt" id="TAP">
       <h1>Asesoria: Python</h1>
+      <p><a href="/register" id="ta1">¿Quieres una asesoria con nosotros?</a></p>
     </div>
 
     <div class="header-txt" id="AS1">
       <h1>Asesoria C++</h1>
+      <p><a href="/register" id="ta2">¿Quieres una asesoria con nosotros?</a></p>
     </div>
 
     <div class="header-txt" id="AS2">
       <h1>Asesoria HTML/CSS</h1>
+      <p><a href="/register" id="ta3">¿Quieres una asesoria con nosotros?</a></p>
     </div>
 
     <div class="header-txt" id="AS3">
       <h1>Asesoria Matematica par Computer Science</h1>
+      <p><a href="/register" id="ta4">¿Quieres una asesoria con nosotros?</a></p>
     </div>
 
 

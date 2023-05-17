@@ -12,21 +12,25 @@
 </head>
 
 <body>
-    <header class="header">
+  <header class="header">
 
-        <a href="/" class="logo" onclick="mostrarDefault()">
-            <img src="..\static\images\Logo2-remove.png" alt="Logo">
-        </a>
+    <a href="/" class="logo" onclick="mostrarDefault()">
+      <img src="..\static\images\Logo2-remove.png" alt="Logo">
+    </a>
 
-        <div style="display: flex;" class="navbar-container">
-            <a id="Cursodef" href="/cursos" onclick="ocultarCursos()">Cursos</a>
-            <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
-            <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
-            <a href="/login" onclick="mostrarInicio()">Iniciar Sesion</a>
-            <a href="/register">Registrate</a>
+    <div style="display: flex;" class="navbar-container">
+      <p id="user_name"></p>
+      <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
+      <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
+      <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
+      <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+      <a href="/register" id="RegistroDef">Registrate</a>
+      <a href="/compra" id="OrdenC">Orden de Compra</a>
+      <a href="/logout" id="Logout">Cerrar sesión</a>
 
-        </div>
-    </header>
+
+    </div>
+  </header>
 
     
         <section id="profesores" style="display: block;">

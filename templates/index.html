@@ -19,11 +19,15 @@
     </a>
 
     <div style="display: flex;" class="navbar-container">
+      <p id="user_name"></p>
       <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
       <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
       <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
-      <a href="/login" onclick="mostrarInicio()">Iniciar Sesion</a>
-      <a href="/register">Registrate</a>
+      <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+      <a href="/register" id="RegistroDef">Registrate</a>
+      <a href="/compra" id="OrdenC">Orden de Compra</a>
+      <a href="/logout" id="Logout">Cerrar sesión</a>
+
 
     </div>
   </header>
@@ -38,6 +42,11 @@
     <div class="button-container" id="botonmenuin">
       <button class="button"><a class="text-b" href="/register">Inscríbete ahora</a></button>
     </div>
+
+    <div class="button-container" id="botonexplor">
+      <button class="button"><a class="text-b" href="/cursos">Explora nuestros cursos</a></button>
+    </div>
+    
 
 
       
