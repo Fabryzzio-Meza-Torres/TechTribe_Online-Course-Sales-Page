@@ -464,39 +464,97 @@ function SubmitLoginn(evento) {
 
 
 function Compra_1(){document.getElementById("comprar_Python").addEventListener("click", function() {
-  window.location.href = "/compra"; 
-  const cursoId = document.getElementById("comprar_Python").getAttribute("data-curso-id");
+  var button = document.getElementById("comprar_Python");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
 function Compra_2(){document.getElementById("comprar_Cplusplus").addEventListener("click", function() {
-  window.location.href = "/compra"; 
+  var button = document.getElementById("comprar_Cplusplus");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
 function Compra_3(){document.getElementById("comprar_htmlcss").addEventListener("click", function() {
-  window.location.href = "/compra"; 
+  var button = document.getElementById("comprar_htmlcss");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
 function Compra_4(){document.getElementById("comprar_csMat").addEventListener("click", function() {
-  window.location.href = "/compra"; 
+  var button = document.getElementById("comprar_csMat");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
 function Compra_5(){document.getElementById("comprar_asesoriapython").addEventListener("click", function() {
-  window.location.href = "/compra"; 
+  var button = document.getElementById("comprar_asesoriapython");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
 function Compra_6(){document.getElementById("comprar_asesoriacpp").addEventListener("click", function() {
-  window.location.href = "/compra"; 
+  var button = document.getElementById("comprar_asesoriacpp");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
 function Compra_7(){document.getElementById("comprar_asesoriahtmlcss").addEventListener("click", function() {
-  window.location.href = "/compra"; 
+  var button = document.getElementById("comprar_asesoriahtmlcss");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
 function Compra_8(){document.getElementById("comprar_asesoriamathcs").addEventListener("click", function() {
-  window.location.href = "/compra"; 
+  var button = document.getElementById("comprar_asesoriamathcs");
+  var curso_name = button.getAttribute("curso_name");
+
+  // Construir la URL con el valor de curso_name
+  var url = "/orden_de_compra/" + curso_name;
+
+  // Redirigir a la URL
+  window.location.href = url;
 });}
 
-
+function formulario(){document.getElementById("formulariocompra").addEventListener("click", function(){
+var url="/compra"
+window.location.href = url;
+});}
 
 document.addEventListener('DOMContentLoaded', function() {
   var logged_in = getCookie('logged_in');
