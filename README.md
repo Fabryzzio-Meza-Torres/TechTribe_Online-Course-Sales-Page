@@ -69,7 +69,7 @@ localhost
    <p align="justify">Este código devuelve una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que la operación (crear un usuario) no fue exitosa.</p>
   
 <div align="left">
-##### __Ejemplo 1__:
+##### ____Ejemplo 1____:
 
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
