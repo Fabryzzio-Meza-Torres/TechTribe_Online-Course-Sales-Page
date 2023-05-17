@@ -124,7 +124,7 @@ localhost
   
   ***Ejemplo 2:***
   <div align="left">
-  <img src="?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_200_ejemplo2.png?raw=true" alt="texto alternativo" width="400">
   <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">La función "login" gestiona el inicio de sesión en una aplicación web. Verifica si la solicitud es de tipo "POST", obtiene el correo electrónico y la contraseña proporcionados y consulta la base de datos en busca del usuario. Si se encuentra y las contraseñas coinciden y cumplen los requisitos, devuelve un objeto JSON con un mensaje de inicio de sesión exitoso y código HTTP 200.</p>
