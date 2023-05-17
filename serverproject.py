@@ -190,26 +190,12 @@ def showasesoria():
 # ----------------------------------------------------------------
 @dev.route('/profesores')
 def get_profesores():
-    conn = psycopg2.connect(
-        host = "localhost",
-        database = "project",
-        user="postgres",
-        password = "mezatorres123"
-    )
+    workers_results = Trabajadores.query.all();
+    out = []
+    for result in workers_results:
+        out.append({'firstname': result.firstname, 'lastname': result.lastname})
 
-    cur = conn.cursor()
-    cur.execute("SELECT firstname, lastname FROM workers")
-
-    results = []
-    for row in cur.fetchall():
-        results.append({
-            'firstname': row[0],
-            'lastname': row[1]
-        })
-
-    cur.close()
-    conn.close()
-    return render_template('profesores.html', results=results)
+    return render_template('profesores.html', workers=out)
 
 #----------------------------------------------------------------
 
