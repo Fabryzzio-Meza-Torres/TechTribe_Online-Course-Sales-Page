@@ -63,6 +63,10 @@ localhost
 <p align="justify">Cuando un sitio web devuelve un código de estado 500, generalmente se muestra una página de error genérica al usuario para indicar que ha ocurrido un problema técnico y que el servidor no pudo procesar la solicitud.</p>
 
 #### __Errores de Servidor en nuestro sitio web__:
+##### __Ejemplo 1__:
+
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">Este código devuelve una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que la operación (crear un usuario) no fue exitosa.</p>
@@ -74,7 +78,7 @@ localhost
 ### __Errores en el Cliente__:
 <p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
 
-#### __Errores en el Cliente en nuestro sitio web__:
+#### __Errores de Cliente en nuestro sitio web__:
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
