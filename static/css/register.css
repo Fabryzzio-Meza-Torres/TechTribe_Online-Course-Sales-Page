@@ -19,6 +19,12 @@
     margin-bottom: 20px;
   }
   
+  #Logout,
+  #botonexplor,
+  #OrdenC {
+    display: none;
+  }
+
   .controls {
     width: 100%;
     background: #24303c;

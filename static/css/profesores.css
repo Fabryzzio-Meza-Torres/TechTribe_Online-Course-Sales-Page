@@ -31,6 +31,12 @@ main {
   background: linear-gradient(186deg, #11111f, #0e0e24);
   min-height: 54vh;
 }
+
+#Logout,
+#botonexplor,
+#OrdenC {
+  display: none;
+}
 h1 {
   display: block;
   font-size: 2em;

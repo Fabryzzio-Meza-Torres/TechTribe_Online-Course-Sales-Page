@@ -834,6 +834,12 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
+#Logout,
+#botonexplor,
+#OrdenC {
+  display: none;
+}
+
 #comprar_csMat:hover {
   background-color: #0066CC;
   cursor: pointer;

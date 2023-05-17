@@ -484,7 +484,11 @@ div#asesoriamathcs
   margin-bottom: 10px;
   border-radius: 5px;
 }
-
+#Logout,
+#botonexplor,
+#OrdenC {
+  display: none;
+}
 #comprar_asesoriapython,
 #comprar_asesoriacpp,
 #comprar_asesoriahtmlcss,

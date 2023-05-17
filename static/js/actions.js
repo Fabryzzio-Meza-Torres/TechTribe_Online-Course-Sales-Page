@@ -11,8 +11,11 @@ function ocultarCursos() {
   document.getElementById("THC").style.display = "none";
   document.getElementById("MAT").style.display = "none";
   document.getElementById("csMat").style.display = "none";
+  document.getElementById("OrdenC").style.display = "none";
+  document.getElementById("logout").style.display = "none";
 
   console.log("Ocultar cursos");
+
 }
 
 
@@ -27,7 +30,8 @@ function ocultarAsesorias() {
   document.getElementById("asesoriacpp").style.display = "none";
   document.getElementById("asesoriahtmlcss").style.display = "none";
   document.getElementById("asesoriamathcs").style.display = "none";
-
+  document.getElementById("OrdenC").style.display = "none";
+  document.getElementById("logout").style.display = "none";
 }
 
 
@@ -148,7 +152,8 @@ function mostrarRegistro() {
 }
 
 function MPython(){  
-ocultarCursos();
+document.getElementById("textcurso").style.display = "none";
+document.getElementById("cursos").style.display = "none";
 document.getElementById("Tpython").style.display = "flex";
 document.getElementById("Tpython").style.flexDirection = "column";
 document.getElementById("Python").style.display = "block";
@@ -158,7 +163,8 @@ if (logged_in === 'true') {
     // Mostrar elementos adicionales si el usuario está logueado
     document.getElementById('cu1').style.display = 'none';
     document.getElementById('comprar_Python').style.display = 'flex';
-  } else {
+  } 
+else {
     // Ocultar elementos adicionales si el usuario no está logueado
     document.getElementById('comprar_Python').style.display = 'none';
   }
@@ -166,7 +172,9 @@ if (logged_in === 'true') {
 
 function MCPP(){  
 
-  ocultarCursos();
+  
+  document.getElementById("textcurso").style.display = "none";
+  document.getElementById("cursos").style.display = "none";
   document.getElementById("TCp").style.display = "flex";
   document.getElementById("TCp").style.flexDirection = "column";
   document.getElementById("Cplusplus").style.display = "block";
@@ -184,7 +192,9 @@ if (logged_in === 'true') {
 }
 
 function MHTMLCSS(){  
-  ocultarCursos();
+  
+  document.getElementById("textcurso").style.display = "none";
+  document.getElementById("cursos").style.display = "none";
   document.getElementById("THC").style.display = "flex";
   document.getElementById("THC").style.flexDirection = "column";
   document.getElementById("htmlcss").style.display = "block";
@@ -203,7 +213,9 @@ if (logged_in === 'true') {
 
 
 function MATECSs(){ 
-  ocultarCursos();
+  
+  document.getElementById("textcurso").style.display = "none";
+  document.getElementById("cursos").style.display = "none";
   document.getElementById("MAT").style.display = "flex";
   document.getElementById("MAT").style.flexDirection = "column";
   document.getElementById("csMat").style.display = "block"; 
@@ -256,7 +268,8 @@ function mostrarProfesores(){  const secciones = {
   }
 }
 function python_asesory(){
-  ocultarAsesorias();
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
   document.getElementById("TAP").style.display = "flex";
   document.getElementById("TAP").style.flexDirection = "column";
   document.getElementById("asesoriapython").style.display = "block";
@@ -274,7 +287,8 @@ function python_asesory(){
 
 }
 function cplus_asesory(){  
-  ocultarAsesorias();
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
   document.getElementById("AS1").style.display = "flex";
   document.getElementById("AS1").style.flexDirection = "column";
   document.getElementById("asesoriacpp").style.display = "block";
@@ -292,7 +306,8 @@ function cplus_asesory(){
 }
 
 function html_asesory(){  
-  ocultarAsesorias();
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";  
   document.getElementById("AS2").style.display = "flex";  
   document.getElementById("AS2").style.flexDirection = "column";
   document.getElementById("asesoriahtmlcss").style.display = "block";
@@ -311,7 +326,8 @@ function html_asesory(){
 }
 
 function mat_asesory(){  
-  ocultarAsesorias();
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";  
   document.getElementById("AS3").style.display = "flex";
   document.getElementById("AS3").style.flexDirection = "column";
   document.getElementById("asesoriamathcs").style.display = "block";
