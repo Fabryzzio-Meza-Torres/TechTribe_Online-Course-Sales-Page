@@ -15,6 +15,7 @@ function ocultarCursos() {
   console.log("Ocultar cursos");
 }
 
+
 function ocultarAsesorias() {
   document.getElementById("textasesoria").style.display = "none";
   document.getElementById("TAP").style.display = "none";
@@ -29,39 +30,19 @@ function ocultarAsesorias() {
 
 }
 
+
 //Mostrar Secciones
 function mostrarDefault() {
-  const secciones = {
-    "textdefault": "flex",
-    "textcurso": "none",
-    "Tpython": "none",
-    "textasesoria": "none",
-    "botonmenuin": "flex",
-    "cursos": "none",
-    "asesorias": "none",
-    "inicio": "none",
-    "Python": "none",
-    "Cplusplus": "none",
-    "htmlcss": "none",
-    "TCp": "none",
-    "THC": "none",
-    "TAP": "none",
-    "asesoriapython": "none",
-    "csMat": "none",
-    "MAT": "none",
-    "profesores": "none",
-    "AS1":"nome",
-    "AS2":"nome",
-    "AS3":"nome",
-    "asesoriahtmlcss":"none",
-    "asesoriamathcs":"none"
-  };
-
+  ocultarAsesorias();
+  ocultarCursos();
+  document.getElementById("textdefault").style.display = "flex";
+  document.getElementById("botonmenuin").style.display = "flex";
 
 
 }
 
 function mostrarCurso() {
+
   const secciones = {
     "textdefault": "none",
     "textcurso": "flex",
@@ -220,7 +201,7 @@ function mostrarProfesores(){  const secciones = {
   "THC": "none",
   "TAP": "none",
   "asesoriapython": "none",
-  "csMat": "none",
+  "matecs": "none",
   "MAT": "none",
   "profesores": "block",
   "AS1":"nome",
@@ -230,9 +211,10 @@ function mostrarProfesores(){  const secciones = {
   "asesoriamathcs":"none"
 };
 
-
+  for (const id in secciones) {
+    document.getElementById(id).style.display = secciones[id];
+  }
 }
-
 
 function prueba() {
   const secciones = {
