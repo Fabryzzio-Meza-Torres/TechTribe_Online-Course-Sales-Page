@@ -210,7 +210,10 @@ def get_profesores():
     cur.close()
     conn.close()
     return render_template('profesores.html', results=results)
+
 #----------------------------------------------------------------
+
+
 
 @dev.route('/register', methods=['GET', 'POST'])
 def register():

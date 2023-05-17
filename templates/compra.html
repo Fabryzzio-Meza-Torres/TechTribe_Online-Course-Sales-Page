@@ -32,7 +32,7 @@
 
             // Validar si todos los campos están llenos
             if (numeroTarjeta === '' || fechaExpiracion === '' || contrasena === '') {
-                alert("Por favor, complete todos los campos del formulario.");
+                alert("Por favor, complete todos los campos del formulario."), 400;
                 return false;
             }
 
@@ -41,7 +41,7 @@
             var fechaExpiracionRegex = /^\d{2}\/\d{2}$/; // MM/AA
 
             if (!numeroTarjetaRegex.test(numeroTarjeta) || !fechaExpiracionRegex.test(fechaExpiracion)) {
-                alert("Por favor, ingrese un número de tarjeta válido y una fecha de expiración válida (MM/AA).");
+                alert("Por favor, ingrese un número de tarjeta válido y una fecha de expiración válida (MM/AA)."),400;
                 return false;
             }
 
