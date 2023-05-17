@@ -5,8 +5,7 @@ from flask import (
     request,
     jsonify,
     redirect, 
-    url_for,
-    flash
+    url_for
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
@@ -22,7 +21,7 @@ import sys
 import psycopg2
 #Config 
 dev=Flask(__name__)
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
@@ -44,7 +43,9 @@ class Clients(db.Model):
         self.contrasena = contrasena
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
-
+    @classmethod
+    def check_password(self, hashed_password,password):
+        return check_password_hash(hashed_password, password)
 
 class Trabajadores(db.Model):
     __tablename__ = 'workers'
@@ -69,8 +70,9 @@ class Producto(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()), unique=True, nullable=False)
     id_worker = db.Column(db.String(36), db.ForeignKey('workers.id'), nullable=False)
     name = db.Column(db.String(30), nullable=False)
-    price = db.Column(db.Float(precision=2 ), nullable=False)
+    price = db.Column(db.Float(precision=2  ), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
     duration = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
@@ -197,7 +199,7 @@ def get_profesores():
     )
 
     cur = conn.cursor()
-    cur.execute("SELECT firstname, lastname, age, especializacion FROM workers")
+    cur.execute("SELECT firstname, lastname FROM workers")
 
     results = []
     for row in cur.fetchall():
@@ -210,9 +212,6 @@ def get_profesores():
     conn.close()
     return jsonify(results)
 #----------------------------------------------------------------
-
-
-
 
 @dev.route('/register', methods=['GET', 'POST'])
 def register():
@@ -230,12 +229,8 @@ def register():
             
             if not email:
                 errors.append('Ingrese su correo electrónico')
-            elif not re.match(r'^[a-zA-Z\s]+$', name):
-                errors.append('El nombre solo puede contener letras y espacios')
-            elif not email.endswith('@gmail.com', '@utec.edu.pe', '@hotmail.com'):
+            elif not email.endswith('@gmail.com'):
                 errors.append('Ingrese un correo de Gmail válido')
-            elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
             else:
                 user = Clients.query.filter_by(email=email).first()
                 if user:
@@ -244,11 +239,9 @@ def register():
             if errors:
                 return jsonify({'success': False, 'message': errors}), 400
             else:
-                hash_object = hashlib.sha256()
-                hash_object.update(contrasena.encode('utf-8'))
-                password_hash = hash_object.hexdigest()
-                print(password_hash)
-                new_user = Clients(name, lastname, email, password_hash)
+                hash_contrasena = generate_password_hash(contrasena, salt_length=8)
+                print(hash_contrasena)
+                new_user = Clients(name, lastname, email, hash_contrasena)
                 db.session.add(new_user)
                 db.session.commit()
                 return jsonify({'id': new_user.id, 'success': True, 'message': 'Usuario creado exitosamente'}), 200

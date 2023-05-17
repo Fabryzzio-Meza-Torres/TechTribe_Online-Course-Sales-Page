@@ -32,7 +32,6 @@ main {
   min-height: 54vh;
 }
 h1 {
-  text-align: center;
   display: block;
   font-size: 2em;
   margin-block-start: 0.67em;
@@ -43,6 +42,7 @@ h1 {
 }
 h1 {
   width: 50%;
+  text-align: center;
   /* margin: 87px; */
 }
 h1 strong {
@@ -56,7 +56,6 @@ strong {
 }
 
 a.logo {
-  background: #0a0a14;
   width: 92px;
   height: 92px;
   display: flex;
@@ -136,7 +135,6 @@ element.style {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0a0a14;
 }
 
 .hcontainer {
@@ -671,11 +669,6 @@ ul.menu a:hover {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
-.name::before {
-  content: " ";
-  margin-right: 5px;
-}
-
 .full-name {
   font-weight: bold;
   margin-bottom: 10px;
@@ -748,3 +741,6 @@ h1 {
   text-align: center;
   padding: 0 20px;
 }
+
+
+

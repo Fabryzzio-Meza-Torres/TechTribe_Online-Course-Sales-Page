@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <header class="header" id="Menu">
+  <header class="header">
 
     <a href="/" class="logo" onclick="mostrarDefault()">
       <img src="..\static\images\Logo2-remove.png" alt="Logo">
@@ -194,10 +194,63 @@
               y Tecnología de Perú.</p>
           </div>
         </div>
-      </section>
+
+        
+        <div class="row">
+          <div class="item">
+            <div id="worker_7" class="workers"></div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+              $(document).ready(function() {
+                $.ajax({
+                  url: "http://127.0.0.1:5000/profesores",
+                  type: "GET",
+                  success: function(data) {
+                    var info = "";
+                    var fullName = data[6]["firstname"] + " " + data[6]["lastname"];
+                    info += "<div class='worker'>";
+                    info += "<span class='name'>" + data[6]["firstname"] + " " + "</span><span class='surname'>" + data[6]["lastname"] + "</span>";
+                    info += "</div>";
+                    $("#worker_7").html(info);
+                  }
+                });
+              });
+            </script>
+            <img src="..\static\images\Jose_Renom.png" alt="Logo">
+            <p>Doctor en matemáticas puras y aplicadas de 
+              la Universidad Simón Bolívar, Venezuela. </p>
+          </div>
+        </div>
 
 
-  </main>
+        <div class="row">
+          <div class="item">
+            <div id="worker_8" class="workers"></div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+              $(document).ready(function() {
+                $.ajax({
+                  url: "http://127.0.0.1:5000/profesores",
+                  type: "GET",
+                  success: function(data) {
+                    var info = "";
+                    var fullName = data[7]["firstname"] + " " + data[7]["lastname"];
+                    info += "<div class='worker'>";
+                    info += "<span class='name'>" + data[7]["firstname"] + " " + "</span><span class='surname'>" + data[7]["lastname"] + "</span>";
+                    info += "</div>";
+                    $("#worker_8").html(info);
+                  }
+                });
+              });
+            </script>
+            <img src="..\static\images\Jorge_Tipe.png" alt="Logo">
+            <p>Matemático por la Universidad Nacional Mayor de San Marcos 
+              y Magíster en Matemática Aplicada e Informática por el Instituto 
+              de Física y Tecnología de Moscú, Rusia.</p>
+          </div>
+        </div>
+      </body>
+  </div></main>
   <footer>
     <p>&copy; TechTribe 2023</p>
   </footer>
