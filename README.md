@@ -64,7 +64,7 @@ localhost
 
 #### __Errores de Servidor en nuestro sitio web__:
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/error1_500.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">Este código devuelve una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que la operación (crear un usuario) no fue exitosa.</p>
   
 <div align="left">
