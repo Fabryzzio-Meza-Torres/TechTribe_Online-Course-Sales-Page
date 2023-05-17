@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TechTribe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="TechTribe ofrece cursos y asesorías de programación en línea. Descubre nuestra oferta de cursos de Python, C++, HTML y CSS.">
+  <link rel="stylesheet" type="text/css" href="..\static\css\asesorias.css">
+  <script src="..\static\js\actions.js"></script>
+</head>
+
+<body>
+  <header class="header">
+
+    <a href="/" class="logo" onclick="mostrarDefault()">
+      <img src="..\static\images\Logo2-remove.png" alt="Logo">
+    </a>
+
+    <div style="display: flex;" class="navbar-container">
+      <p id="user_name"></p>
+      <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
+      <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
+      <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
+      <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+      <a href="/register" id="RegistroDef">Registrate</a>
+      <a href="/compra" id="OrdenC">Orden de Compra</a>
+      <a href="/logout" id="Logout">Cerrar sesión</a>
+
+
+    </div>
+  </header>
+
+  <main>
+
+
+    <div class="header-txt" id="textasesoria">
+      <h1>Nuestros expertos en <strong>tecnonologia</strong> están disponibles para ayudarte a superar tus desafíos más
+        <strong>dificiles</strong> _
+      </h1>
+    </div>
+
+
+    <div class="header-txt" id="TAP">
+      <h1>Asesoria: Python</h1>
+      <p><a href="/register" id="ta1">¿Quieres una asesoria con nosotros?</a></p>
+    </div>
+
+    <div class="header-txt" id="AS1">
+      <h1>Asesoria C++</h1>
+      <p><a href="/register" id="ta2">¿Quieres una asesoria con nosotros?</a></p>
+    </div>
+
+    <div class="header-txt" id="AS2">
+      <h1>Asesoria HTML/CSS</h1>
+      <p><a href="/register" id="ta3">¿Quieres una asesoria con nosotros?</a></p>
+    </div>
+
+    <div class="header-txt" id="AS3">
+      <h1>Asesoria Matematica par Computer Science</h1>
+      <p><a href="/register" id="ta4">¿Quieres una asesoria con nosotros?</a></p>
+    </div>
+
+
+      <section id="asesorias">
+        <h1>Asesorías de Programación</h1>
+        <p>¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos y te asesoramos.</p>
+        <div class="asesoria_python" style="background-color: blue;">
+          <img src="..\static\images\asesoria.jpg" alt="Asesoria1">
+          <h2>Asesoria Python</h2>
+          <p>Domina Python con asesoría experta. Código eficiente, soluciones creativas y proyectos destacados. Desarrolla tu potencial en programación.</p>
+          <a href="#" onclick="python_asesory()">Ver asesoria</a>
+        </div>
+        
+        <div class="asesoria_cpp" style="background-color: blue;">
+          <img src="..\static\images\cplusasesoria.png" alt="Asesoria2">
+          <h2>Asesoria C++</h2>
+          <p>Mejora tus habilidades en C++ con asesoría experta. Resuelve problemas, optimiza proyectos y alcanza el éxito programando</p>
+          <a href="#" onclick="cplus_asesory()">Ver asesoria</a>
+        </div>
+
+        <div class="asesoria_html" style="background-color: blue;">
+          <img src="..\static\images\htmlasesoria.png" alt="Asesoria3">
+          <h2>Asesoria HTML\CSS</h2>
+          <p>Desarrolla páginas web impresionantes con asesoría en HTML y CSS. Crea diseños atractivos y domina la programación frontend.</p>
+          <a href="#" onclick="html_asesory()">Ver asesoria</a>
+        </div>
+
+        <div class="asesoria_matecs" style="background-color: blue;">
+          <img src="..\static\images\mathasesoria.jpg" alt="Asesoria4">
+          <h2>Asesoria Matematica Para Computer Science</h2>
+          <p>Potencia tu habilidad matemática para CS. Resuelve algoritmos, optimiza programas y domina la lógica computacional.</p>
+          <a href="#" onclick="mat_asesory()">Ver asesoria</a>
+        </div>
+
+      </section>
+      
+      
+      <section id="asesoriapython">
+        <h2>Asesoría de Python</h2>
+        <p>En esta asesoría de Python tendrás la oportunidad de resolver tus dudas y problemas con el lenguaje de programación Python. Nuestros expertos te ayudarán a entender conceptos avanzados, resolver errores de código y mejorar tus habilidades de programación.</p>
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/rN2NNUqN1Fc" title="Asesoría de Python" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div style="flex: 1;">
+            <p>Este video te ofrece una introducción a nuestra asesoría de Python y te muestra cómo nuestros expertos pueden ayudarte a mejorar tus habilidades de programación y resolver problemas complejos en Python.</p>
+          </div>
+        </div>
+        <h3 id="resolucion-dudas">Resolución de dudas</h3>
+        <p>Nuestros expertos están disponibles para ayudarte en la resolución de cualquier duda que tengas sobre Python. Desde preguntas básicas hasta dudas avanzadas, estamos aquí para ayudarte a entender mejor el lenguaje y resolver cualquier problema que tengas en tus proyectos.</p>
+        <h3 id="apoyo-proyectos">Apoyo en proyectos</h3>
+        <p>Si estás trabajando en un proyecto de Python y necesitas ayuda, nuestros expertos están disponibles para apoyarte en el desarrollo del proyecto. Ya sea que necesites ayuda en la planificación, diseño, implementación o resolución de problemas, estamos aquí para ayudarte a tener éxito en tu proyecto.</p>
+        <h3 id="avance-temas">Avance de temas de Python</h3>
+        <p>Si ya tienes experiencia en Python y estás buscando avanzar en tus habilidades, nuestros expertos pueden ayudarte a aprender temas avanzados de Python, como programación orientada a objetos, estructuras de datos avanzadas, funciones avanzadas y más. Estamos aquí para ayudarte a avanzar en tus habilidades de programación en Python.</p>
+
+        <button onclick="Compra_5()" id="comprar_asesoriapython" curso_name="Asesoria Python">Compra este producto</button>
+
+      </section>
+
+      <section id="asesoriacpp">
+        <h2>Asesoría de C++</h2>
+        <p>En esta asesoría de C++ tendrás la oportunidad de resolver tus dudas y problemas con el lenguaje de programación C++. Nuestros expertos te ayudarán a entender conceptos avanzados, resolver errores de código y mejorar tus habilidades de programación.</p>
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0NPFJ73Pmu0" title="Asesoría de C++" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div style="flex: 1;">
+            <p>Este video te ofrece una introducción a nuestra asesoría de C++ y te muestra cómo nuestros expertos pueden ayudarte a mejorar tus habilidades de programación y resolver problemas complejos en C++.</p>
+          </div>
+        </div>
+        <h3 id="resolucion-dudas">Resolución de dudas</h3>
+        <p>Nuestros expertos están disponibles para ayudarte en la resolución de cualquier duda que tengas sobre C++. Desde preguntas básicas hasta dudas avanzadas, estamos aquí para ayudarte a entender mejor el lenguaje y resolver cualquier problema que tengas en tus proyectos.</p>
+        <h3 id="apoyo-proyectos">Apoyo en proyectos</h3>
+        <p>Si estás trabajando en un proyecto de C++ y necesitas ayuda, nuestros expertos están disponibles para apoyarte en el desarrollo del proyecto. Ya sea que necesites ayuda en la planificación, diseño, implementación o resolución de problemas, estamos aquí para ayudarte a tener éxito en tu proyecto.</p>
+        <h3 id="avance-temas">Avance de temas de C++</h3>
+        <p>Si ya tienes experiencia en C++ y estás buscando avanzar en tus habilidades, nuestros expertos pueden ayudarte a aprender temas avanzados de C++, como programación orientada a objetos, estructuras de datos avanzadas, funciones avanzadas y más. Estamos aquí para ayudarte a avanzar en tus habilidades de programación en C++.</p>
+
+        <button onclick="Compra_6()" id="comprar_asesoriacpp" curso_name="Asesoria C++">Compra este producto</button>
+
+      </section>
+
+      <section id="asesoriahtmlcss">
+        <h2>Asesoría de HTML y CSS</h2>
+        <p>En esta asesoría de HTML y CSS tendrás la oportunidad de resolver tus dudas al crear páginas web impresionantes. Nuestros expertos te guiarán en el uso de HTML y CSS para crear diseños atractivos y dominar la programación frontend.</p>
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Y-OhzQpsRwI" title="Asesoría de HTML y CSS" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+          <div style="flex: 1;">
+            <p>Este video te ofrece una introducción a nuestra asesoría de HTML y CSS y te muestra cómo nuestros expertos pueden ayudarte a mejorar tus habilidades de diseño web y crear sitios web profesionales.</p>
+          </div>
+        </div>
+        <h3 id="fundamentos">Fundamentos de HTML y CSS</h3>
+        <p>Nuestros expertos te enseñarán los fundamentos esenciales de HTML y CSS, desde la estructura básica de una página web hasta la aplicación de estilos y diseños. Aprende a construir sitios web desde cero con confianza.</p>
+        <h3 id="diseño-adaptativo">Diseño web adaptativo</h3>
+        <p>Descubre cómo crear diseños web que se adapten a diferentes dispositivos y tamaños de pantalla. Aprende técnicas avanzadas de diseño responsivo para brindar una experiencia óptima a los usuarios en cualquier dispositivo.</p>
+        <h3 id="interactividad">Interactividad y animaciones</h3>
+        <p>Explora cómo agregar interactividad a tus sitios web utilizando HTML, CSS y JavaScript. Aprende a crear animaciones, efectos y transiciones para hacer que tus sitios web sean más dinámicos y atractivos.</p>
+
+        <button onclick="Compra_7()" id="comprar_asesoriahtmlcss" curso_name="Asesoria HTML/CSS">Compra este producto</button>
+
+      </section>
+
+        <section id="asesoriamathcs">
+          <h2>Asesoría de Matemáticas para Computer Science</h2>
+          <p>En esta asesoría de matemáticas para Computer Science, te brindaremos el conocimiento matemático esencial para enfrentar desafíos en la informática. Nuestros expertos te ayudarán a resolver algoritmos complejos y optimizar tus habilidades de programación.</p>
+          <div style="display: flex;">
+            <div style="flex: 1;">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/wIq4CssPoO0?list=PLUl4u3cNGP60UlabZBeeqOuoLuj_KNphQ" title="Asesoría de Matemáticas para Computer Science" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div style="flex: 1;">
+              <p>Este video te ofrece una introducción a nuestra asesoría de matemáticas para Computer Science y te muestra cómo nuestros expertos pueden ayudarte a dominar los conceptos matemáticos fundamentales y resolver desafíos computacionales.</p>
+            </div>
+          </div>
+          <h3 id="fundamentos-matematicos">Fundamentos Matemáticos</h3>
+          <p>Aprende los conceptos matemáticos fundamentales para la informática, incluyendo álgebra, cálculo, teoría de grafos y lógica matemática. Estos fundamentos son clave para la comprensión y resolución de problemas en la programación y la ciencia de datos.</p>
+          <h3 id="optimizacion-algoritmos">Optimización de Algoritmos</h3>
+          <p>Descubre técnicas matemáticas avanzadas para optimizar algoritmos y mejorar la eficiencia de tus programas. Aprende a analizar la complejidad algorítmica y aplicar estrategias de optimización para resolver problemas de manera más rápida y efectiva.</p>
+          <h3 id="probabilidad-estadistica">Probabilidad y Estadística</h3>
+          <p>Explora los conceptos de probabilidad y estadística necesarios para la toma de decisiones basadas en datos en la informática. Aprende a analizar y interpretar datos, aplicar modelos estadísticos y comprender la incertidumbre en los resultados de tus programas.</p>
+
+          <button onclick="Compra_8()" id="comprar_asesoriamathcs" curso_name="Asesoria Matematica para CS">Compra este producto</button>
+
+        </section>
+  </section>
+
+
+  </main>
+  <footer>
+    <p>&copy; TechTribe 2023</p>
+  </footer>
+</body>
+</html>

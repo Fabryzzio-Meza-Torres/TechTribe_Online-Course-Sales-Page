@@ -32,6 +32,7 @@ main {
   min-height: 54vh;
 }
 h1 {
+  text-align: center;
   display: block;
   font-size: 2em;
   margin-block-start: 0.67em;
@@ -42,7 +43,6 @@ h1 {
 }
 h1 {
   width: 50%;
-  text-align: center;
   /* margin: 87px; */
 }
 h1 strong {
@@ -56,6 +56,7 @@ strong {
 }
 
 a.logo {
+  background: #0a0a14;
   width: 92px;
   height: 92px;
   display: flex;
@@ -112,6 +113,21 @@ element.style {
   background-color: #1f1f2f;
 }
 
+.header-txt a {
+  color: white;
+  text-decoration: none;
+}
+.header-txt p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.header-txt a:hover {
+  color: #1f53c5;
+  text-decoration: underline;
+}
 
 .navbar-container *:hover {
   background: #080810;
@@ -135,6 +151,7 @@ element.style {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #0a0a14;
 }
 
 .hcontainer {
@@ -204,59 +221,26 @@ footer {
   text-align: center;
   padding: 20px;
 }
-/* #textcurso,
-#textasesoria,
-#cursos,
-#asesorias,
-#profesores,
-#inicio,
-#registro,
-#Python,
-#Cplusplus,
-#htmlcss,
-#atrascursos,
-#Tpython,
-#TCp,
-#THC,
-#TAP,
-#MAT,
-#asesoriapython,
-#curso_matematicaCS,
-#matecs,
-#profesores,
-#asesoriacpp,
-#AS1,
-#AS2,
-#AS3,
-#asesoriahtmlcss,
-#asesoriamathcs
-{
-  display: none;
-} */
-
-#Logout,
-#botonexplor,
-#OrdenC {
-  display: none;
-}
 
 
-
-/* div#Tpython,
-div#TCp,
-div#THC,
-div#TAP,
-div#MAT,
-div#AS1,
-div#AS2,
-div#AS3
+div#asesoriapython,
+div#asesoriahtmlcss,
+div#asesoriacpp,
+div#asesoriamathcs
 {
   text-align: center;
   color: #99b9f3;
-} */
+}
 
 
-.asesorias{
+#AS1,
+#AS2,
+#AS3,
+#asesoriapython,
+#asesoriahtmlcss,
+#asesoriacpp,
+#asesoriamathcs,
+#TAP{
   display: none;
 }
 /* Estilos para cursos*/
@@ -501,6 +485,13 @@ div#AS3
   border-radius: 5px;
 }
 
+#comprar_asesoriapython,
+#comprar_asesoriacpp,
+#comprar_asesoriahtmlcss,
+#comprar_asesoriamathcs{
+  display: none;
+}
+
 .asesoria_cpp h2 {
   font-size: 24px;
   font-weight: bold;
@@ -677,6 +668,11 @@ ul.menu a:hover {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
+.name::before {
+  content: " ";
+  margin-right: 5px;
+}
+
 .full-name {
   font-weight: bold;
   margin-bottom: 10px;
@@ -748,4 +744,100 @@ h1 {
   line-height: 1.5;
   text-align: center;
   padding: 0 20px;
+}
+
+
+#comprar_asesoriapython {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_asesoriapython:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_asesoriapython:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
+
+#comprar_asesoriacpp {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_asesoriacpp:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_asesoriacpp:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
+
+#comprar_asesoriahtmlcss {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_asesoriahtmlcss:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_asesoriahtmlcss:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
+
+#comprar_asesoriamathcs {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_asesoriamathcs:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_asesoriamathcs:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
 }

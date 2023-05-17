@@ -26,12 +26,30 @@ body {
   font-size: 20px;
 }
 
+.header-txt p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.header-txt a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-txt a:hover {
+  color: #1f53c5;
+  text-decoration: underline;
+}
+
 main {
   padding: 64px;
   background: linear-gradient(186deg, #11111f, #0e0e24);
   min-height: 54vh;
 }
 h1 {
+  text-align: center;
   display: block;
   font-size: 2em;
   margin-block-start: 0.67em;
@@ -42,7 +60,6 @@ h1 {
 }
 h1 {
   width: 50%;
-  text-align: center;
   /* margin: 87px; */
 }
 h1 strong {
@@ -56,6 +73,7 @@ strong {
 }
 
 a.logo {
+  background: #0a0a14;
   width: 92px;
   height: 92px;
   display: flex;
@@ -65,7 +83,8 @@ a.logo {
 }
 
 element.style {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .container {
   width: 100%;
@@ -135,6 +154,7 @@ element.style {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #0a0a14;
 }
 
 .hcontainer {
@@ -204,57 +224,27 @@ footer {
   text-align: center;
   padding: 20px;
 }
-/* #textcurso,
-#textasesoria,
-#cursos,
-#asesorias,
-#profesores,
-#inicio,
-#registro,
+
 #Python,
 #Cplusplus,
 #htmlcss,
-#atrascursos,
 #Tpython,
 #TCp,
 #THC,
-#TAP,
 #MAT,
-#asesoriapython,
-#curso_matematicaCS,
-#matecs,
-#profesores,
-#asesoriacpp,
-#AS1,
-#AS2,
-#AS3,
-#asesoriahtmlcss,
-#asesoriamathcs
+#csMat
 {
-  display: none;
-} */
-
-#Logout,
-#botonexplor,
-#OrdenC {
   display: none;
 }
 
-
-
-/* div#Tpython,
+div#Tpython,
 div#TCp,
 div#THC,
-div#TAP,
-div#MAT,
-div#AS1,
-div#AS2,
-div#AS3
+div#MAT
 {
   text-align: center;
   color: #99b9f3;
-} */
-
+}
 
 .asesorias{
   display: none;
@@ -571,6 +561,8 @@ div#AS3
   background-color: #E0115F;
 }
 
+
+
 /* Asesoria Matematica CS */
 .asesoria_matecs{
   display: inline-block;
@@ -677,6 +669,11 @@ ul.menu a:hover {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
 
+.name::before {
+  content: " ";
+  margin-right: 5px;
+}
+
 .full-name {
   font-weight: bold;
   margin-bottom: 10px;
@@ -749,3 +746,101 @@ h1 {
   text-align: center;
   padding: 0 20px;
 }
+
+
+
+#comprar_Python {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_Python:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_Python:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
+
+#comprar_Cplusplus {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_Cplusplus:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_Cplusplus:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
+
+#comprar_htmlcss {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_htmlcss:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_htmlcss:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
+
+#comprar_csMat {
+  background-color: #3a3ab1;
+  color: #FFFFFF;
+  padding: 10px 20px !important;
+  border: none;
+  border-radius: 4px !important;
+  font-size: 16px !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: background-color 0.3s ease;
+}
+
+#comprar_csMat:hover {
+  background-color: #0066CC;
+  cursor: pointer;
+}
+
+#comprar_csMat:focus {
+  outline: none;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
