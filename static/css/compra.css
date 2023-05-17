@@ -53,3 +53,22 @@ input[type="submit"]:hover {
 .error {
     color: red;
 }
+
+#boleta_compra {
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+  
+  #boleta_compra h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #boleta_compra p {
+    margin: 0;
+    color:white;
+  }
+  
+  #boleta_compra span {
+    font-weight: bold;
+  }

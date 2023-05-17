@@ -276,15 +276,29 @@ def resource():
     return render_template('contentclient.html')
 
 
-@dev.route('/compra', methods=['GET', 'POST'])
-def compra():
+@dev.route('/compra/<curso_name>', methods=['GET','POST'])
+def compra(curso_name):
+    if request.method == 'GET':
+        # Obtener el name del producto seleccionado
+        product_name = request.args.get(curso_name)
+        product = Producto.query.filter_by(name=product_name).first()
+        if product:
+            product_name = product.name
+            product_price = product.price
+            product_type = product.type_product
+        else:
+            return jsonify({'success': False, 'message': 'Producto no encontrado'}), 400
+            
+        return render_template('compra.html', product_name=product_name, product_price=product_price, product_type=product_type)
+
     if request.method == 'POST':
+        # Obtener los datos del formulario
         creditcard_number = request.form.get('numero_tarjeta')
         expiration_date = request.form.get('fecha_vencimiento')
         password = request.form.get('contrasena')
-        
+
         # Obtener el ID del cliente actualmente autenticado (puedes modificar esto según tu implementación de autenticación)
-        #id_client = 'ID_DEL_CLIENTE'
+        id_client = 'ID_DEL_CLIENTE'
 
         # Validar los datos del formulario (puedes agregar más validaciones según tus requisitos)
         if not creditcard_number or not expiration_date or not password:
@@ -296,12 +310,14 @@ def compra():
             db.session.add(new_tarjeta)
             db.session.commit()
             return jsonify({'success': True, 'message': 'Transaccion realizada correctamente'}), 200
+        
         except Exception as e:
             print(e)
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transaccion'}), 500
 
     return render_template('compra.html')
+
 
 # Run the app
 if __name__ == '__main__':
