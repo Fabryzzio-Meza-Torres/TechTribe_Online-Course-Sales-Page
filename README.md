@@ -61,8 +61,8 @@ localhost
 ## Manejo de errores HTTP:
 ### __Errores en el Servidor__:
 <p align="justify">Cuando un sitio web devuelve un código de estado 500, generalmente se muestra una página de error genérica al usuario para indicar que ha ocurrido un problema técnico y que el servidor no pudo procesar la solicitud.</p>
-#### __Errores de Exitoso en nuestro sitio web__:
-***Ejemplo 1:***
+#### __Errores de Cliente en nuestro sitio web__:
+**Ejemplo 1:**
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
 <div align="left">
