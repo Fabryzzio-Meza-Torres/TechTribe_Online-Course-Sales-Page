@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Compra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="..\static\css\orden.css">
+    <script src="..\static\js\actions.js"></script>
+
+</head>
+<body>
+    <header class="header">
+
+        <a href="/" class="logo" onclick="mostrarDefault()">
+          <img src="..\static\images\Logo2-remove.png" alt="Logo">
+        </a>
+    
+        <div style="display: flex;" class="navbar-container">
+          <p id="user_name"></p>
+          <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
+          <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
+          <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
+          <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+          <a href="/register" id="RegistroDef">Registrate</a>
+          <a href="/compra" id="OrdenC">Orden de Compra</a>
+          <a href="/logout" id="Logout">Cerrar sesión</a>
+    
+    
+        </div>
+      </header>
+
+    <section id="boleta_compra">
+        <h2>Boleta de Compra</h2>
+        <p>Nombre del Producto: <span id="nombre_producto">{{ product_name }}</span></p>
+        
+        <p>Precio del Producto: <span id="precio_producto">{{ product_price }}</span></p>
+        <p>Tipo de Producto: <span id="tipo_de_producto">{{ product_type }}</span></p>
+        
+        <div id="motivacion_programacion">
+            <p>Gracias por preferirnos, y recuerda:</p>
+            <p>"El código es poesía."</p>
+        </div>
+        
+        <div id="imagenes_tarjetas">
+            <img src="..\static\images\visa.png" alt="Visa" width="100" height="50">
+        </div>
+    </section>
+</body>
+</html>

@@ -10,6 +10,7 @@ from flask import (
 )
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
+import random
 import re
 import json
 from flask_sqlalchemy import SQLAlchemy
@@ -22,7 +23,7 @@ import psycopg2
 #Config 
 dev=Flask(__name__)
 dev.config['SECRET_KEY']='pass1234word'
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
@@ -318,11 +319,11 @@ def logout():
     return response
 
 
-@dev.route('/compra/<curso_name>', methods=['GET','POST'])
-def compra(curso_name):
+@dev.route('/orden_de_compra/<curso_name>', methods=['GET','POST'])
+def orden_de_compra(curso_name):
     if request.method == 'GET':
         # Obtener el name del producto seleccionado
-        product_name = request.args.get(curso_name)
+        product_name = curso_name;
         product = Producto.query.filter_by(name=product_name).first()
         if product:
             product_name = product.name
@@ -331,24 +332,26 @@ def compra(curso_name):
         else:
             return jsonify({'success': False, 'message': 'Producto no encontrado'}), 400
             
-        return render_template('compra.html', product_name=product_name, product_price=product_price, product_type=product_type)
-
+        return render_template('orden.html', product_name=product_name, product_price=product_price, product_type=product_type)
+    
+@dev.route('/compra', methods=['GET', 'POST'])
+def compra():
     if request.method == 'POST':
         # Obtener los datos del formulario
         creditcard_number = request.form.get('numero_tarjeta')
         expiration_date = request.form.get('fecha_vencimiento')
         password = request.form.get('contrasena')
-
         # Obtener el ID del cliente actualmente autenticado (puedes modificar esto según tu implementación de autenticación)
-        id_client = 'ID_DEL_CLIENTE'
-
+        logged_in = request.cookies.get('logged_in')
+        user_id = request.cookies.get('user_id')
+        monto= random.randint(300, 2000)
         # Validar los datos del formulario (puedes agregar más validaciones según tus requisitos)
         if not creditcard_number or not expiration_date or not password:
             return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
 
         # Crear una nueva instancia de la tarjeta
         try:
-            new_tarjeta = Tarjeta(creditcard_number, expiration_date, password)
+            new_tarjeta = Tarjeta(creditcard_number, expiration_date, password,user_id,monto )
             db.session.add(new_tarjeta)
             db.session.commit()
             return jsonify({'success': True, 'message': 'Transaccion realizada correctamente'}), 200

@@ -452,7 +452,7 @@ function Compra_1(){document.getElementById("comprar_Python").addEventListener("
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
@@ -463,7 +463,7 @@ function Compra_2(){document.getElementById("comprar_Cplusplus").addEventListene
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
@@ -474,7 +474,7 @@ function Compra_3(){document.getElementById("comprar_htmlcss").addEventListener(
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
@@ -485,7 +485,7 @@ function Compra_4(){document.getElementById("comprar_csMat").addEventListener("c
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
@@ -496,7 +496,7 @@ function Compra_5(){document.getElementById("comprar_asesoriapython").addEventLi
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
@@ -507,7 +507,7 @@ function Compra_6(){document.getElementById("comprar_asesoriacpp").addEventListe
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
@@ -518,7 +518,7 @@ function Compra_7(){document.getElementById("comprar_asesoriahtmlcss").addEventL
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
@@ -529,7 +529,7 @@ function Compra_8(){document.getElementById("comprar_asesoriamathcs").addEventLi
   var curso_name = button.getAttribute("curso_name");
 
   // Construir la URL con el valor de curso_name
-  var url = "/compra/" + curso_name;
+  var url = "/orden_de_compra/" + curso_name;
 
   // Redirigir a la URL
   window.location.href = url;
