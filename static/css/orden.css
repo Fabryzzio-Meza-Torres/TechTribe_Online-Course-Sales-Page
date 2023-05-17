@@ -26,8 +26,6 @@ body {
     margin: 0;
     font-size: 20px;
 }
-
-
 .logo img {
     width: 79%;
   }
@@ -129,23 +127,18 @@ body {
     padding: 20px;
     min-height: 80vh;
   }
-
-  .controls {
-    width: 100%;
-    background: #24303c;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid #1f53c5;
-    font-family: 'calibri';
-    font-size: 18px;
-    color: white;
-  }
   
   .header__item {
     cursor: pointer;
   }
-  
-  
-  
-  
+
+  .button {
+    background-color: #21214c;
+    font-family: 'Wix Madefor Text', sans-serif;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    transition: background-color 0.3s ease;
+    /* margin-left: 12rem; */}
