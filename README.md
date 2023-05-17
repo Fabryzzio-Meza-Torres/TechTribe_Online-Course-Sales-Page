@@ -59,6 +59,20 @@ localhost
 5432
 
 ## Manejo de errores HTTP:
+### __Errores en el Servidor__:
+<p align="justify">Cuando un sitio web devuelve un código de estado 500, generalmente se muestra una página de error genérica al usuario para indicar que ha ocurrido un problema técnico y que el servidor no pudo procesar la solicitud.</p>
+
+### __Errores en el Cliente__:
+<p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
+
+### __Redirección__:
+<p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
+
+### __Exitoso__:
+<p align="justify">Cuando un servidor devuelve un código de estado 200, significa que la solicitud del cliente ha sido recibida, entendida y procesada correctamente, y el resultado se incluye en la respuesta.</p>
+
+### __Informacional__:
+<p align="justify">El código de estado 100, específicamente, se utiliza para indicar al cliente que el servidor ha recibido la solicitud inicial y está esperando que el cliente envíe datos adicionales antes de continuar con el proceso.</p>
 
 ## Cómo ejecutar el sistema (Deployment scripts):
 1. git clone git@github.com:Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP.git 
