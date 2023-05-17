@@ -21,7 +21,7 @@ import sys
 import psycopg2
 #Config 
 dev=Flask(__name__)
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
@@ -212,6 +212,8 @@ def get_profesores():
     return render_template('profesores.html', results=results)
 
 #----------------------------------------------------------------
+
+
 
 @dev.route('/register', methods=['GET', 'POST'])
 def register():
