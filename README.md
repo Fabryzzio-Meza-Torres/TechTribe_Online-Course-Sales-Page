@@ -112,12 +112,11 @@ localhost
 </div>
 <p align="justify">La salida de este código es un objeto JSON que indica que el usuario no fue encontrado, con un estado de éxito establecido en "False" y un mensaje de error correspondiente. Se devuelve con un código de estado HTTP 400.</p>
    
-   
   ***Ejemplo 5:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400_ejemplo4.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error5_400_ejemplo5.png?raw=true" alt="texto alternativo" width="400">
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error5_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
 <p align="justify">La salida de este código es una lista llamada "errors" que se actualiza agregando un mensaje de error indicando que el correo electrónico ya ha sido registrado. Este mensaje de error se agrega al final de la lista.</p>
 
