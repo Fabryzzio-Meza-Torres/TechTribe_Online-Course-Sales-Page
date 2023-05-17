@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="..\static\css\compra.css">
     <script src="..\static\js\actions.js"></script>
+
 </head>
 <body>
     <section id="formulario_compra">
@@ -23,6 +24,15 @@
             <input type="submit" value="Comprar">
         </form>
     </section>
+
+    <section id="boleta_compra">
+        <h2>Boleta de Compra</h2>
+        <div id="boleta">
+            <p>Nombre del Producto: <span id="nombre_producto"></span></p>
+            <p>Precio del Producto: <span id="precio_producto"></span></p>
+        </div>
+    </section>
+    
     <script>
         function validarFormulario() {
             var numeroTarjeta = document.getElementById("numeroTarjeta").value;
@@ -48,5 +58,7 @@
             return true;
         }
     </script>
+
+    
 </body>
 </html>
