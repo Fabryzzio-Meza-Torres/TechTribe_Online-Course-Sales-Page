@@ -68,7 +68,7 @@ localhost
    <p align="justify">Este código devuelve una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que la operación (crear un usuario) no fue exitosa.</p>
   
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/error2_500.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_500.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">El código devuelve un código de estado HTTP 500, que es un código de error interno del servidor. Esto indica que ha ocurrido un error interno en el servidor al procesar la transacción.</p>
 
 ### __Errores en el Cliente__:
