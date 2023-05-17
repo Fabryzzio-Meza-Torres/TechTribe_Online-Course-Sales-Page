@@ -194,7 +194,7 @@ def get_profesores():
         host = "localhost",
         database = "project",
         user="postgres",
-        password = "mezatorres123"
+        password = "1234"
     )
 
     cur = conn.cursor()
