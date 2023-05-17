@@ -121,9 +121,14 @@ __Errores de Servidor en nuestro sitio web__
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error5_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
 <p align="justify">La salida de este código es una lista llamada "errors" que se actualiza agregando un mensaje de error indicando que el correo electrónico ya ha sido registrado. Este mensaje de error se agrega al final de la lista.</p>
+   
+ ***Ejemplo 6:***
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error6_400.png?raw=true" alt="texto alternativo" width="400">
+</div>
+<p align="justify">Este código define una ruta en Flask para una solicitud GET a /orden_de_compra/<curso_name>. Busca un producto en la base de datos según el nombre proporcionado y devuelve información sobre el producto si se encuentra. Si no se encuentra el producto, devuelve un mensaje de error en una respuesta JSON.</p>
 
  
-
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
 
