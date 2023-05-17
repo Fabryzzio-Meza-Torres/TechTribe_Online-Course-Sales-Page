@@ -87,8 +87,13 @@ localhost
 <p align="justify">La función "register" valida y procesa el registro de usuarios en una aplicación web. Retorna un objeto JSON con el estado de éxito o fallo del registro, así como los mensajes de error, si los hay, en un código de estado HTTP 400 en caso de errores.</p>
   
  ***Ejemplo 2:***
-<p align="justify"></p>
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400_ejemplo2.png?raw=true" alt="texto alternativo" width="400">
   
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400.png?raw=true" alt="texto alternativo" width="400">
+</div>
+<p align="justify">La salida de este código es un objeto JSON que indica que la contraseña no cumple con los requisitos, con un estado de éxito establecido en "False" y un mensaje de error correspondiente. Este objeto JSON se devuelve con un código de estado HTTP 400.</p>
   
  ***Ejemplo 3:***
  <div align="left">
@@ -101,34 +106,13 @@ localhost
    
  ***Ejemplo 4:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error3_400_ejemplo3.png?raw=true" alt="texto alternativo" width="400">
-  
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error3_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">El código "else" devuelve un objeto JSON indicando credenciales inválidas con un estado de éxito "False" y un mensaje de error. Se devuelve con un código de estado HTTP 400.</p>
-
-  
-  
-   
-   
-   
-  
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error3_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que el inicio de sesión no fue exitoso debido a que las credenciales proporcionadas son inválidas.</p>
-
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400_ejemplo4.png?raw=true" alt="texto alternativo" width="400">
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
-<p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "False", lo que indica que el inicio de sesión no fue exitoso porque el usuario no fue encontrado en el sistema.</p>
-  
- <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error5_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message".Si alguna de las variables "creditcard_number", "expiration_date" o "password" es nula o está vacía, significa que uno o más campos requeridos no se proporcionaron en la solicitud.</p>
+<p align="justify">La salida de este código es un objeto JSON que indica que el usuario no fue encontrado, con un estado de éxito establecido en "False" y un mensaje de error correspondiente. Se devuelve con un código de estado HTTP 400.</p>
 
+ 
 
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
