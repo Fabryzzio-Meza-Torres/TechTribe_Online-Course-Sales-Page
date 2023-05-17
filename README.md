@@ -121,7 +121,7 @@ localhost
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_200.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">En estas líneas de código, se genera un hash de la contraseña del usuario, se crea un nuevo usuario en la base de datos con los datos proporcionados y se devuelve un objeto JSON con el ID del nuevo usuario, un estado de éxito y un mensaje indicando que el usuario se creó exitosamente, con un código de estado HTTP 200.</p>
-  
+  ***Ejemplo 1:***
   <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_200.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">Si la transacción se realiza correctamente, se devuelve un valor de "success" igual a "True" y un mensaje de "Transacción realizada correctamente". Esto indica que la operación de crear una nueva tarjeta y guardarla en la base de datos fue exitosa.</p>
