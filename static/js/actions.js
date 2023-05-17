@@ -392,5 +392,38 @@ function SubmitLoginn(evento) {
         window.location.href = '/'
       }
     })
-
 }
+
+
+function Compra_1(){document.getElementById("comprar_Python").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+  const cursoId = document.getElementById("comprar_Python").getAttribute("data-curso-id");
+});}
+
+function Compra_2(){document.getElementById("comprar_Cplusplus").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+});}
+
+function Compra_3(){document.getElementById("comprar_htmlcss").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+});}
+
+function Compra_4(){document.getElementById("comprar_csMat").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+});}
+
+function Compra_5(){document.getElementById("comprar_asesoriapython").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+});}
+
+function Compra_6(){document.getElementById("comprar_asesoriacpp").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+});}
+
+function Compra_7(){document.getElementById("comprar_asesoriahtmlcss").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+});}
+
+function Compra_8(){document.getElementById("comprar_asesoriamathcs").addEventListener("click", function() {
+  window.location.href = "/compra"; 
+});}
