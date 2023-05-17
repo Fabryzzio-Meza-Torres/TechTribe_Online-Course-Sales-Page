@@ -69,9 +69,6 @@ localhost
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
    <p align="justify">En caso de que ocurra una excepción, se imprime la información de la excepción y se realiza un rollback en la sesión de la base de datos. Se devuelve un objeto JSON indicando el fallo en la creación del usuario, con un mensaje de error y un código de estado HTTP 500.</p>
   
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_500.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">El código devuelve un código de estado HTTP 500, que es un código de error interno del servidor. Esto indica que ha ocurrido un error interno en el servidor al procesar la transacción.</p>
 
 ### __Errores en el Cliente__:
 <p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
