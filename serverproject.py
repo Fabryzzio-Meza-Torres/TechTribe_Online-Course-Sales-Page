@@ -21,7 +21,7 @@ import sys
 import psycopg2
 #Config 
 dev=Flask(__name__)
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
@@ -72,7 +72,6 @@ class Producto(db.Model):
     name = db.Column(db.String(30), nullable=False)
     price = db.Column(db.Float(precision=2  ), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
-    description = db.Column(db.String(500), nullable=False)
     duration = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, server_default=db.text("now()"))
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True, server_default=db.text("now()"))
@@ -210,7 +209,7 @@ def get_profesores():
 
     cur.close()
     conn.close()
-    return jsonify(results)
+    return render_template('profesores.html', results=results)
 #----------------------------------------------------------------
 
 @dev.route('/register', methods=['GET', 'POST'])
