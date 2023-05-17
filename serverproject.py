@@ -21,6 +21,7 @@ import sys
 import psycopg2
 #Config 
 dev=Flask(__name__)
+dev.config['SECRET_KEY']='pass1234word'
 dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
@@ -176,7 +177,12 @@ crear_datos_por_defecto()
 # Routes
 @dev.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    if request.cookies.get('logged_in') == 'true':
+        logged_in = request.cookies.get('logged_in') == 'true'
+
+        return render_template('index.html',  logged_in=logged_in) 
+    else:
+        return render_template('index.html')
 
 @dev.route('/cursos', methods=['GET'])
 def showcursos():
@@ -276,7 +282,10 @@ def login():
             if user.contrasena == password_hash:
                 # Verificar la contraseña cumple con los requisitos
                 if re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                    return jsonify({'success': True, 'message': 'Inicio de sesión exitoso'}), 200
+                    response=jsonify({'success': True, 'message': 'Inicio de sesión exitoso'}),
+                    response.set_cookie('logged_in', 'true')
+                    return response,200
+
                 else:
                     return jsonify({'success': False, 'message': 'La contraseña no cumple con los requisitos'}), 400
             else:

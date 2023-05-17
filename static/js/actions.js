@@ -150,6 +150,7 @@ function mostrarRegistro() {
 function MPython(){  
 ocultarCursos();
 document.getElementById("Tpython").style.display = "flex";
+document.getElementById("Tpython").style.flexDirection = "column";
 document.getElementById("Python").style.display = "block";
 
 }
@@ -158,6 +159,7 @@ function MCPP(){
 
   ocultarCursos();
   document.getElementById("TCp").style.display = "flex";
+  document.getElementById("TCp").style.flexDirection = "column";
   document.getElementById("Cplusplus").style.display = "block";
 
 }
@@ -165,6 +167,8 @@ function MCPP(){
 function MHTMLCSS(){  
   ocultarCursos();
   document.getElementById("THC").style.display = "flex";
+  document.getElementById("THC").style.flexDirection = "column";
+
   document.getElementById("htmlcss").style.display = "block";
 }
 
@@ -172,6 +176,7 @@ function MHTMLCSS(){
 function MATECSs(){ 
   ocultarCursos();
   document.getElementById("MAT").style.display = "flex";
+  document.getElementById("MAT").style.flexDirection = "column";
   document.getElementById("csMat").style.display = "block"; 
 }
 
@@ -181,6 +186,7 @@ function MATECSs(){
 function python_asesory(){
   ocultarAsesorias();
   document.getElementById("TAP").style.display = "flex";
+  document.getElementById("TAP").style.flexDirection = "column";
   document.getElementById("asesoriapython").style.display = "block";
 }
 
@@ -247,13 +253,16 @@ function prueba() {
 function cplus_asesory(){  
   ocultarAsesorias();
   document.getElementById("AS1").style.display = "flex";
+  document.getElementById("AS1").style.flexDirection = "column";
+
   document.getElementById("asesoriacpp").style.display = "block";
 
 }
 
 function html_asesory(){  
   ocultarAsesorias();
-  document.getElementById("AS2").style.display = "flex";
+  document.getElementById("AS2").style.display = "flex";  
+  document.getElementById("AS2").style.flexDirection = "column";
   document.getElementById("asesoriahtmlcss").style.display = "block";
 
 
@@ -262,6 +271,7 @@ function html_asesory(){
 function mat_asesory(){  
   ocultarAsesorias();
   document.getElementById("AS3").style.display = "flex";
+  document.getElementById("AS3").style.flexDirection = "column";
   document.getElementById("asesoriamathcs").style.display = "block";
 
 }

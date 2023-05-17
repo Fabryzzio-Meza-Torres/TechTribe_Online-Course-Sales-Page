@@ -113,6 +113,21 @@ element.style {
   background-color: #1f1f2f;
 }
 
+.header-txt a {
+  color: white;
+  text-decoration: none;
+}
+.header-txt p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.header-txt a:hover {
+  color: #1f53c5;
+  text-decoration: underline;
+}
 
 .navbar-container *:hover {
   background: #080810;

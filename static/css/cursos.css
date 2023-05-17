@@ -26,6 +26,23 @@ body {
   font-size: 20px;
 }
 
+.header-txt p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.header-txt a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-txt a:hover {
+  color: #1f53c5;
+  text-decoration: underline;
+}
+
 main {
   padding: 64px;
   background: linear-gradient(186deg, #11111f, #0e0e24);
@@ -66,7 +83,8 @@ a.logo {
 }
 
 element.style {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .container {
   width: 100%;
@@ -227,7 +245,6 @@ div#MAT
   text-align: center;
   color: #99b9f3;
 }
-
 
 .asesorias{
   display: none;
@@ -543,6 +560,8 @@ div#MAT
 .asesoria_html a:hover {
   background-color: #E0115F;
 }
+
+
 
 /* Asesoria Matematica CS */
 .asesoria_matecs{
