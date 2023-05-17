@@ -127,8 +127,13 @@ __Errores de Servidor en nuestro sitio web__
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error6_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
 <p align="justify">Este código define una ruta en Flask para una solicitud GET a /orden_de_compra/<curso_name>. Busca un producto en la base de datos según el nombre proporcionado y devuelve información sobre el producto si se encuentra. Si no se encuentra el producto, devuelve un mensaje de error en una respuesta JSON.</p>
-
- 
+  
+ ***Ejemplo 7:***
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error7_400.png?raw=true" alt="texto alternativo" width="400">
+</div>
+<p align="justify"> Si alguna de las variables creditcard_number, expiration_date o password está vacía o es nula, el código devuelve una respuesta JSON con un mensaje de error 400 indicando que todos los campos son obligatorios.</p>
+  
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
 
