@@ -49,6 +49,27 @@
 ### __JavaScript__:
 <p align="justify">Es un lenguaje de programación de alto nivel utilizado en aplicaciones web para agregar interactividad y mejorar la experiencia del usuario. En el proyecto TechTribe, se emplea para implementar funcionalidades dinámicas en la interfaz del usuario y para realizar validaciones en formularios. Su importancia radica en permitir la creación de aplicaciones web más interactivas y ricas en funcionalidades para el usuario.</p>
 
+### __werkzeug.security__:
+<p align="justify">proporciona funciones para la generación segura de contraseñas y tokens, así como para la verificación de contraseñas y tokens en aplicaciones web desarrolladas con Flask. Esto ayuda a fortalecer la seguridad y proteger la información confidencial.</p>
+
+### __hashlib__:
+<p align="justify">La librería "hashlib" en Python proporciona funciones para calcular funciones hash criptográficas.</p>
+
+### __random__:
+<p align="justify">Es una librería estándar de Python que proporciona funciones relacionadas con la generación de números aleatorios</p>
+
+### __psycopg2__:
+<p align="justify">Es un adaptador de base de datos PostgreSQL para el lenguaje de programación Python.</p>
+
+### __traceback__:
+<p align="justify">Es una librería estándar de Python que proporciona funciones para obtener y manipular información de seguimiento de excepciones. </p>
+
+### __sys__:
+<p align="justify">Es una librería estándar de Python que proporciona acceso a variables y funciones específicas del intérprete de Python.</p>
+
+### __json__:
+<p align="justify">Es una librería estándar que proporciona funciones para trabajar con datos en formato JSON (JavaScript Object Notation). </p>
+
 ## El nombre del script a ejecutar para iniciar la base de datos con datos:
 serverproject.py
 
