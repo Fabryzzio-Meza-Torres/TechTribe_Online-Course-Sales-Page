@@ -12,18 +12,22 @@
 </head>
 
 <body>
-  <header class="header" id="Menu">
+  <header class="header">
 
     <a href="/" class="logo" onclick="mostrarDefault()">
       <img src="..\static\images\Logo2-remove.png" alt="Logo">
     </a>
 
     <div style="display: flex;" class="navbar-container">
-      <a id="Cursodef" href="/cursos" onclick="ocultarCursos()">Cursos</a>
-      <a href="/asesorias" onclick="mostrarAsesoria()">Asesorias</a>
+      <p id="user_name"></p>
+      <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
+      <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
       <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
-      <a href="/login">Iniciar Sesion</a>
-      <a href="/register">Registrate</a>
+      <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+      <a href="/register" id="RegistroDef">Registrate</a>
+      <a href="/compra" id="OrdenC">Orden de Compra</a>
+      <a href="/logout" id="Logout">Cerrar sesión</a>
+
 
     </div>
   </header>
@@ -37,23 +41,24 @@
 
     <div class="header-txt" id="Tpython">
       <h1>Curso: Python desde cero 2023</h1>
-      <p><a href="/register">¿Quieres obtener este curso?</a></p>
-
+      <p><a href="/register" id="cu1">¿Quieres una asesoria con nosotros?</a></p>
     </div>
 
     <div class="header-txt" id="TCp">
       <h1>Curso: C++ desde cero 2023</h1>
-      <p><a href="/register">¿Quieres obtener este curso?</a></p>
+      <p><a href="/register" id="cu2">¿Quieres una asesoria con nosotros?</a></p>
+
     </div>
 
     <div class="header-txt" id="THC">
       <h1>Curso: HTML y CSS desde cero 2023</h1>
-      <p><a href="/register">¿Quieres obtener este curso?</a></p>
+      <p><a href="/register" id="cu3">¿Quieres una asesoria con nosotros?</a></p>
+
     </div>
 
     <div class="header-txt" id="MAT">
       <h1>Curso: Matematicas para Computer Science</h1>
-      <p><a href="/register">¿Quieres obtener este curso?</a></p>
+      <p><a href="/register" id="cu4">¿Quieres una asesoria con nosotros?</a></p>
     </div>
 
     <section id="cursos">
@@ -140,7 +145,7 @@
         en el curso. Entre ellos, se incluyen proyectos como un juego de adivinanza y una aplicación de gestión de
         tareas.</p>
  
-        <button onclick="Compra_1()" id="comprar_Python" data-curso-id="1">Compra este producto</button>
+        <button onclick="Compra_1()" id="comprar_Python" curso_id="ed56bd51-97f0-464d-ae9d-139dd0cdc7ea">Compra este producto</button>
 
     </section>
 
@@ -190,7 +195,7 @@
         el curso. Entre ellos se encuentra la creación de un programa de cálculo de promedio de notas, la implementación
         de una lista de tareas con clases y objetos, y la creación de un juego de adivinanza de números.</p>
 
-        <button onclick="Compra_2()" id="comprar_Cplusplus" data-curso-id="2">Compra este producto</button>
+        <button onclick="Compra_2()" id="comprar_Cplusplus" curso_id="9b1d1390-e9de-4908-91f3-bc7534e040aa">Compra este producto</button>
 
       </section>
 
@@ -229,7 +234,7 @@
         curso. Entre ellos se encuentra la creación de una página web personal, la implementación de un menú de
         navegación y la creación de una página de contacto con un formulario de contacto.</p>
 
-        <button onclick="Compra_3()" id="comprar_htmlcss" data-curso-id="3">Compra este producto</button>
+        <button onclick="Compra_3()" id="comprar_htmlcss" curso_id="9b0a5e01-54ed-41b1-a4f9-84ef4af794be">Compra este producto</button>
 
     </section>
 
@@ -267,7 +272,7 @@
         técnicas de programación lineal y la aplicación de técnicas de análisis de datos en conjuntos de datos reales.
       </p>
       
-      <button onclick="Compra_4()" id="comprar_csMat" data-curso-id="4">Compra este producto</button>
+      <button onclick="Compra_4()" id="comprar_csMat" curso_id="b94e60a2-3059-4dd3-b01f-78b370f17c27">Compra este producto</button>
 
     </section>
   </main>

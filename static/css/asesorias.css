@@ -485,6 +485,13 @@ div#asesoriamathcs
   border-radius: 5px;
 }
 
+#comprar_asesoriapython,
+#comprar_asesoriacpp,
+#comprar_asesoriahtmlcss,
+#comprar_asesoriamathcs{
+  display: none;
+}
+
 .asesoria_cpp h2 {
   font-size: 24px;
   font-weight: bold;

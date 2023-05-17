@@ -4,6 +4,7 @@ from flask import (
     render_template, 
     request,
     jsonify,
+    session,
     redirect, 
     url_for
 )
@@ -15,7 +16,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import uuid
 import traceback
-import os
 from datetime import datetime,timedelta
 import sys
 import psycopg2
@@ -177,20 +177,42 @@ crear_datos_por_defecto()
 # Routes
 @dev.route('/', methods=['GET'])
 def index():
-    if request.cookies.get('logged_in') == 'true':
-        logged_in = request.cookies.get('logged_in') == 'true'
+    logged_in = request.cookies.get('logged_in')
 
-        return render_template('index.html',  logged_in=logged_in) 
+    if logged_in == 'true':
+        user_id = request.cookies.get('user_id')
+        user_name = request.cookies.get('user_name')
+        data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
+
+        return render_template('index.html',  logged_in=logged_in, data=data) 
     else:
         return render_template('index.html')
 
 @dev.route('/cursos', methods=['GET'])
 def showcursos():
-    return render_template('cursos.html')
+    logged_in = request.cookies.get('logged_in')
+
+    if logged_in == 'true':
+        user_id = request.cookies.get('user_id')
+        user_name = request.cookies.get('user_name')
+        data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
+
+        return render_template('cursos.html',  logged_in=logged_in, data=data) 
+    else:   
+        return render_template('cursos.html')
 
 @dev.route('/asesorias', methods=['GET'])
 def showasesoria():
-    return render_template('asesoria.html')
+    logged_in = request.cookies.get('logged_in')
+
+    if logged_in == 'true':
+        user_id = request.cookies.get('user_id')
+        user_name = request.cookies.get('user_name')
+        data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
+
+        return render_template('asesoria.html',  logged_in=logged_in, data=data) 
+    else:
+        return render_template('asesoria.html')
 
 
 # ----------------------------------------------------------------
@@ -221,7 +243,7 @@ def register():
             
             if not email:
                 errors.append('Ingrese su correo electrónico')
-            elif not email.endswith('@gmail.com'):
+            elif not email.endswith(('@gmail.com', '@hotmail.es', '@utec.edu.pe')):
                 errors.append('Ingrese un correo de Gmail válido')
             elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
                 errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
@@ -267,8 +289,12 @@ def login():
             if user.contrasena == password_hash:
                 # Verificar la contraseña cumple con los requisitos
                 if re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                    response=jsonify({'success': True, 'message': 'Inicio de sesión exitoso'}),
+                    response=jsonify({'success': True, 'message': 'Inicio de sesión exitoso'})
                     response.set_cookie('logged_in', 'true')
+                    response.set_cookie('user_id', str(user.id))  # Agregar el ID del usuario a la cookie
+                    response.set_cookie('user_name', str(user.firstname)) 
+
+
                     return response,200
 
                 else:
@@ -283,9 +309,13 @@ def login():
 
 
 
-@dev.route('/contentclient')
-def resource():
-    return render_template('contentclient.html')
+@dev.route('/logout', methods=['GET'])
+def logout():
+    response = redirect('/')
+    response.delete_cookie('logged_in')
+    response.delete_cookie('user_id')
+    response.delete_cookie('user_name')
+    return response
 
 
 @dev.route('/compra', methods=['GET', 'POST'])
