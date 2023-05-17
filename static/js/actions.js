@@ -11,8 +11,11 @@ function ocultarCursos() {
   document.getElementById("THC").style.display = "none";
   document.getElementById("MAT").style.display = "none";
   document.getElementById("csMat").style.display = "none";
+  document.getElementById("OrdenC").style.display = "none";
+  document.getElementById("logout").style.display = "none";
 
   console.log("Ocultar cursos");
+
 }
 
 
@@ -27,7 +30,8 @@ function ocultarAsesorias() {
   document.getElementById("asesoriacpp").style.display = "none";
   document.getElementById("asesoriahtmlcss").style.display = "none";
   document.getElementById("asesoriamathcs").style.display = "none";
-
+  document.getElementById("OrdenC").style.display = "none";
+  document.getElementById("logout").style.display = "none";
 }
 
 
@@ -148,41 +152,89 @@ function mostrarRegistro() {
 }
 
 function MPython(){  
-ocultarCursos();
+document.getElementById("textcurso").style.display = "none";
+document.getElementById("cursos").style.display = "none";
 document.getElementById("Tpython").style.display = "flex";
+document.getElementById("Tpython").style.flexDirection = "column";
 document.getElementById("Python").style.display = "block";
+var logged_in = getCookie('logged_in');
+if (logged_in === 'true') {
 
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('cu1').style.display = 'none';
+    document.getElementById('comprar_Python').style.display = 'flex';
+  } 
+else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_Python').style.display = 'none';
+  }
 }
 
 function MCPP(){  
 
-  ocultarCursos();
+  
+  document.getElementById("textcurso").style.display = "none";
+  document.getElementById("cursos").style.display = "none";
   document.getElementById("TCp").style.display = "flex";
+  document.getElementById("TCp").style.flexDirection = "column";
   document.getElementById("Cplusplus").style.display = "block";
+var logged_in = getCookie('logged_in');
+if (logged_in === 'true') {
+
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('cu2').style.display = 'none';
+    document.getElementById('comprar_Cplusplus').style.display = 'flex';
+  } else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_Cplusplus').style.display = 'none';
+  }
 
 }
 
 function MHTMLCSS(){  
-  ocultarCursos();
+  
+  document.getElementById("textcurso").style.display = "none";
+  document.getElementById("cursos").style.display = "none";
   document.getElementById("THC").style.display = "flex";
+  document.getElementById("THC").style.flexDirection = "column";
   document.getElementById("htmlcss").style.display = "block";
+  var logged_in = getCookie('logged_in');
+if (logged_in === 'true') {
+
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('cu3').style.display = 'none';
+    document.getElementById('comprar_htmlcss').style.display = 'flex';
+  } else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_htmlcss').style.display = 'none';
+  }
+
 }
 
 
 function MATECSs(){ 
-  ocultarCursos();
+  
+  document.getElementById("textcurso").style.display = "none";
+  document.getElementById("cursos").style.display = "none";
   document.getElementById("MAT").style.display = "flex";
+  document.getElementById("MAT").style.flexDirection = "column";
   document.getElementById("csMat").style.display = "block"; 
+  var logged_in = getCookie('logged_in');
+if (logged_in === 'true') {
+
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('cu4').style.display = 'none';
+    document.getElementById('comprar_csMat').style.display = 'flex';
+  } else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_csMat').style.display = 'none';
+  }
 }
 
 
 
 
-function python_asesory(){
-  ocultarAsesorias();
-  document.getElementById("TAP").style.display = "flex";
-  document.getElementById("asesoriapython").style.display = "block";
-}
+
 
 
 function mostrarProfesores(){  const secciones = {
@@ -215,54 +267,80 @@ function mostrarProfesores(){  const secciones = {
     document.getElementById(id).style.display = secciones[id];
   }
 }
+function python_asesory(){
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
+  document.getElementById("TAP").style.display = "flex";
+  document.getElementById("TAP").style.flexDirection = "column";
+  document.getElementById("asesoriapython").style.display = "block";
 
-function prueba() {
-  const secciones = {
-    "textdefault": "none",
-    "textcurso": "none",
-    "textasesoria": "none",
-    "botonmenuin": "none",
-    "cursos": "none",
-    "textasesoria": "none",
-    "atrascursos": "none",
-    "asesorias": "none",
-    "inicio": "none",
-    "Python": "none",
-    "Cplusplus": "none",
-    "htmlcss": "block",
-    "TCp": "none",
-    "THC": "none",
-    "asesoriacpp": "none",
-    "AS1":"nome",
-    "AS2":"nome",
-    "AS3":"nome",
-    "asesoriahtmlcss":"none",
-    "asesoriamathcs":"none"
-  };
+  var logged_in = getCookie('logged_in');
+  if (logged_in === 'true') {
 
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('ta1').style.display = 'none';
+    document.getElementById('comprar_asesoriapython').style.display = 'flex';
+  } else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_asesoriapython').style.display = 'none';
+  }
 
 }
-
-
 function cplus_asesory(){  
-  ocultarAsesorias();
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";
   document.getElementById("AS1").style.display = "flex";
+  document.getElementById("AS1").style.flexDirection = "column";
   document.getElementById("asesoriacpp").style.display = "block";
+  var logged_in = getCookie('logged_in');
+  if (logged_in === 'true') {
+
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('ta2').style.display = 'none';
+    document.getElementById('comprar_asesoriacpp').style.display = 'flex';
+  } else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_asesoriacpp').style.display = 'none';
+  }
 
 }
 
 function html_asesory(){  
-  ocultarAsesorias();
-  document.getElementById("AS2").style.display = "flex";
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";  
+  document.getElementById("AS2").style.display = "flex";  
+  document.getElementById("AS2").style.flexDirection = "column";
   document.getElementById("asesoriahtmlcss").style.display = "block";
+  var logged_in = getCookie('logged_in');
+  if (logged_in === 'true') {
+
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('ta3').style.display = 'none';
+    document.getElementById('comprar_asesoriahtmlcss').style.display = 'flex';
+  } else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_asesoriahtmlcss').style.display = 'none';
+  }
 
 
 }
 
 function mat_asesory(){  
-  ocultarAsesorias();
+  document.getElementById("textasesoria").style.display = "none";
+  document.getElementById("asesorias").style.display = "none";  
   document.getElementById("AS3").style.display = "flex";
+  document.getElementById("AS3").style.flexDirection = "column";
   document.getElementById("asesoriamathcs").style.display = "block";
+  var logged_in = getCookie('logged_in');
+  if (logged_in === 'true') {
+
+    // Mostrar elementos adicionales si el usuario está logueado
+    document.getElementById('ta4').style.display = 'none';
+    document.getElementById('comprar_asesoriamathcs').style.display = 'flex';
+  } else {
+    // Ocultar elementos adicionales si el usuario no está logueado
+    document.getElementById('comprar_asesoriamathcs').style.display = 'none';
+  }
 
 }
 
@@ -378,7 +456,7 @@ function SubmitLoginn(evento) {
         setTimeout(() => {
           formrLo.reset()
           successEmployeeMessage.style.display = 'none'
-        }, 2000)
+        }, 5000)
         window.location.href = '/'
       }
     })
@@ -417,3 +495,35 @@ function Compra_7(){document.getElementById("comprar_asesoriahtmlcss").addEventL
 function Compra_8(){document.getElementById("comprar_asesoriamathcs").addEventListener("click", function() {
   window.location.href = "/compra"; 
 });}
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var logged_in = getCookie('logged_in');
+
+  if (logged_in === 'true') {
+    var user_name = getCookie('user_name');
+    document.getElementById('user_name').textContent = 'Bienvenido ' + user_name + '!';
+    document.getElementById('InicioDef').style.display = 'none';
+    document.getElementById('RegistroDef').style.display = 'none';
+    document.getElementById('OrdenC').style.display = 'flex';
+    document.getElementById('Logout').style.display = 'flex';
+    document.getElementById('botonmenuin').style.display = 'none';
+    document.getElementById('botonexplor').style.display = 'flex';
+
+  }
+});
+
+function getCookie(name) {
+  var cookies = document.cookie.split(';');
+
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+
+    if (cookie.startsWith(name + '=')) {
+      return cookie.substring(name.length + 1);
+    }
+  }
+
+  return '';
+}

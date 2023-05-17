@@ -26,6 +26,23 @@ body {
   font-size: 20px;
 }
 
+.header-txt p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.header-txt a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-txt a:hover {
+  color: #1f53c5;
+  text-decoration: underline;
+}
+
 main {
   padding: 64px;
   background: linear-gradient(186deg, #11111f, #0e0e24);
@@ -66,7 +83,8 @@ a.logo {
 }
 
 element.style {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .container {
   width: 100%;
@@ -227,7 +245,6 @@ div#MAT
   text-align: center;
   color: #99b9f3;
 }
-
 
 .asesorias{
   display: none;
@@ -544,6 +561,8 @@ div#MAT
   background-color: #E0115F;
 }
 
+
+
 /* Asesoria Matematica CS */
 .asesoria_matecs{
   display: inline-block;
@@ -813,6 +832,23 @@ h1 {
   text-transform: uppercase;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) !important;
   transition: background-color 0.3s ease;
+}
+.precio {
+  font-size: 18px;
+  color: #fff; /* Cambiar a color blanco */
+  font-weight: bold;
+  /* Otros estilos CSS que desees aplicar */
+  
+  /* Estilos de posicionamiento y alineación */
+  position: absolute;
+  left: 7rem; /* Ajustar el valor según sea necesario */
+}
+
+
+#Logout,
+#botonexplor,
+#OrdenC {
+  display: none;
 }
 
 #comprar_csMat:hover {

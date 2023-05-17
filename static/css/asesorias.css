@@ -113,6 +113,21 @@ element.style {
   background-color: #1f1f2f;
 }
 
+.header-txt a {
+  color: white;
+  text-decoration: none;
+}
+.header-txt p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.header-txt a:hover {
+  color: #1f53c5;
+  text-decoration: underline;
+}
 
 .navbar-container *:hover {
   background: #080810;
@@ -388,6 +403,17 @@ div#asesoriamathcs
   padding:0px;
 }
 
+.precio {
+  font-size: 18px;
+  color: #fff; /* Cambiar a color blanco */
+  font-weight: bold;
+  /* Otros estilos CSS que desees aplicar */
+  
+  /* Estilos de posicionamiento y alineación */
+  position: absolute;
+  left: 7rem; /* Ajustar el valor según sea necesario */
+}
+
 .curso_matematicaCS p {
   font-size: 16px;
   line-height: 1.4;
@@ -468,6 +494,17 @@ div#asesoriamathcs
   height: 200px;
   margin-bottom: 10px;
   border-radius: 5px;
+}
+#Logout,
+#botonexplor,
+#OrdenC {
+  display: none;
+}
+#comprar_asesoriapython,
+#comprar_asesoriacpp,
+#comprar_asesoriahtmlcss,
+#comprar_asesoriamathcs{
+  display: none;
 }
 
 .asesoria_cpp h2 {

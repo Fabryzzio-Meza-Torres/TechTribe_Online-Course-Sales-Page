@@ -15,6 +15,11 @@
     box-shadow: 7px 13px 37px #000;
   }
   
+  #Logout,
+#botonexplor,
+#OrdenC {
+  display: none;
+}
  
   .loginform h4{
     font-size: 22px;

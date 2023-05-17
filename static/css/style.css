@@ -204,7 +204,7 @@ footer {
   text-align: center;
   padding: 20px;
 }
-#textcurso,
+/* #textcurso,
 #textasesoria,
 #cursos,
 #asesorias,
@@ -232,9 +232,17 @@ footer {
 #asesoriamathcs
 {
   display: none;
+} */
+
+#Logout,
+#botonexplor,
+#OrdenC {
+  display: none;
 }
 
-div#Tpython,
+
+
+/* div#Tpython,
 div#TCp,
 div#THC,
 div#TAP,
@@ -245,7 +253,7 @@ div#AS3
 {
   text-align: center;
   color: #99b9f3;
-}
+} */
 
 
 .asesorias{

@@ -4,6 +4,7 @@ from flask import (
     render_template, 
     request,
     jsonify,
+    session,
     redirect, 
     url_for
 )
@@ -12,16 +13,17 @@ import hashlib
 import re
 import json
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 from flask_migrate import Migrate
 import uuid
 import traceback
-import os
 from datetime import datetime,timedelta
 import sys
 import psycopg2
 #Config 
 dev=Flask(__name__)
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
+dev.config['SECRET_KEY']='pass1234word'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
@@ -176,15 +178,50 @@ crear_datos_por_defecto()
 # Routes
 @dev.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    logged_in = request.cookies.get('logged_in')
+
+    if logged_in == 'true':
+        user_id = request.cookies.get('user_id')
+        user_name = request.cookies.get('user_name')
+        data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
+
+        return render_template('index.html',  logged_in=logged_in, data=data) 
+    else:
+        return render_template('index.html')
 
 @dev.route('/cursos', methods=['GET'])
 def showcursos():
-    return render_template('cursos.html')
+    consulta_precio= text("SELECT price FROM products")
+    resultado= db.session.execute(consulta_precio)
+    precios = [row[0] for row in resultado]
+
+    logged_in = request.cookies.get('logged_in')
+
+    if logged_in == 'true':
+        user_id = request.cookies.get('user_id')
+        user_name = request.cookies.get('user_name')
+        data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
+
+        return render_template('cursos.html',  logged_in=logged_in, data=data,  precios=precios)
+    else:   
+        return render_template('cursos.html', precios=precios)
 
 @dev.route('/asesorias', methods=['GET'])
 def showasesoria():
-    return render_template('asesoria.html')
+    logged_in = request.cookies.get('logged_in')
+    consulta_precio= text("SELECT price FROM products")
+    resultado= db.session.execute(consulta_precio)
+    precios = [row[0] for row in resultado]
+
+
+    if logged_in == 'true':
+        user_id = request.cookies.get('user_id')
+        user_name = request.cookies.get('user_name')
+        data = {'message': 'Usuario registrado', 'user_id': user_id, 'user_name': user_name}
+
+        return render_template('asesoria.html',  logged_in=logged_in, data=data, precios=precios) 
+    else:
+        return render_template('asesoria.html',precios=precios)
 
 
 # ----------------------------------------------------------------
@@ -198,8 +235,6 @@ def get_profesores():
     return render_template('profesores.html', workers=out)
 
 #----------------------------------------------------------------
-
-
 
 @dev.route('/register', methods=['GET', 'POST'])
 def register():
@@ -217,8 +252,10 @@ def register():
             
             if not email:
                 errors.append('Ingrese su correo electrónico')
-            elif not email.endswith('@gmail.com'):
+            elif not email.endswith(('@gmail.com', '@hotmail.es', '@utec.edu.pe')):
                 errors.append('Ingrese un correo de Gmail válido')
+            elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
+                errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
             else:
                 user = Clients.query.filter_by(email=email).first()
                 if user:
@@ -227,9 +264,11 @@ def register():
             if errors:
                 return jsonify({'success': False, 'message': errors}), 400
             else:
-                hash_contrasena = generate_password_hash(contrasena, salt_length=8)
-                print(hash_contrasena)
-                new_user = Clients(name, lastname, email, hash_contrasena)
+                hash_object = hashlib.sha256()
+                hash_object.update(contrasena.encode('utf-8'))
+                password_hash = hash_object.hexdigest()
+                print(password_hash)
+                new_user = Clients(name, lastname, email, password_hash)
                 db.session.add(new_user)
                 db.session.commit()
                 return jsonify({'id': new_user.id, 'success': True, 'message': 'Usuario creado exitosamente'}), 200
@@ -259,7 +298,14 @@ def login():
             if user.contrasena == password_hash:
                 # Verificar la contraseña cumple con los requisitos
                 if re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                    return jsonify({'success': True, 'message': 'Inicio de sesión exitoso'}), 200
+                    response=jsonify({'success': True, 'message': 'Inicio de sesión exitoso'})
+                    response.set_cookie('logged_in', 'true')
+                    response.set_cookie('user_id', str(user.id))  # Agregar el ID del usuario a la cookie
+                    response.set_cookie('user_name', str(user.firstname)) 
+
+
+                    return response,200
+
                 else:
                     return jsonify({'success': False, 'message': 'La contraseña no cumple con los requisitos'}), 400
             else:
@@ -271,9 +317,14 @@ def login():
         return render_template('login.html')
 
 
-@dev.route('/contentclient')
-def resource():
-    return render_template('contentclient.html')
+
+@dev.route('/logout', methods=['GET'])
+def logout():
+    response = redirect('/')
+    response.delete_cookie('logged_in')
+    response.delete_cookie('user_id')
+    response.delete_cookie('user_name')
+    return response
 
 
 @dev.route('/compra', methods=['GET', 'POST'])
