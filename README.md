@@ -75,7 +75,7 @@ localhost
 <p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
 
 #### __Errores de Cliente en nuestro sitio web__:
-***Ejemplo 1***:
+***Ejemplo 1:***
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
   
@@ -84,7 +84,7 @@ localhost
 </div>
 <p align="justify">La función "register" valida y procesa el registro de usuarios en una aplicación web. Retorna un objeto JSON con el estado de éxito o fallo del registro, así como los mensajes de error, si los hay, en un código de estado HTTP 400 en caso de errores.</p>
   
- #### __Ejemplo 1__:
+ 
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400.png?raw=true" alt="texto alternativo" width="400">
 </div>
@@ -113,9 +113,12 @@ localhost
 <p align="justify">Cuando un servidor devuelve un código de estado 200, significa que la solicitud del cliente ha sido recibida, entendida y procesada correctamente, y el resultado se incluye en la respuesta.</p>
   
  #### __Errores de Exitoso en nuestro sitio web__:
+  ***Ejemplo 1:***
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_200.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">La salida de este código es una respuesta JSON con dos elementos: "success" y "message". El valor de "success" es "True", lo que indica que el inicio de sesión fue exitoso.</p>
+<div align="left">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_200.png?raw=true" alt="texto alternativo" width="400">
+   <p align="justify">En estas líneas de código, se genera un hash de la contraseña del usuario, se crea un nuevo usuario en la base de datos con los datos proporcionados y se devuelve un objeto JSON con el ID del nuevo usuario, un estado de éxito y un mensaje indicando que el usuario se creó exitosamente, con un código de estado HTTP 200.</p>
   
   <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_200.png?raw=true" alt="texto alternativo" width="400">
