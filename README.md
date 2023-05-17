@@ -75,7 +75,7 @@ localhost
 <p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
 
 #### __Errores de Cliente en nuestro sitio web__:
-#### **Ejemplo 1**:
+***Ejemplo 1***:
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
   
