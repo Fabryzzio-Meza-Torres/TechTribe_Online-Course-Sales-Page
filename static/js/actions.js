@@ -387,6 +387,7 @@ function SubmitLoginn(evento) {
 
 function Compra_1(){document.getElementById("comprar_Python").addEventListener("click", function() {
   window.location.href = "/compra"; 
+  const cursoId = document.getElementById("comprar_Python").getAttribute("data-curso-id");
 });}
 
 function Compra_2(){document.getElementById("comprar_Cplusplus").addEventListener("click", function() {

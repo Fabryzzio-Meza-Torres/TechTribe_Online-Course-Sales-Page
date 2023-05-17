@@ -35,23 +35,6 @@
         <div class="row">
             <div class="item">
             <div id="worker_1" class="workers"><div class="worker"><span class="name">Marvin </span><span class="surname">Abisrror</span></div></div>
-              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[0]["firstname"] + " " + data[0]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[0]["firstname"] + " " + "</span><span class='surname'>" + data[0]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_1").html(info);
-                    }
-                  });
-                });
-              </script>
               <img src="..\static\images\Marvin_Abisrror.png" alt="Logo">
               <p>Ingeniero de Sistemas con Maestría en Ciencias 
                 de la Computación y especialidad en Búsquedas 
@@ -62,22 +45,7 @@
             <div class="item">
               <div id="worker_2" class="workers"><div class="worker"><span class="name">Jesus </span><span class="surname">Bellido</span></div></div>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[1]["firstname"] + " " + data[1]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[1]["firstname"] + " " + "</span><span class='surname'>" + data[1]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_2").html(info);
-                    }
-                  });
-                });
-              </script>
+              
               <img src="..\static\images\Jesus_Bellido.png" alt="Logo">
               <p>Magister en Ciencia de la Computación y Doctor 
                 en Ciencia de la Computación por la Pontificia 
@@ -89,22 +57,7 @@
             <div class="item">
               <div id="worker_3" class="workers"><div class="worker"><span class="name">Jose </span><span class="surname">Fiestas</span></div></div>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[2]["firstname"] + " " + data[2]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[2]["firstname"] + " " + "</span><span class='surname'>" + data[2]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_3").html(info);
-                    }
-                  });
-                });
-              </script>
+
               <img src="..\static\images\Jose_Fiestas.png" alt="Logo">
               <p>Astrofísico computacional graduado en la 
                 Universidad de Heidelberg, Alemania.</p>
@@ -115,22 +68,7 @@
             <div class="item">
               <div id="worker_4" class="workers"><div class="worker"><span class="name">Ruben </span><span class="surname">Rivas</span></div></div>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[3]["firstname"] + " " + data[3]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[3]["firstname"] + " " + "</span><span class='surname'>" + data[3]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_4").html(info);
-                    }
-                  });
-                });
-              </script>
+
               <img src="..\static\images\Ruben_Rivas.png" alt="Logo">
               <p>Ingeniero Electrónico graduado por la 
                 Universidad Privada Antenor Orrego en 2008.</p>
@@ -141,22 +79,7 @@
             <div class="item">
               <div id="worker_5" class="workers"><div class="worker"><span class="name">Alan </span><span class="surname">Morante</span></div></div>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[4]["firstname"] + " " + data[4]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[4]["firstname"] + " " + "</span><span class='surname'>" + data[4]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_5").html(info);
-                    }
-                  });
-                });
-              </script>
+
               <img src="..\static\images\Alan_Morante.png" alt="Logo">
               <p>MBA de Pacífico Business School y bachiller en 
                 Ingeniería informática por la Universidad Católica 
@@ -167,22 +90,7 @@
             <div class="item">
               <div id="worker_6" class="workers"><div class="worker"><span class="name">Jorge </span><span class="surname">Villavicencio</span></div></div>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[5]["firstname"] + " " + data[5]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[5]["firstname"] + " " + "</span><span class='surname'>" + data[5]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_6").html(info);
-                    }
-                  });
-                });
-              </script>
+             
               <img src="..\static\images\Jorge_Villavicencio.png" alt="Logo">
               <p>Magíster en Ciencias de la Computación con especialidad 
                 en Inteligencia Artificial por la Universidad de Ingeniería 
@@ -193,22 +101,7 @@
             <div class="item">
               <div id="worker_7" class="workers"><div class="worker"><span class="name">Jose Miguel </span><span class="surname">Renom</span></div></div>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[6]["firstname"] + " " + data[6]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[6]["firstname"] + " " + "</span><span class='surname'>" + data[6]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_7").html(info);
-                    }
-                  });
-                });
-              </script>
+           
               <img src="..\static\images\Jose_Renom.png" alt="Logo">
               <p>Doctor en matemáticas puras y aplicadas de 
                 la Universidad Simón Bolívar, Venezuela. </p>
@@ -219,22 +112,7 @@
             <div class="item">
               <div id="worker_8" class="workers"><div class="worker"><span class="name">Jorge </span><span class="surname">Tipe</span></div></div>
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-              <script>
-                $(document).ready(function() {
-                  $.ajax({
-                    url: "http://127.0.0.1:5000/profesores",
-                    type: "GET",
-                    success: function(data) {
-                      var info = "";
-                      var fullName = data[7]["firstname"] + " " + data[7]["lastname"];
-                      info += "<div class='worker'>";
-                      info += "<span class='name'>" + data[7]["firstname"] + " " + "</span><span class='surname'>" + data[7]["lastname"] + "</span>";
-                      info += "</div>";
-                      $("#worker_8").html(info);
-                    }
-                  });
-                });
-              </script>
+              
               <img src="..\static\images\Jorge_Tipe.png" alt="Logo">
               <p>Matemático por la Universidad Nacional Mayor de San Marcos 
                 y Magíster en Matemática Aplicada e Informática por el Instituto 
