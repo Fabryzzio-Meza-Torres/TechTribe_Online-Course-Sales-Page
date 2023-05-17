@@ -61,15 +61,13 @@ localhost
 ## Manejo de errores HTTP:
 ### __Errores en el Servidor__:
 <p align="justify">Cuando un sitio web devuelve un código de estado 500, generalmente se muestra una página de error genérica al usuario para indicar que ha ocurrido un problema técnico y que el servidor no pudo procesar la solicitud.</p>
- 
-
-
-
-
-
 
 ### __Errores en el Cliente__:
 <p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
+
+<div align="center">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400.png?raw=true" alt="texto alternativo" width="200">
+</div>
 
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
