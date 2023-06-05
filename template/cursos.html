@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TechTribe</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="TechTribe ofrece cursos y asesorías de programación en línea. Descubre nuestra oferta de cursos de Python, C++, HTML y CSS.">
+  <link rel="stylesheet" type="text/css" href="..\static\css\cursos.css">
+  <script src="..\static\js\actions.js"></script>
+</head>
+
+<body>
+  <header class="header">
+
+    <a href="/" class="logo" onclick="mostrarDefault()">
+      <img src="..\static\images\Logo2-remove.png" alt="Logo">
+    </a>
+
+    <div style="display: flex;" class="navbar-container">
+      <p id="user_name"></p>
+      <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
+      <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
+      <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
+      <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+      <a href="/register" id="RegistroDef">Registrate</a>
+      <a href="/compra" id="OrdenC">Orden de Compra</a>
+      <a href="/logout" id="Logout">Cerrar sesión</a>
+
+
+    </div>
+  </header>
+
+  <main>
+    <div class="header-txt" id="textcurso">
+      <h1>Cada curso esta diseñado para ayudarte a alcanzar tus <strong>objetivos</strong> de aprendizaje y avanzar en
+        tu carrera en <strong>tecnonologia</strong> _
+      </h1>
+    </div>
+
+    <div class="header-txt" id="Tpython">
+      <h1>Curso: Python desde cero 2023</h1>
+      <p><a href="/register" id="cu1">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[0] }}</p>
+    {% endif %}
+    
+    </div>
+
+    <div class="header-txt" id="TCp">
+      <h1>Curso: C++ desde cero 2023</h1>
+      <p><a href="/register" id="cu2">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[2] }}</p>
+    {% endif %}
+    </div>
+
+    <div class="header-txt" id="THC">
+      <h1>Curso: HTML y CSS desde cero 2023</h1>
+      <p><a href="/register" id="cu3">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[4] }}</p>
+    {% endif %}
+    </div>
+
+    <div class="header-txt" id="MAT">
+      <h1>Curso: Matematicas para Computer Science</h1>
+      <p><a href="/register" id="cu4">¿Quieres una asesoria con nosotros?</a></p>
+      {% if precios %}
+      <p class="precio">Precio: {{ precios[5] }}</p>
+    {% endif %}
+    </div>
+
+    <section id="cursos">
+      <h1>Cursos de Programación</h1>
+      <p>Descubre nuestra oferta de cursos de programación y mejora tus habilidades.</p>
+      <div class="curso_python" style="background-color: #E0115F;">
+        <img src="..\static\images\python.jpg" alt="Python">
+        <h2>Python</h2>
+        <p>Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis elegante, fácil de leer y recursos
+          accesibles hacen que el aprendizaje sea divertido</p>
+        <a href="#" onclick="MPython()">Ver curso</a>
+      </div>
+      <div class="curso_cplusplus" style="background-color: #E0115F;">
+        <img src="..\static\images\C++.png" alt="C++">
+        <h2>C++</h2>
+        <p>Únete a nuestro curso de C++ y descubre cómo crear aplicaciones de alto rendimiento con una sintaxis
+          poderosa
+          y eficiente. ¡Aprender es desafiante pero gratificante!</p>
+        <a href="#" onclick="MCPP()">Ver curso</a>
+      </div>
+
+      <div class="curso_matematicaCS" style="background-color: #E0115F;">
+        <img src="..\static\images\mathematics.jpg" alt="mathematics">
+        <h2>Matematica para Computer Science</h2>
+        <p>Mejora tu programación con matemáticas. Aprende cálculo, álgebra y estadística aplicada en nuestro curso para
+          CS.</p>
+        <a href="#" onclick="MATECSs()">Ver curso</a>
+      </div>
+
+      <div class="curso_html" style="background-color: #E0115F;">
+        <img src="..\static\images\html.jpg" alt="html and css">
+        <h2>HTML y CSS</h2>
+        <p>Aprende HTML y CSS para crear sitios web impresionantes y atractivos. Únete a nuestro curso para mejorar
+          tus
+          habilidades de diseño web y destacar en el mercado.</p>
+        <a href="#" onclick="MHTMLCSS()">Ver curso</a>
+      </div>
+    </section>
+
+
+    <section id="Python">
+      <h2>Curso de Python</h2>
+      <p>En este curso de Python aprenderás a programar con uno de los lenguajes más populares y versátiles del mundo.
+        Desde conceptos básicos hasta proyectos avanzados, este curso tiene todo lo que necesitas para convertirte en un
+        programador Python experto.</p>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/rfscVS0vtbw" title="video python"
+            frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <div style="flex: 1;">
+          <p>Deja volar tu imaginacion al abanico de posibilidades con Python, con el siguiente video se explicara a
+            detalle lo que se enseñara en el curso</p>
+        </div>
+
+      </div>
+      <h3 id="introduccion">Introducción a Python</h3>
+      <p>En esta sección se introduce Python y se explica cómo instalarlo y configurarlo en tu ordenador. También se
+        cubren los conceptos básicos de programación, como variables y estructuras de control.</p>
+      <h3 id="variables">Variables y tipos de datos</h3>
+      <p>En esta sección se cubren los diferentes tipos de datos que puedes manejar en Python, como cadenas de texto,
+        números y booleanos. También se explica cómo utilizar variables para almacenar y manipular datos.</p>
+      <h3 id="condicionales">Condicionales y bucles</h3>
+      <p>En esta sección se cubren las estructuras de control de flujo de Python, como los condicionales if-else y los
+        bucles for y while. También se explica cómo utilizar estas estructuras para crear programas más complejos.</p>
+      <h3 id="listas">Listas y tuplas</h3>
+      <p>En esta sección se cubren las listas y tuplas en Python, que son estructuras de datos que permiten almacenar
+        múltiples elementos en una sola variable. Se explica cómo utilizar estas estructuras y cómo manipular sus
+        elementos.</p>
+      <h3 id="diccionarios">Diccionarios</h3>
+      <p>En esta sección se cubren los diccionarios en Python, que son estructuras de datos que permiten almacenar pares
+        clave-valor.</p>
+      <h3 id="funciones">Funciones</h3>
+      <p>En esta sección se cubren las funciones en Python, que son bloques de código que pueden ser reutilizados en
+        diferentes partes del programa. Se explica cómo crear y utilizar funciones, así como también se habla de los
+        argumentos y valores de retorno de las mismas.</p>
+      <h3 id="objetos">Programación orientada a objetos</h3>
+      <p>En esta sección se cubre la programación orientada a objetos en Python, que es un paradigma de programación que
+        permite estructurar el código de manera más organizada y modular. Se explica cómo crear clases, objetos y
+        métodos en Python.</p>
+      <h3 id="proyectos">Proyectos prácticos</h3>
+      <p>En esta sección se presentan algunos proyectos prácticos que puedes realizar para aplicar lo que has aprendido
+        en el curso. Entre ellos, se incluyen proyectos como un juego de adivinanza y una aplicación de gestión de
+        tareas.</p>
+ 
+        <button onclick="Compra_1()" id="comprar_Python" curso_name="Curso Python">Compra este producto</button>
+
+    </section>
+
+
+    <section id="Cplusplus">
+      <h2>Curso de C++</h2>
+      <p>Este curso te enseñará los conceptos básicos de programación en C++. Aprenderás a escribir programas utilizando
+        la sintaxis de este lenguaje y conocerás las principales estructuras de control de flujo y tipos de datos.</p>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/vLnPwxZdW4Y" title="video Cpluplus"
+            frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div style="flex: 1;">
+          <p>En el presente video uno de nuestros docentes te enseñara el contenido del curso de C++</p>
+        </div>
+      </div>
+      <h3 id="intro">Introducción a C++</h3>
+      <p>En esta sección se presenta una introducción al lenguaje de programación C++, sus características principales y
+        cómo se diferencia de otros lenguajes. También se aborda la configuración del entorno de desarrollo y la forma
+        de compilar y ejecutar programas.</p>
+      <h3 id="tipos-datos">Tipos de datos</h3>
+      <p>En esta sección se cubren los tipos de datos que se utilizan en C++ y su forma de declaración. También se
+        enseña a trabajar con variables y constantes, y a realizar operaciones aritméticas con los distintos tipos de
+        datos.</p>
+      <h3 id="estructuras-control">Estructuras de control de flujo</h3>
+      <p>En esta sección se cubren las estructuras de control de flujo en C++, como los bucles for, while y do-while, y
+        las sentencias de control if, else if y switch. También se explica cómo se puede utilizar la sentencia break y
+        continue dentro de los bucles.</p>
+      <h3 id="arrays">Arrays</h3>
+      <p>En esta sección se cubre el uso de arrays en C++, tanto unidimensionales como multidimensionales. Se explica
+        cómo se declaran, inicializan y acceden a los elementos de los arrays.</p>
+      <h3 id="funciones">Funciones</h3>
+      <p>En esta sección se cubren las funciones en C++, que son bloques de código que pueden ser reutilizados en
+        diferentes partes del programa. Se explica cómo crear y utilizar funciones, así como también se habla de los
+        argumentos y valores de retorno de las mismas.</p>
+      <h3 id="punteros">Punteros</h3>
+      <p>En esta sección se cubren los punteros en C++, que son variables que contienen la dirección de memoria de otra
+        variable. Se explica cómo declarar y utilizar punteros, así como también se habla de la aritmética de punteros y
+        los punteros a funciones.</p>
+      <h3 id="clases">Clases y objetos</h3>
+      <p>En esta sección se cubre la programación orientada a objetos en C++, que se basa en la creación de clases y
+        objetos. Se explica cómo se definen las clases, cómo se crean objetos a partir de ellas y cómo se pueden
+        utilizar los distintos elementos de una clase, como atributos y métodos.</p>
+      <h3 id="proyectos">Proyectos prácticos</h3>
+      <p>En esta sección se presenta una serie de proyectos prácticos que permitirán aplicar los conceptos aprendidos en
+        el curso. Entre ellos se encuentra la creación de un programa de cálculo de promedio de notas, la implementación
+        de una lista de tareas con clases y objetos, y la creación de un juego de adivinanza de números.</p>
+
+        <button onclick="Compra_2()" id="comprar_Cplusplus" curso_name="Curso C++">Compra este producto</button>
+
+      </section>
+
+    <section id="htmlcss">
+      <h2>Curso de HTML y CSS</h2>
+      <p>En este curso de HTML y CSS aprenderás los conceptos básicos de la creación de páginas web utilizando los
+        lenguajes HTML y CSS. Con este conocimiento podrás crear tus propias páginas web y darles formato y estilo de
+        manera profesional.</p>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/vQWlgd7hV4A" title="video de HTML y CSS"
+            frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+        </div>
+        <div style="flex: 1;">
+          <p>Este video te ofrece una introducción al curso de HTML y CSS y te muestra algunos ejemplos básicos de cómo
+            se estructura una página web utilizando HTML y se le da estilo utilizando CSS.</p>
+        </div>
+      </div>
+      <h3 id="introduccion">Introducción a HTML y CSS</h3>
+      <p>En esta sección se cubren los conceptos básicos de HTML y CSS, como la estructura básica de un documento HTML,
+        las etiquetas, los atributos, los selectores CSS, las propiedades y los valores. También se explica cómo crear
+        enlaces y cómo utilizar imágenes en una página web.</p>
+      <h3 id="texto">Formato de texto con CSS</h3>
+      <p>En esta sección se cubren las propiedades CSS que se utilizan para dar formato al texto en una página web. Se
+        explican las propiedades para crear estilos de texto personalizados, como tamaños de fuente, colores, estilos de
+        fuente y más.</p>
+      <h3 id="layout">Diseño de página con CSS</h3>
+      <p>En esta sección se cubren las técnicas de diseño de página con CSS, como la creación de diseños de caja, la
+        posición de elementos, la creación de diseños fluidos y responsivos y la creación de menús de navegación.</p>
+      <h3 id="tipografia">Tipografía con CSS</h3>
+      <p>En esta sección se cubren las propiedades CSS que se utilizan para dar formato y estilo a la tipografía en una
+        página web. Se explican las propiedades para crear estilos de fuente personalizados, como familias de fuente,
+        pesos de fuente, tamaño de línea y más.</p>
+      <h3 id="proyectos">Proyectos prácticos</h3>
+      <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el
+        curso. Entre ellos se encuentra la creación de una página web personal, la implementación de un menú de
+        navegación y la creación de una página de contacto con un formulario de contacto.</p>
+
+        <button onclick="Compra_3()" id="comprar_htmlcss" curso_name="HTML/CSS">Compra este producto</button>
+
+    </section>
+
+    <section id="csMat">
+      <h2>Curso de Matemática para Computer Science</h2>
+      <p>En este curso de Matemática para Computer Science aprenderás los conceptos básicos de cálculo, álgebra lineal,
+        probabilidades y estadística, y cómo se aplican en la resolución de problemas en el campo de la informática. Con
+        este conocimiento podrás diseñar algoritmos más eficientes y comprender mejor los fundamentos de la inteligencia
+        artificial y la criptografía.</p>
+      <div style="display: flex;">
+        <div style="flex: 1;">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/eSFA1Fp8jcU"
+            title="video de Matemática para Computer Science" frameborder="0" allow="encrypted-media"
+            allowfullscreen></iframe>
+        </div>
+        <div style="flex: 1;">
+          <p>Este video te ofrece una introducción a nuestro curso de Matemática para Computer Science y te muestra
+            algunos ejemplos básicos de cómo se aplican los conceptos matemáticos en la informática.</p>
+        </div>
+      </div>
+      <h3 id="calculo">Cálculo</h3>
+      <p>En esta sección se cubren los conceptos básicos de cálculo, como límites, derivadas e integrales, y cómo se
+        aplican en la optimización de algoritmos y la comprensión de los fundamentos de la inteligencia artificial.</p>
+      <h3 id="algebra-lineal">Álgebra Lineal</h3>
+      <p>En esta sección se cubren los conceptos básicos de álgebra lineal, como sistemas de ecuaciones lineales,
+        matrices y determinantes, y cómo se aplican en la resolución de problemas de programación lineal y la
+        comprensión de los fundamentos de la criptografía.</p>
+      <h3 id="probabilidades">Probabilidades y Estadística</h3>
+      <p>En esta sección se cubren los conceptos básicos de probabilidades y estadística, como variables aleatorias,
+        distribuciones de probabilidad, estadística descriptiva e inferencial, y cómo se aplican en la resolución de
+        problemas de análisis de datos y la comprensión de los fundamentos de la inteligencia artificial.</p>
+      <h3 id="proyectos">Proyectos prácticos</h3>
+      <p>En esta sección se presentan varios proyectos prácticos que permitirán aplicar los conceptos aprendidos en el
+        curso. Entre ellos se encuentra la optimización de algoritmos de búsqueda y ordenamiento, la implementación de
+        técnicas de programación lineal y la aplicación de técnicas de análisis de datos en conjuntos de datos reales.
+      </p>
+      
+      <button onclick="Compra_4()" id="comprar_csMat" curso_name="Matematica para CS">Compra este producto</button>
+
+    </section>
+  </main>
+  <footer>
+    <p>&copy; TechTribe 2023</p>
+  </footer>
+</body>
+
+</html>

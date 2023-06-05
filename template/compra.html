@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Compra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="..\static\css\compra.css">
+    <script src="..\static\js\actions.js"></script>
+
+</head>
+<body>
+    <header class="header">
+
+        <a href="/" class="logo" onclick="mostrarDefault()">
+          <img src="..\static\images\Logo2-remove.png" alt="Logo">
+        </a>
+    
+        <div style="display: flex;" class="navbar-container">
+          <p id="user_name"></p>
+          <a id="Cursodef"href="/cursos" onclick="ocultarCursos()">Cursos</a>
+          <a href="/asesorias" onclick="ocultarAsesorias()">Asesorias</a>
+          <a href="/profesores" onclick="mostrarProfesores()">Profesores</a>
+          <a href="/login" onclick="mostrarInicio()" id="InicioDef">Iniciar Sesion</a>
+          <a href="/register" id="RegistroDef">Registrate</a>
+          <a href="/compra" id="OrdenC">Orden de Compra</a>
+          <a href="/logout" id="Logout">Cerrar sesión</a>
+    
+    
+        </div>
+      </header>
+    
+
+    <section id="formulario_compra">
+        <h2>Formulario de Compra</h2>
+        <form id="formularioCompra" onsubmit="return validarFormulario()">
+            <label for="numeroTarjeta">Número de Tarjeta:</label>
+            <input type="text" id="numeroTarjeta" name="numeroTarjeta" required>
+            <br>
+            <label for="fechaExpiracion">Fecha de Expiración:</label>
+            <input type="text" id="fechaExpiracion" name="fechaExpiracion" required>
+            <br>
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required>
+            <br>
+            <input type="submit" value="Comprar">
+        </form>
+    </section>
+    
+    <script>
+        function validarFormulario() {
+            var numeroTarjeta = document.getElementById("numeroTarjeta").value;
+            var fechaExpiracion = document.getElementById("fechaExpiracion").value;
+            var contrasena = document.getElementById("contrasena").value;
+            
+
+            // Validar si todos los campos están llenos
+            if (numeroTarjeta === '' || fechaExpiracion === '' || contrasena === '') {
+                alert("Por favor, complete todos los campos del formulario."), 400;
+                return false;
+            }
+
+            // Validar formato de número de tarjeta y fecha de expiración (ejemplo)
+            var numeroTarjetaRegex = /^\d{16}$/; // 16 dígitos numéricos
+            var fechaExpiracionRegex = /^\d{2}\/\d{2}$/; // MM/AA
+
+            if (!numeroTarjetaRegex.test(numeroTarjeta) || !fechaExpiracionRegex.test(fechaExpiracion)) {
+                alert("Por favor, ingrese un número de tarjeta válido y una fecha de expiración válida (MM/AA)."),400;
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+    
+</body>
+</html>
