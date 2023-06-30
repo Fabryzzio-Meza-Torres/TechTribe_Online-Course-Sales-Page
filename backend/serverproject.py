@@ -332,7 +332,7 @@ def logout():
 def orden_de_compra(curso_name):
     if request.method == 'GET':
         # Obtener el name del producto seleccionado
-        product_name = curso_name;
+        product_name = curso_name
         product = Producto.query.filter_by(name=product_name).first()
         if product:
             product_name = product.name
