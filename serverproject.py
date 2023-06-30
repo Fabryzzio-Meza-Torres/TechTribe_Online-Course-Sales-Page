@@ -23,7 +23,10 @@ import sys
 import psycopg2
 #Config 
 dev=Flask(__name__)
+<<<<<<< Updated upstream
 dev.config['SECRET_KEY']='pass1234word'
+=======
+>>>>>>> Stashed changes
 dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
 db= SQLAlchemy(dev)
 migrate = Migrate(dev, db)
@@ -234,7 +237,6 @@ def get_profesores():
         out.append({'firstname': result.firstname, 'lastname': result.lastname})
 
     return render_template('profesores.html', workers=out)
-
 #----------------------------------------------------------------
 
 @dev.route('/register', methods=['GET', 'POST'])
@@ -260,7 +262,7 @@ def register():
             else:
                 user = Clients.query.filter_by(email=email).first()
                 if user:
-                    errors.append('El correo electrónico ya ha sido registrado')
+                    errors.append('El correo electrónico ya ha sido registrado'),400
 
             if errors:
                 return jsonify({'success': False, 'message': errors}), 400
