@@ -2,10 +2,14 @@
   <div id="app">
     <NavBar />
   </div>
+  <div id="app1">
+    <MenuPri />
+  </div>
 </template>
 
 <script setup>
 import NavBar from "./components/Menu.vue";
+import MenuPri from "./components/Inicio.vue";
 </script>
 
 <style>
@@ -19,12 +23,5 @@ body {
   color: white;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-header {
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 </style>
