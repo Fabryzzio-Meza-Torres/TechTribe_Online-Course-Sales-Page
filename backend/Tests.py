@@ -1,7 +1,7 @@
 import unittest  # libreria de python para realizar test
 from config.qa import config
 from app.models import  Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
-#from app.authentication import authorize
+from app.authentication import authorize
 from app import create_app
 from flask_sqlalchemy import SQLAlchemy
 import json

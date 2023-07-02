@@ -8,11 +8,12 @@ from flask import (
 
 from .models import dev,db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
 from flask_cors import CORS
+from .authentication import authorize
 import re
 import hashlib
 from sqlalchemy import text
-#from .users_controller import users_bp
-#from .authentication import authorize
+from .users_controller import users_bp
+
 
 import os
 import sys
@@ -21,7 +22,7 @@ import sys
 def create_app(test_config=None):
     dev = Flask(__name__)
     with dev.app_context():
-        #app.register_blueprint(users_bp)
+        dev.register_blueprint(users_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
         CORS(dev, origins=['http://localhost:8080'])
 
@@ -36,6 +37,7 @@ def create_app(test_config=None):
 # Routes
 #----------------------------------------------------------GET----------------------------------------------------------------------
 @dev.route('/cursos', methods=['GET'])
+@authorize
 def showcursos():
     try:
         consulta_precio = text("SELECT price FROM products")
@@ -60,6 +62,7 @@ def showcursos():
 
 
 @dev.route('/asesorias', methods=['GET'])
+@authorize
 def showasesoria():
     try:
         consulta_precio = text("SELECT price FROM products")
@@ -84,6 +87,7 @@ def showasesoria():
         
 
 @dev.route('/profesores', methods=['GET'])
+@authorize
 def get_profesores():
     try:
         workers_results = Trabajadores.query.all()
@@ -107,6 +111,7 @@ def get_profesores():
 
 
 @dev.route('/orden_de_compra/<curso_name>', methods=['GET'])
+@authorize
 def orden_de_compra(curso_name):
     try:
         # Obtener el nombre del producto seleccionado
@@ -129,6 +134,7 @@ def orden_de_compra(curso_name):
 #----------------------------------------------------------------POST--------------------------------------------------------------------
 
 @dev.route('/register', methods=['POST'])
+@authorize
 def register():
     try:
         name = request.form.get('nombres')
@@ -175,6 +181,7 @@ def register():
 
 
 @dev.route('/login', methods=['POST'])
+@authorize
 def login():
     try:
         email = request.form.get('correo')
@@ -207,6 +214,7 @@ def login():
 
 
 @dev.route('/compra', methods=['POST'])
+@authorize
 def compra():
     try:
         # Obtener los datos del formulario
@@ -235,6 +243,7 @@ def compra():
     
 
 @dev.route('/pago', methods=['POST'])
+@authorize
 def pago():
     try:
         # Obtener los datos del formulario de pago
