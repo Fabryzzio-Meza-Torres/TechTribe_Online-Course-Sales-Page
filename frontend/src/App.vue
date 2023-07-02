@@ -1,15 +1,14 @@
 <template>
-  <div id="app">
-    <NavBar />
-  </div>
-  <div id="app1">
-    <MenuPri />
+  <div class="app">
+    <div class="inicio">
+      <NavBar />
+    </div>
+    <router-view />
   </div>
 </template>
 
 <script setup>
-import NavBar from "./components/Menu.vue";
-import MenuPri from "./components/Inicio.vue";
+import NavBar from "@/components/Menu.vue";
 </script>
 
 <style>

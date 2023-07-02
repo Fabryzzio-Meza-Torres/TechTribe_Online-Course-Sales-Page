@@ -1,10 +1,26 @@
 <template>
   <a
-    href=""
+    v-if="currentRoute === 'home'"
     class="typewrite"
     data-period="2000"
     :data-type="
       JSON.stringify(['mente', 'conocimiento', 'habilidad', 'capacidad'])
+    "
+  >
+    <p class="wrap"></p>
+  </a>
+
+  <a
+    v-else-if="currentRoute === 'cursos'"
+    class="typewrite"
+    data-period="2000"
+    :data-type="
+      JSON.stringify([
+        'Python',
+        'C++',
+        'Matematica para Computer Science',
+        'HTML y CSS',
+      ])
     "
   >
     <p class="wrap"></p>
@@ -57,6 +73,11 @@ TxtType.prototype.tick = function () {
 
 export default {
   name: "MyComponent",
+  computed: {
+    currentRoute() {
+      return this.$route.name;
+    },
+  },
   mounted() {
     var elements = document.getElementsByClassName("typewrite");
     for (var i = 0; i < elements.length; i++) {

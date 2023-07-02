@@ -10,7 +10,7 @@
 
       <div class="button-container" id="botonmenuin">
         <button class="button">
-          <a class="text-b" href="/register">Inscríbete ahora</a>
+          <a>Inscríbete ahora</a>
         </button>
       </div>
     </main>

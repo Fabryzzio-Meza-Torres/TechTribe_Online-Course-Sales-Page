@@ -1,14 +1,14 @@
 <template>
   <nav class="header">
-    <a class="logo">
+    <a href="" class="logo">
       <img :src="require('../assets/Logo2.png')" alt="Logo" />
     </a>
     <div class="navbar-container">
-      <a>Cursos</a>
-      <a>Asesoria</a>
-      <a>Profesores</a>
-      <a>Iniciar Sesión</a>
-      <a>Registrate</a>
+      <a><router-link to="/cursos">Cursos</router-link></a>
+      <a><router-link to="/asesorias">Asesoria</router-link></a>
+      <a><router-link to="/profesores">Profesores</router-link></a>
+      <a><router-link to="/sign-up">Iniciar Sesión</router-link></a>
+      <a><router-link to="/register">Registrate</router-link></a>
     </div>
   </nav>
 </template>
