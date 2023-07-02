@@ -25,6 +25,14 @@
   >
     <p class="wrap"></p>
   </a>
+  <a
+    v-else-if="currentRoute === 'asesorias'"
+    class="typewrite"
+    data-period="2000"
+    :data-type="JSON.stringify(['mejores', 'expertos', 'profesionales'])"
+  >
+    <p class="wrap"></p>
+  </a>
 </template>
 
 <script>

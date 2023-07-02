@@ -1,11 +1,18 @@
 <template>
   <section id="cursos" v-if="currentRoute === 'cursos'">
     <h1>
-      Conoces todos nuestros cursos de <TextMenu class="custom-text-menu" />
+      Conoce todos nuestros cursos de <TextMenu class="custom-text-menu" />
     </h1>
     <p>
       Descubre nuestra oferta de cursos de programación y mejora tus
       habilidades.
+    </p>
+  </section>
+  <section id="asesorias" v-else-if="currentRoute === 'asesorias'">
+    <h1>Asesorate con los <TextMenu class="custom-text-menu" /></h1>
+    <p>
+      ¿Necesitas ayuda con un proyecto o una tarea de programación? Contáctanos
+      y te asesoramos.
     </p>
   </section>
 </template>
@@ -24,24 +31,22 @@ export default {
 };
 </script>
 <style>
-section#cursos {
+section {
   width: 100%;
   padding-top: 50px;
   padding-right: auto;
   display: inline-block;
 }
 
-section#cursos h1 {
+section h1 {
   font-size: 36px;
   font-weight: bold;
-  padding: 50px;
   width: 100%;
   display: inline;
 }
 
-section#cursos p {
+section p {
   font-size: 18px;
-  padding-left: 50px;
   padding-top: 30px;
   margin-bottom: 30px;
 }

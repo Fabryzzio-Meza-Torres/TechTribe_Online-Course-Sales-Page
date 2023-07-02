@@ -1,3 +1,11 @@
-<template><div></div></template>
-<script></script>
+<template>
+  <div class="textinit">
+    <TextSec />
+  </div>
+</template>
+
+<script setup>
+import TextSec from "@/components/TextSec.vue";
+</script>
+
 <style></style>
