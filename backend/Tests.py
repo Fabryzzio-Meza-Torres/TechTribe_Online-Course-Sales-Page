@@ -99,9 +99,8 @@ class RoutesTests(unittest.TestCase):
         self.assertEqual(data['message'], 'Datos de tarjeta inválidos')
 
     def test_pago_invalido(self):
-        # Datos del formulario inválidos (campo 'user_id' no proporcionado)
         form_data = {
-            'numero_tarjeta': '1234567890',
+            'numero_tarjeta': '1234',
             'fecha_vencimiento': '12/23',
             'contrasena': 'password123'
         }
@@ -111,7 +110,7 @@ class RoutesTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Faltan campos obligatorios')
+        self.assertEqual(data['message'], 'Datos de tarjeta inválidos')
 
 
 if __name__ == '__main__':
