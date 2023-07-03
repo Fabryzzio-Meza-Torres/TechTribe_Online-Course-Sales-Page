@@ -8,6 +8,7 @@ from flask import (
     redirect, 
     url_for
 )
+from config.local import config
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
 import random
@@ -21,12 +22,14 @@ import traceback
 from datetime import datetime,timedelta
 import sys
 import psycopg2
-#Config 
-dev=Flask(__name__)
-dev.config['SECRET_KEY']='pass1234word'
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
-db= SQLAlchemy(dev)
-migrate = Migrate(dev, db)
+
+db = SQLAlchemy()
+
+def setup_db(dev, database_path):
+    dev.config["SQLALCHEMY_DATABASE_URI"] = config['DATABASE_URI'] if database_path is None else database_path
+    db.dev = dev
+    db.init_app(dev)
+    db.create_all()
 
 #Models
 class Clients(db.Model):
@@ -138,7 +141,7 @@ class Administracion(db.Model):
 
 
 def crear_datos_por_defecto():
-   with dev.app_context():
+   with db.app_context():
     trabajadores = Trabajadores.query.all()
     cursos = Producto.query.all()
     
