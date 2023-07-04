@@ -6,6 +6,7 @@ from app import create_app
 from flask_sqlalchemy import SQLAlchemy
 import json
 import io as io
+from flask import Flask
 import random
 import string
 import datetime
@@ -20,7 +21,7 @@ class RoutesTests(unittest.TestCase):
         database_path = config['DATABASE_URI']
         self.app = create_app({'database_path': database_path})
         self.client = self.app.test_client()
-
+    
     def test_showcursos(self):
         response = self.client.get('/cursos')
         data = response.json

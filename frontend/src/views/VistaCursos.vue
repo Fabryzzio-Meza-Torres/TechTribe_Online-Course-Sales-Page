@@ -15,7 +15,7 @@ import ContextBox from "@/components/ContentBox.vue";
 <style>
 .containercurso {
   display: block;
-  padding-left: 40px;
+  padding-left: 50px;
 }
 .textinit {
   padding-left: 50px;

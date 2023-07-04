@@ -7,7 +7,7 @@
       <a><router-link to="/cursos">Cursos</router-link></a>
       <a><router-link to="/asesorias">Asesoria</router-link></a>
       <a><router-link to="/profesores">Profesores</router-link></a>
-      <a><router-link to="/sign-up">Iniciar Sesión</router-link></a>
+      <a><router-link to="/sign-in">Iniciar Sesión</router-link></a>
       <a><router-link to="/register">Registrate</router-link></a>
     </div>
   </nav>

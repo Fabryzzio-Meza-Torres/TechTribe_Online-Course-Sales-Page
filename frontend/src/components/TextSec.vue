@@ -40,6 +40,7 @@ section {
 
 section h1 {
   font-size: 36px;
+  /* padding-left: 50px; */
   font-weight: bold;
   width: 100%;
   display: inline;

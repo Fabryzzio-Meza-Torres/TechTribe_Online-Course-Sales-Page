@@ -1,32 +1,16 @@
 #Imports
-from flask import (
-    Flask, 
-    render_template, 
-    request,
-    jsonify,
-    session,
-    redirect, 
-    url_for
-)
-from werkzeug.security import generate_password_hash, check_password_hash
-import hashlib
-import random
-import re
-import json
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text
-from flask_migrate import Migrate
+from config.local import config
 import uuid
-import traceback
-from datetime import datetime,timedelta
-import sys
-import psycopg2
-#Config 
-dev=Flask(__name__)
-dev.config['SECRET_KEY']='pass1234word'
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
-db= SQLAlchemy(dev)
-migrate = Migrate(dev, db)
+from datetime import datetime
+
+db= SQLAlchemy()
+
+def setup_db(app, database_path):
+    app.config["SQLALCHEMY_DATABASE_URI"]= config['DATABASE_URI'] if database_path is None else database_path
+    db.app = app
+    db.init_app(app)
+    db.create_all()
 
 #Models
 class Clients(db.Model):
@@ -137,7 +121,7 @@ class Administracion(db.Model):
         self.created_at = datetime.utcnow()
 
 
-def crear_datos_por_defecto():
+def crear_datos_por_defecto(dev):
    with dev.app_context():
     trabajadores = Trabajadores.query.all()
     cursos = Producto.query.all()
@@ -173,5 +157,3 @@ def crear_datos_por_defecto():
         db.session.add_all([curso1,asesoria1,curso2,asesoria2,curso3,asesoria3,curso4,asesoria4])
 
         db.session.commit()
-
-crear_datos_por_defecto()
