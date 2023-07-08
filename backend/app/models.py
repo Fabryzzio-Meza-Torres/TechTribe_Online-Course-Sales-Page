@@ -1,5 +1,6 @@
 #Imports
 from flask_sqlalchemy import SQLAlchemy
+from __init__ import dev
 from config.local import config
 import uuid
 from datetime import datetime
@@ -30,9 +31,9 @@ class Clients(db.Model):
         self.contrasena = contrasena
         self.modified_at = datetime.utcnow()
         self.created_at = datetime.utcnow()
-    @classmethod
-    def check_password(self, hashed_password,password):
-        return check_password_hash(hashed_password, password)
+ #   @classmethod
+    #def check_password(self, hashed_password,password):
+  #      return check_password_hash(hashed_password, password)
 
 class Trabajadores(db.Model):
     __tablename__ = 'workers'
