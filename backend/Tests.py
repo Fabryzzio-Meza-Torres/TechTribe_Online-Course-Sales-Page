@@ -1,8 +1,8 @@
 import unittest  # libreria de python para realizar test
 from config.qa import config
-from app.models import  Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
-from app.authentication import authorize
-from app import create_app
+from app.models import Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
+#from app.authentication import authorize
+from app import create_app,db
 from flask_sqlalchemy import SQLAlchemy
 import json
 import io as io
@@ -21,39 +21,70 @@ class RoutesTests(unittest.TestCase):
         database_path = config['DATABASE_URI']
         self.app = create_app({'database_path': database_path})
         self.client = self.app.test_client()
-    
-    def test_showcursos(self):
-        response = self.client.get('/cursos')
-        data = response.json
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertIn('precios', data)
+########################################################### GET ####################################################################    
+    def test_get_cursos(self):
+            response = self.client.get('/cursos')
+            data = json.loads(response.data)
 
-    def test_showasesoria(self):
-        response = self.client.get('/asesorias')
-        data = response.json
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(data['success'], True)
+            self.assertTrue(data['cursos'])
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertIn('precios', data)
+    def test_get_asesorias(self):
+            response = self.client.get('/asesorias')
+            data = json.loads(response.data)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(data['success'], True)
+            self.assertTrue(data['asesorias'])
 
     def test_get_profesores(self):
-        response = self.client.get('/profesores')
-        data = response.json
+            response = self.client.get('/profesores')
+            data = json.loads(response.data)
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertIn('workers', data)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(data['success'], True)
+            self.assertTrue(data['profesores'])
 
-    def test_orden_de_compra(self):
-        curso_name = 'curso1'
-        response = self.client.get(f'/orden_de_compra/{curso_name}')
-        data = response.json
+    def test_get_orden_de_compra(self):
+            response = self.client.get('/orden_de_compra')
+            data = json.loads(response.data)
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertEqual(data['product_name'], curso_name)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(data['success'], True)
+            self.assertTrue(data['orden_de_compra'])
+
+    def test_get_cursos_failed_404(self):
+            response = self.client.get('/curso')
+            data = json.loads(response.data)
+
+            self.assertEqual(response.status_code, 404)
+            self.assertEqual(data['success'], False)
+
+    def test_get_asesorias_failed_404(self):
+            response = self.client.get('/asesoria')
+            data = json.loads(response.data)
+
+            self.assertEqual(response.status_code, 404)
+            self.assertEqual(data['success'], False)
+
+    def test_get_profesores_failed_404(self):
+            response = self.client.get('/profesor')
+            data = json.loads(response.data)
+
+            self.assertEqual(response.status_code, 404)
+            self.assertEqual(data['success'], False)
+
+    def test_get_orden_de_compra_failed_404(self):
+            response = self.client.get('/orden_de_compras')
+            data = json.loads(response.data)
+
+            self.assertEqual(response.status_code, 404)
+            self.assertEqual(data['success'], False)
+
+###########################################################       ####################################################################
+
 
     def test_register_invalido(self):
         # Datos del formulario inválidos (falta el campo 'correo')

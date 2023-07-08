@@ -192,12 +192,12 @@ class Orden_de_Compra(db.Model):
         self.created_at = datetime.utcnow()
     
     def __repr__(self):
-        return '<Orden_de_Compra %r>' % self.product_name
+        return '<Orden_de_Compra %r>' % self.id_product
     
     def serialize(self):
         return {
             "id": self.id,
-            "product_name": self.product_name,
+            "status": self.status,
             "total_price": self.total_price,
             "id_product": self.id_product,
         }
@@ -215,7 +215,7 @@ class Administracion(db.Model):
         self.ganancia = ganancia
         self.created_at = datetime.utcnow()
 
-
+'''''''''''''''''''''
 def crear_datos_por_defecto():
    with dev.app_context():
     trabajadores = Trabajadores.query.all()
@@ -252,3 +252,5 @@ def crear_datos_por_defecto():
         db.session.add_all([curso1,asesoria1,curso2,asesoria2,curso3,asesoria3,curso4,asesoria4])
 
         db.session.commit()
+
+ '''''''''''''''''''''
