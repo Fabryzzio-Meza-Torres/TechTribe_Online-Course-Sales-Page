@@ -1,14 +1,11 @@
 <template>
-  <div class="app">
-    <div class="inicio">
-      <NavBar />
-    </div>
-    <router-view />
+  <div id="app">
+    <NavBar />
   </div>
 </template>
 
 <script setup>
-import NavBar from "@/components/Menu.vue";
+import NavBar from "./components/Menu.vue";
 </script>
 
 <style>
@@ -22,5 +19,12 @@ body {
   color: white;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+header {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

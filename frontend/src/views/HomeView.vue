@@ -1,23 +1,18 @@
 <template>
   <div class="home">
-    <MenuPri />
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
-<script setup>
-import MenuPri from "@/components/Inicio.vue";
-</script>
+<script>
+// @ is an alias to /src
+import HelloWorld from "@/components/Menu.vue";
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: "montserrat", sans-serif;
-  background-color: #11111f;
-  color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style>
+export default {
+  name: "HomeView",
+  components: {
+    HelloWorld,
+  },
+};
+</script>
