@@ -6,7 +6,7 @@ from flask import (
     abort
 )
 
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion, crear_datos_por_defecto
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion #,crear_datos_por_defecto
 from flask_cors import CORS
 from .authentication import authorize
 import re
@@ -22,21 +22,14 @@ import sys
 def create_app(test_config=None):
     dev = Flask(__name__)
     with dev.app_context():
-        dev.register_blueprint(users_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
-        CORS(dev, origins='*')
-    crear_datos_por_defecto(dev)
+        CORS(dev, origins=['http://localhost:8080'])
+#    crear_datos_por_defecto(dev)
 
-    @dev.after_request
-    def after_request(response):
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Methods',
-                             'GET,PATCH,POST,DELETE,OPTIONS')
-        response.headers.add('Access-Control-Max-Age', '10')
-        return response
+
 
     # Routes
-    #----------------------------------------------------------GET----------------------------------------------------------------------
+#----------------------------------------------------------GET----------------------------------------------------------------------
     @dev.route('/cursos', methods=['GET'])
     def get_cursos():
         returned_code = 200
