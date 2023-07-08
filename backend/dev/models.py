@@ -221,7 +221,6 @@ def crear_datos_por_defecto():
                 profesor8.id, "Asesoria Matematica para CS", 40.00, "Asesoria", "2 horas")
             db.session.add_all(
                 [curso1, asesoria1, curso2, asesoria2, curso3, asesoria3, curso4, asesoria4])
-
             db.session.commit()
 
 
