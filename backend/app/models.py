@@ -32,21 +32,6 @@ class Clients(db.Model):
         self.contrasena = contrasena
         self.created_at = datetime.utcnow()
 
-    @property
-    def password(self):
-        raise AttributeError('password is not a readable attribute')
-    
-    @password.setter    
-    def password(self, password):
-        self.contrasena = generate_password_hash(password)
-    
-    def check_password(self, password):
-        return check_password_hash(self.contrasena, password)
-    
-    def verify_password(self, password):
-        return check_password_hash(self.contrasena, password)
-    
-    
     def __repr__(self):
         return '<Clients %r>' % self.email
     
@@ -57,18 +42,6 @@ class Clients(db.Model):
             "email": self.email,
         }
     
-    def insert(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            client_created_id = self.id
-        except Exception as e:
-            print(sys.exc_info())
-            print('e: ', e)
-            db.session.rollback()
-        finally:
-            db.session.close()
-        return client_created_id
     
 
 class Trabajadores(db.Model):
