@@ -8,15 +8,15 @@ from flask import (
 
 from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion #,crear_datos_por_defecto
 from flask_cors import CORS
-from .authentication import authorize
 import re
 import hashlib
 from sqlalchemy import text
-from .users_controller import users_bp
+from config.local import config
 
 
 import os
 import sys
+
 
 
 def create_app(test_config=None):
