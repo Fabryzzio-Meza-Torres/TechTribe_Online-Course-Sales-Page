@@ -11,8 +11,8 @@ from flask_cors import CORS
 import re
 import hashlib
 from sqlalchemy import text
-#from .users_controller import users_bp
-#from .authentication import authorize
+# from .users_controller import users_bp
+# from .authentication import authorize
 
 import os
 import sys
@@ -21,7 +21,7 @@ import sys
 def create_app(test_config=None):
     dev = Flask(__name__)
     with dev.app_context():
-        #app.register_blueprint(users_bp)
+        # app.register_blueprint(users_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
         CORS(dev, origins='*')
     crear_datos_por_defecto(dev)
@@ -35,7 +35,7 @@ def create_app(test_config=None):
         return response
 
     # Routes
-    #----------------------------------------------------------GET----------------------------------------------------------------------
+    # ----------------------------------------------------------GET----------------------------------------------------------------------
     @dev.route('/cursos', methods=['GET'])
     def showcursos():
         try:
@@ -59,7 +59,6 @@ def create_app(test_config=None):
 
         return jsonify({'success': True, 'precios': precios}), returned_code
 
-
     @dev.route('/asesorias', methods=['GET'])
     def showasesoria():
         try:
@@ -82,13 +81,13 @@ def create_app(test_config=None):
             return jsonify({'success': False, 'message': error_message}), returned_code
 
         return jsonify({'success': True, 'precios': precios}), returned_code
-            
 
     @dev.route('/profesores', methods=['GET'])
     def get_profesores():
         try:
             workers_results = Trabajadores.query.all()
-            out = [{'firstname': result.firstname, 'lastname': result.lastname} for result in workers_results]
+            out = [{'firstname': result.firstname, 'lastname': result.lastname}
+                   for result in workers_results]
 
             if not out:
                 returned_code = 404
@@ -105,7 +104,6 @@ def create_app(test_config=None):
             return jsonify({'success': False, 'message': error_message}), returned_code
 
         return jsonify({'success': True, 'workers': out}), returned_code
-
 
     @dev.route('/orden_de_compra/<curso_name>', methods=['GET'])
     def orden_de_compra(curso_name):
@@ -127,7 +125,7 @@ def create_app(test_config=None):
             print(e)
             return jsonify({'success': False, 'message': 'Error al obtener la orden de compra'}), 500
 
-    #----------------------------------------------------------------POST--------------------------------------------------------------------
+    # ----------------------------------------------------------------POST--------------------------------------------------------------------
 
     @dev.route('/register', methods=['POST'])
     def register():
@@ -148,11 +146,13 @@ def create_app(test_config=None):
             elif not email.endswith(('@gmail.com', '@hotmail.es', '@utec.edu.pe')):
                 errors.append('Ingrese un correo de Gmail válido')
             elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
+                errors.append(
+                    'La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
             else:
                 user = Clients.query.filter_by(email=email).first()
                 if user:
-                    errors.append('El correo electrónico ya ha sido registrado')
+                    errors.append(
+                        'El correo electrónico ya ha sido registrado')
 
             if errors:
                 return jsonify({'success': False, 'message': errors}), 400
@@ -173,8 +173,6 @@ def create_app(test_config=None):
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error al crear usuario'}), 500
 
-
-
     @dev.route('/login', methods=['POST'])
     def login():
         try:
@@ -189,7 +187,8 @@ def create_app(test_config=None):
 
                 if user.contrasena == password_hash:
                     if re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                        response = jsonify({'success': True, 'message': 'Inicio de sesión exitoso'})
+                        response = jsonify(
+                            {'success': True, 'message': 'Inicio de sesión exitoso'})
                         response.set_cookie('logged_in', 'true')
                         response.set_cookie('user_id', str(user.id))
                         response.set_cookie('user_name', str(user.firstname))
@@ -205,7 +204,6 @@ def create_app(test_config=None):
         except Exception as e:
             print(e)
             return jsonify({'success': False, 'message': 'Error en el inicio de sesión'}), 500
-
 
     @dev.route('/compra', methods=['POST'])
     def compra():
@@ -223,7 +221,8 @@ def create_app(test_config=None):
                 return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
 
             # Crear una nueva instancia de la tarjeta
-            new_tarjeta = Tarjeta(creditcard_number, expiration_date, password, user_id, monto)
+            new_tarjeta = Tarjeta(
+                creditcard_number, expiration_date, password, user_id, monto)
             db.session.add(new_tarjeta)
             db.session.commit()
 
@@ -233,7 +232,6 @@ def create_app(test_config=None):
             print(e)
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
-        
 
     @dev.route('/pago', methods=['POST'])
     def pago():
@@ -271,6 +269,5 @@ def create_app(test_config=None):
             print(e)
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
-        
 
     return dev
