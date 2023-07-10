@@ -1,13 +1,21 @@
+virtual/
+static/employees/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+app/__pycache__/
+
+config/__pycache__/
 
 # C extensions
 *.so
 
 # Distribution / packaging
 .Python
+Python\
+python\
 build/
 develop-eggs/
 dist/
@@ -122,14 +130,13 @@ celerybeat.pid
 # Environments
 .env
 .venv
-env
 env/
+env/Lib/
 venv/
 ENV/
 env.bak/
 venv.bak/
-virtualpro/
-proyecto_DBP/   
+\env\Lib\site-packages\_distutils_hack\__pycache__\__init__.cpython-311.pyc
 
 # Spyder project settings
 .spyderproject

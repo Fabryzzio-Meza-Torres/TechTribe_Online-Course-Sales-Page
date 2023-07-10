@@ -9,7 +9,7 @@ import sys
 db= SQLAlchemy()
 
 def setup_db(app, database_path):
-    app.config["SQLALCHEMY_DATABASE_URI"]= config['DATABASE_URI'] if database_path is None else database_path
+    app.config["SQLALCHEMY_DATABASE_URI"] = config['DATABASE_URI'] if database_path is None else database_path
     db.app = app
     db.init_app(app)
     db.create_all()
@@ -32,21 +32,6 @@ class Clients(db.Model):
         self.contrasena = contrasena
         self.created_at = datetime.utcnow()
 
-    @property
-    def password(self):
-        raise AttributeError('password is not a readable attribute')
-    
-    @password.setter    
-    def password(self, password):
-        self.contrasena = generate_password_hash(password)
-    
-    def check_password(self, password):
-        return check_password_hash(self.contrasena, password)
-    
-    def verify_password(self, password):
-        return check_password_hash(self.contrasena, password)
-    
-    
     def __repr__(self):
         return '<Clients %r>' % self.email
     
@@ -57,18 +42,6 @@ class Clients(db.Model):
             "email": self.email,
         }
     
-    def insert(self):
-        try:
-            db.session.add(self)
-            db.session.commit()
-            client_created_id = self.id
-        except Exception as e:
-            print(sys.exc_info())
-            print('e: ', e)
-            db.session.rollback()
-        finally:
-            db.session.close()
-        return client_created_id
     
 
 class Trabajadores(db.Model):
@@ -191,12 +164,12 @@ class Orden_de_Compra(db.Model):
         self.created_at = datetime.utcnow()
     
     def __repr__(self):
-        return '<Orden_de_Compra %r>' % self.product_name
+        return '<Orden_de_Compra %r>' % self.id_product
     
     def serialize(self):
         return {
             "id": self.id,
-            "product_name": self.product_name,
+            "status": self.status,
             "total_price": self.total_price,
             "id_product": self.id_product,
         }

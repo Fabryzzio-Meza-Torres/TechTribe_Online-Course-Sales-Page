@@ -1,3 +1,3 @@
-export FLASK_APP=app/
-export FLASK_DEBUG=true
+set FLASK_APP=app/
+set FLASK_DEBUG=true
 flask run --port=5002
