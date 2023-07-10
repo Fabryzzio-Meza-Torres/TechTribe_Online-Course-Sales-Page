@@ -126,7 +126,6 @@ def create_app(test_config=None):
             return jsonify({'success': False, 'message': 'Error al obtener la orden de compra'}), 500
 
     # ----------------------------------------------------------------POST--------------------------------------------------------------------
-
     @dev.route('/register', methods=['POST'])
     def register():
         try:
