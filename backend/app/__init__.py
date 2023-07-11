@@ -321,26 +321,55 @@ def create_app(test_config=None):
     
     #-------------------------------------PATCH-------------------------------------#
     #Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
-    @dev.route('/compra', methods=['PATCH'])
-    def compra():
-        try:
-            # Obtener los datos del formulario
-            creditcard_number = request.form.get('numero_tarjeta')
-            expiration_date = request.form.get('fecha_vencimiento')
-            password = request.form.get('contrasena')
-            # Obtener el ID del cliente actualmente autenticado (puedes modificar esto según tu implementación de autenticación)
-            logged_in = request.cookies.get('logged_in')
-            user_id = request.cookies.get('user_id')
-            monto = random.randint(300, 2000)
-            # Validar los datos del formulario (puedes agregar más validaciones según tus requisitos)
-            if not creditcard_number or not expiration_date or not password:
-                return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
+    # ...
 
-            # Crear una nueva instancia de la tarjeta
-            new_tarjeta = Tarjeta(creditcard_number, expiration_date, password, user_id, monto)
-            db.session.add(new_tarjeta)
+    @dev.route('/confirmar', methods=['PATCH'])
+    def confirmar_compra():
+        try:
+            data = request.get_json()
+
+            # Obtener el ID de la orden de compra a confirmar
+            orden_id = data.get('orden_id')
+            admin_id = data.get('admin_id')
+            monto_tarjeta = data.get('monto_tarjeta')
+
+            # Buscar la orden de compra en la base de datos
+            orden = Orden_de_Compra.query.get(orden_id)
+
+            if not orden:
+                return jsonify({'success': False, 'message': 'Orden de compra no encontrada'}), 404
+
+            # Actualizar el estado de la orden de compra
+            orden.status = 'Confirmada'
+
+            # Obtener el cliente y el administrador correspondientes
+            cliente = Clients.query.get(orden.id_client)
+            admin = Administracion.query.get(admin_id)
+
+            if not cliente or not admin:
+                return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+
+            # Realizar las modificaciones en los registros
+            cliente.saldo -= orden.total_price
+            admin.ganancia += orden.total_price
+
+            # Actualizar el monto de la tarjeta del cliente
+            tarjeta = Tarjeta.query.filter_by(id_client=cliente.id).first()
+            if tarjeta:
+                tarjeta.monto -= monto_tarjeta
+
             db.session.commit()
-            #Se envia el correo al cliente
-            msg = Message('Compra confirmada', sender = '
+
+            # Aquí puedes enviar un correo al cliente para notificar la confirmación de la compra
+
+            return jsonify({'success': True, 'message': 'Compra confirmada exitosamente'}), 200
+
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+            return jsonify({'success': False, 'message': 'Error al confirmar la compra'}), 500
+
+    # ...
+
 
     return dev
