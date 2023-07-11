@@ -6,8 +6,7 @@ from flask import (
     abort
 )
 
-# ,crear_datos_por_defecto
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto#,crear_datos_por_defecto
 from flask_cors import CORS
 import re
 import hashlib
@@ -24,6 +23,7 @@ def create_app(test_config=None):
     with dev.app_context():
         setup_db(dev, test_config['database_path'] if test_config else None)
         CORS(dev, origins=['http://localhost:8080'])
+        crear_datos_por_defecto(dev)
 #    crear_datos_por_defecto(dev)
 
     # Routes
@@ -340,9 +340,9 @@ def create_app(test_config=None):
             if not producto:
                 return jsonify({'success': False, 'message': 'Producto no encontrado'}), 404
 
-            # Verificar si el cliente tiene saldo suficiente para la compra
-            if cliente.saldo < producto.precio:
-                return jsonify({'success': False, 'message': 'Saldo insuficiente para la compra'}), 400
+            # Obtener el cliente y el administrador correspondientes
+            cliente = Clients.query.get(data.get('user_id'))
+            admin = Administracion.query.first()
 
             # Actualizar el saldo del cliente
             cliente.saldo -= producto.precio
@@ -360,31 +360,43 @@ def create_app(test_config=None):
             print(sys.exc_info())
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
-
-        finally:
-            db.session.close()
-        
-    # Error handlers
-
-    @dev.errorhandler(405)
-    def method_not_allowed(error):
-        return jsonify({
-            'success': False,
-            'message': 'Method not allowed'
-        }), 405  
-
-    @dev.errorhandler(404)
-    def not_found(error):
-        return jsonify({
-            'success': False,
-            'message': 'Resource not found'
-        }), 404
     
-    @dev.errorhandler(500)
-    def internal_server_error(error):
-        return jsonify({
-            'success': False,
-            'message': 'Internal Server error'
-        }), 500
-    
+    #-------------------------------------PATCH-------------------------------------#
+    #Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
+    # ...
+
+    @dev.route('/transacción', methods=['PATCH'])
+    def confirmar_compra():
+        try:
+            data = request.get_json()
+            #Verificar si en el json viene el id de la orden de compra
+            if not data.get('orden_id'):
+                return jsonify({'success': False, 'message': 'No se ha puesto el id del orden'}), 400
+            else:
+                orden_id = data.get('orden_id')
+            
+            #Obtenemos la orden de compra,y por medio de esta el cliente para obtener la tarjeta y disminuir el saldo
+            orden = Orden_de_Compra.query.get(orden_id)
+            cliente = Clients.query.get(orden.cliente_id)
+            #Obtener el id de la tarjeta por medio del id del cliente
+            tarjeta = Tarjeta.query.get(cliente.id)
+            #Verificamos que el cliente tenga saldo suficiente para la compra
+            if cliente.saldo < orden.total_price:
+                return jsonify({'success': False, 'message': 'Saldo insuficiente'}), 400
+            #Realizamos la transaccion
+            tarjeta.monto += orden.total_price
+            transaccion = Transaccion( orden.producto_id, orden.total_price)
+            db.session.add(transaccion)
+            db.session.commit()
+            #Enviamos el correo al cliente
+            return jsonify({'success': True, 'message': 'Compra confirmada exitosamente'}), 200
+
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+            return jsonify({'success': False, 'message': 'Error al confirmar la compra'}), 500
+
+    # ...
+
+
     return dev

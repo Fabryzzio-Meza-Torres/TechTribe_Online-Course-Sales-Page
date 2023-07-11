@@ -152,15 +152,15 @@ class Orden_de_Compra(db.Model):
     status= db.Column(db.String(50), nullable=False)
     total_price = db.Column(db.Float(), nullable=False)
     id_product = db.Column(db.String(36), db.ForeignKey('products.id'), nullable=False)
-    id_creditcard = db.Column(db.String(36), db.ForeignKey('credit_card.id'), nullable=False)
+    id_cliente = db.Column(db.String(36), db.ForeignKey('clients.id'), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
 
-    def __init__(self, status, total_price, id_product, id_creditcard):
+    def __init__(self, status, total_price, id_product, id_cliente):
         self.status = status
         self.total_price = total_price
         self.id_product = id_product
-        self.id_creditcard = id_creditcard
+        self.id_cliente = id_cliente
         self.created_at = datetime.utcnow()
     
     def __repr__(self):
@@ -172,9 +172,10 @@ class Orden_de_Compra(db.Model):
             "status": self.status,
             "total_price": self.total_price,
             "id_product": self.id_product,
+            "id_cliente": self.id_cliente,
         }
 
-class Administracion(db.Model):
+class Transaccion(db.Model):
     __tablename__ = 'administration'
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()))
     id_compra = db.Column(db.String(36),db.ForeignKey('purchase_order.id'), nullable=False)
@@ -212,14 +213,14 @@ def crear_datos_por_defecto(dev):
         asesoria2 = Producto.query.filter(Producto.name == "C++",Producto.type_product == "Asesoria").first()
         asesoria3 = Producto.query.filter(Producto.name == "HTML/CSS",Producto.type_product == "Asesoria").first()
         asesoria4 = Producto.query.filter(Producto.name == "Matematica para CS",Producto.type_product == "Asesoria").first()
-        profesor1=Trabajadores("Marvin","Abisrror","25",curso1.name)
-        profesor2=Trabajadores("Jesus","Bellido","38",asesoria1.name)
-        profesor3=Trabajadores("Jose","Fiestas","35",curso2.name)
-        profesor4=Trabajadores("Ruben","Rivas","55",asesoria2.name)
-        profesor5=Trabajadores("Alan","Morante","42",curso3.name)
-        profesor6=Trabajadores("Jorge","Villavicencio","36",asesoria3.name)
-        profesor7=Trabajadores("Jose Miguel","Renom","55",curso4.name)
-        profesor8=Trabajadores("Jorge","Tipe","36",asesoria4.name)
+        profesor1=Trabajadores("Marvin","Abisrror","25",curso1.id)
+        profesor2=Trabajadores("Jesus","Bellido","38",asesoria1.id)
+        profesor3=Trabajadores("Jose","Fiestas","35",curso2.id)
+        profesor4=Trabajadores("Ruben","Rivas","55",asesoria2.id)
+        profesor5=Trabajadores("Alan","Morante","42",curso3.id)
+        profesor6=Trabajadores("Jorge","Villavicencio","36",asesoria3.id)
+        profesor7=Trabajadores("Jose Miguel","Renom","55",curso4.id)
+        profesor8=Trabajadores("Jorge","Tipe","36",asesoria4.id)
         db.session.add_all([profesor1,profesor2,profesor3,profesor4,profesor5,profesor6,profesor7,profesor8])
         db.session.commit()
 
