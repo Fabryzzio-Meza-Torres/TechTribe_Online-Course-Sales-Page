@@ -171,88 +171,42 @@ def create_app(test_config=None):
 
     # ----------------------------------------------------------------POST--------------------------------------------------------------------
 
-    @dev.route('register', methods=['POST'])
-    @authorize
+    @dev.route('/register', methods=['POST'])
     def register():
-        returned code = 201
-        list_error = []
+        returned_code = 201
+        list_errors = []
+
         try:
             body = request.json
 
             if 'firstname' not in body:
-                list_error.append('firstname')
+                list_errors.append('firstname')
             else:
-                name = body['name']
+                firstname = body['firstname']
 
-            if 'lastname' = not in body:
-                list_error.append('lastname')
+            if 'lastname' not in body:
+                list_errors.append('lastname')
             else:
                 lastname = body['lastname']
 
-            if 'email' = not in body:
-                list_error.append('email')
+            if 'email' not in body:
+                list_errors.append('email')
             else:
                 email = body['email']
 
-            if 'contrasena' = not in body:
-                list_error.append('contrasena')
+            if 'contrasena' not in body:
+                list_errors.append('contrasena')
             else:
                 contrasena = body['contrasena']
 
             if len(list_errors) > 0:
                 returned_code = 400
-
             else:
-                client = Clients(firstname, lastname, email, contrasena)
+                client = Clients(firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
                 db.session.add(client)
                 db.session.commit()
 
                 client_id = client.id
-
-            except Exception as e:
-            print(sys.exc_info())
-            db.session.rollback()
-            returned_code = 500
-
-            finally:
-                db.session.close()
-
-            if returned_code == 400:
-                return jsonify({'success': False, 'message': 'Error register client', 'errors': list_errors}), returned_code
-            elif returned_code != 201:
-                abort(returned_code)
-            else:
-                return jsonify({'id': client_id, 'success': True, 'message': 'Client  register successfully!'}), returned_code
-
-    @dev.route('/login', methods=['POST'])
-    @authorize
-    def login():
-        returned_code = 201
-        list_errors = []
-        try:
-            body = request.json
-
-            if 'email' = not in body:
-                list_errors.append('email is required')
-            else:
-                email = body['email']
-
-            if 'contrasena' not in body:
-                contrasena = body['contrasena']
-            else:
-                contrasena = body['contrasena']
-
-            if len(list_errors) > 0
-            returned_code = 400
-
-            else:
-                client = Clients.query.filter_by(email=email).first()
-
-                if client and client.contrasena == contrasena:
-                    response = jsonify(
-                        {'success': True, 'message': 'Inicio de sesión exitoso'}), 200
-                else:
-                    return jsonify({'success': False, 'message': 'Credenciales inválidas'}),
 
         except Exception as e:
             print(sys.exc_info())
@@ -262,6 +216,56 @@ def create_app(test_config=None):
         finally:
             db.session.close()
 
+        if returned_code == 400:
+            return jsonify({'success': False, 'message': 'Error registering client', 'errors': list_errors}), returned_code
+        elif returned_code != 201:
+            abort(returned_code)
+        else:
+            return jsonify({'id': client_id, 'success': True, 'message': 'Client registered successfully!'}), returned_code
+
+
+    @dev.route('/login', methods=['POST'])
+    @authorize
+    def login():
+        returned_code = 201
+        list_errors = []
+
+        try:
+            body = request.json
+
+            if 'email' not in body:
+                list_errors.append('email is required')
+            else:
+                email = body['email']
+
+            if 'contrasena' not in body:
+                list_errors.append('contrasena is required')
+            else:
+                contrasena = body['contrasena']
+
+            if len(list_errors) > 0:
+                returned_code = 400
+            else:
+                client = Clients.query.filter_by(email=email).first()
+
+                if client and client.contrasena == contrasena:
+                    response = jsonify({'success': True, 'message': 'Inicio de sesión exitoso'}), 200
+                else:
+                    return jsonify({'success': False, 'message': 'Credenciales inválidas'}), 401
+
+        except Exception as e:
+            print(sys.exc_info())
+            db.session.rollback()
+            returned_code = 500
+
+        finally:
+            db.session.close()
+
+        if returned_code != 201:
+            abort(returned_code)
+        else:
+            return response
+    
     @dev.route('/compra', methods=['POST'])
     @authorize
     def compra():
@@ -295,63 +299,70 @@ def create_app(test_config=None):
 
             else:
                 compra = Orden_de_Compra(
-                    status_code, total_price, id_creditcard, id_product)
+                    status, total_price, id_creditcard, id_product)
                 db.session.add(compra)
                 db.session.commit()
 
                 compra_id = compra.id
 
-            except Exception as e:
+        except Exception as e:
                 print(sys.exc_info())
                 db.session.rollback()
                 returned_code = 500
 
-            finally:
+        finally:
                 db.session.close()
 
-            if returned_code == 400:
+        if returned_code == 400:
                 return jsonify({'success': False, 'message': 'Error buy product', 'errors': list_errors}), returned_code
-            elif returned_code != 201:
+        elif returned_code != 201:
                 abort(returned_code)
-            else:
+        else:
                 return jsonify({'id': compra_id, 'success': True, 'message': 'product successfully purchased!'}), returned_code
 
-    @dev.route('/pago', methods=['POST'])
-    def pago():
+
+    @dev.route('/transaccion', methods=['POST'])
+    def transaccion():
         try:
-            # Obtener los datos del formulario de pago
-            data = request.get_json()
-            creditcard_number = data.get('numero_tarjeta')
-            expiration_date = data.get('fecha_vencimiento')
-            password = data.get('contrasena')
+            body = request.json
 
-            # Validar los datos del formulario
-            if not creditcard_number or not expiration_date or not password:
-                return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
+            # Obtener los datos de la transacción
+            cliente_id = body.get('cliente_id')
+            producto_id = body.get('producto_id')
 
-            # Obtener el cliente y el administrador correspondientes
-            cliente = Clients.query.get(data.get('id'))
-            admin = Administracion.query.first()
+            # Buscar el cliente y el producto en la base de datos
+            cliente = Clients.query.get(cliente_id)
+            producto = Producto.query.get(producto_id)
 
-            # Verificar que el cliente y el administrador existan
-            if not cliente or not admin:
-                return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+            if not cliente:
+                return jsonify({'success': False, 'message': 'Cliente no encontrado'}), 404
 
-            # Verificar que el cliente tenga suficiente saldo para la compra
-            if cliente.saldo < admin.precio_producto:
-                return jsonify({'success': False, 'message': 'Saldo insuficiente'}), 400
+            if not producto:
+                return jsonify({'success': False, 'message': 'Producto no encontrado'}), 404
 
-            # Realizar la transacción
-            cliente.saldo -= admin.precio_producto
-            admin.monto_total += admin.precio_producto
+            # Verificar si el cliente tiene saldo suficiente para la compra
+            if cliente.saldo < producto.precio:
+                return jsonify({'success': False, 'message': 'Saldo insuficiente para la compra'}), 400
+
+            # Actualizar el saldo del cliente
+            cliente.saldo -= producto.precio
+
+            # Actualizar el saldo del administrador
+            administrador = Administracion.query.first()
+            administrador.saldo += producto.precio
+
+            # Guardar los cambios en la base de datos
             db.session.commit()
 
-            return jsonify({'success': True, 'message': 'Transacción realizada correctamente'}), 200
+            return jsonify({'success': True, 'message': 'Transacción realizada correctamente'})
 
         except Exception as e:
-            print(e)
+            print(sys.exc_info())
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+
+        finally:
+            db.session.close()
         
     # Error handlers
 

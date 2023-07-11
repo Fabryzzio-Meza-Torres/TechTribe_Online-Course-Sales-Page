@@ -26,7 +26,6 @@ class RoutesTests(unittest.TestCase):
     def test_get_cursos(self):
             response = self.client.get('/cursos')
             data = json.loads(response.data)
-
             self.assertEqual(response.status_code, 200)
             self.assertEqual(data['success'], True)
             self.assertTrue(data['cursos'])
@@ -83,7 +82,7 @@ class RoutesTests(unittest.TestCase):
             self.assertEqual(response.status_code, 404)
             self.assertEqual(data['success'], False)
 
-###########################################################       ####################################################################
+###########################################################POST  ####################################################################
 
 
     def test_register_invalido(self):
