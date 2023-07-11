@@ -12,7 +12,6 @@ import re
 import hashlib
 from sqlalchemy import text
 from config.local import config
-from .authentication import authorize
 
 import os
 import sys
