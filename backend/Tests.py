@@ -22,11 +22,72 @@ class RoutesTests(unittest.TestCase):
         self.app = create_app({'database_path': database_path})
         self.client = self.app.test_client()
 
+
+########################################################### POST  ####################################################################
+
+    def test_register_post(self):
+        response = self.client.post('/register', json={
+            'firstname': 'John',
+            'lastname': 'Doe',
+            'email': 'johndoe@example.com',
+            'contrasena': 'password123'
+        })
+        data = response.json
+
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['message'], 'Client registered successfully!')
+
+    def test_register_missing_fields(self):
+        response = self.client.post('/register', json={
+            'firstname': 'John',
+            'lastname': 'Doe',
+            'contrasena': 'password123'
+        })
+        data = response.json
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Error registering client')
+
+    def test_crear_tarjeta_success(self):
+        # Crear un cliente de prueba
+        client = Clients(firstname='John', lastname='Doe', email='johndoe@example.com', contrasena='password123')
+        db.session.add(client)
+        db.session.commit()
+
+        response = self.client.post('/tarjeta', json={
+            'creditcard_number': '1234567890123456',
+            'expiration_date': '12/24',
+            'password': '123456',
+            'monto': 1000.0,
+            'id_client': client.id
+        })
+        data = response.json
+
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['message'], 'Credit card created successfully!')
+
+    def test_crear_tarjeta_missing_fields(self):
+        response = self.client.post('/tarjeta', json={
+            'creditcard_number': '1234567890123456',
+            'expiration_date': '12/24',
+            'password': '123456',
+            'monto': 1000.0
+        })
+        data = response.json
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Error creating credit card')
+        self.assertListEqual(data['errors'], ['id_client'])
+
+
 ########################################################### GET ####################################################################    
     def test_get_cursos(self):
             response = self.client.get('/cursos')
             data = json.loads(response.data)
-
             self.assertEqual(response.status_code, 200)
             self.assertEqual(data['success'], True)
             self.assertTrue(data['cursos'])
@@ -83,68 +144,11 @@ class RoutesTests(unittest.TestCase):
             self.assertEqual(response.status_code, 404)
             self.assertEqual(data['success'], False)
 
-###########################################################       ####################################################################
 
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
 
-    def test_register_invalido(self):
-        # Datos del formulario inválidos (falta el campo 'correo')
-        form_data = {
-            'nombres': 'John',
-            'apellidos': 'Doe',
-            'contrasena': 'password123'
-        }
-
-        response = self.client.post('/register', data=form_data)
-        data = response.json
-
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Faltan campos obligatorios')
-
-    def test_login_invalido(self):
-        # Datos del formulario inválidos (contraseña incorrecta)
-        form_data = {
-            'correo': 'johndoe@gmail.com',
-            'contrasena': 'wrongpassword'
-        }
-
-        response = self.client.post('/login', data=form_data)
-        data = response.json
-
-        self.assertEqual(response.status_code, 401)
-        self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Credenciales inválidas')
-
-    def test_compra_invalido(self):
-        # Datos del formulario inválidos (campo 'numero_tarjeta' demasiado corto)
-        form_data = {
-            'numero_tarjeta': '1234',
-            'fecha_vencimiento': '12/23',
-            'contrasena': 'password123'
-        }
-
-        response = self.client.post('/compra', data=form_data)
-        data = response.json
-
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Datos de tarjeta inválidos')
-
-    def test_pago_invalido(self):
-        form_data = {
-            'numero_tarjeta': '1234',
-            'fecha_vencimiento': '12/23',
-            'contrasena': 'password123'
-        }
-
-        response = self.client.post('/pago', json=form_data)
-        data = response.json
-
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Datos de tarjeta inválidos')
-
-#####################################PATCH##############################################
+ 
           
-if __name__ == '__main__':
-    unittest.main()

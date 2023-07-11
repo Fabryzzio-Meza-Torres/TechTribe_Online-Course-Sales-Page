@@ -6,17 +6,16 @@ from flask import (
     abort
 )
 
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto#,crear_datos_por_defecto
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto#
 from flask_cors import CORS
 import re
 import hashlib
 from sqlalchemy import text
 from config.local import config
-
+from .authentication import authorize
 
 import os
 import sys
-
 
 
 def create_app(test_config=None):
@@ -26,8 +25,6 @@ def create_app(test_config=None):
         CORS(dev, origins=['http://localhost:8080'])
         crear_datos_por_defecto(dev)
 #    crear_datos_por_defecto(dev)
-
-
 
     # Routes 
 #----------------------------------------------------------GET----------------------------------------------------------------------
@@ -113,12 +110,12 @@ def create_app(test_config=None):
                     Trabajadores.firstname.like('%{}%'.format(search_query))).all()
 
                 profesores_list = [profesor.serialize()
-                                  for profesor in profesores]
+                                   for profesor in profesores]
 
             else:
                 profesores = Trabajadores.query.all()
                 profesores_list = [profesor.serialize()
-                                 for profesor in profesores]
+                                   for profesor in profesores]
 
             if not profesores_list:
                 returned_code = 404
@@ -135,7 +132,6 @@ def create_app(test_config=None):
 
         return jsonify({'success': True, 'profesores': profesores_list}), returned_code
 
-
     @dev.route('/orden_de_compra', methods=['GET'])
     def get_orden_de_compra():
         returned_code = 200
@@ -149,12 +145,12 @@ def create_app(test_config=None):
                     Orden_de_Compra.id_product.like('%{}%'.format(search_query))).all()
 
                 orden_de_compras_list = [orden_de_compra.serialize()
-                                  for orden_de_compra in orden_de_compras]
+                                         for orden_de_compra in orden_de_compras]
 
             else:
                 orden_de_compras = Orden_de_Compra.query.all()
                 orden_de_compras_list = [orden_de_compra.serialize()
-                                 for orden_de_compra in orden_de_compras]
+                                         for orden_de_compra in orden_de_compras]
 
             if not orden_de_compras_list:
                 returned_code = 404
@@ -171,151 +167,215 @@ def create_app(test_config=None):
 
         return jsonify({'success': True, 'orden_de_compras': orden_de_compras_list}), returned_code
 
-
-    #----------------------------------------------------------------POST--------------------------------------------------------------------
+    # ----------------------------------------------------------------POST--------------------------------------------------------------------
 
     @dev.route('/register', methods=['POST'])
     def register():
+        returned_code = 201
+        list_errors = []
+
         try:
-            name = request.form.get('nombres')
-            lastname = request.form.get('apellidos')
-            email = request.form.get('correo')
-            contrasena = request.form.get('contrasena')
-            campos_validar = ['nombres', 'apellidos', 'contrasena']
-            errors = []
+            body = request.json
 
-            for campo in campos_validar:
-                if not request.form.get(campo):
-                    errors.append(f'El campo {campo} es obligatorio')
-
-            if not email:
-                errors.append('Ingrese su correo electrónico')
-            elif not email.endswith(('@gmail.com', '@hotmail.es', '@utec.edu.pe')):
-                errors.append('Ingrese un correo de Gmail válido')
-            elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
+            if 'firstname' not in body:
+                list_errors.append('firstname')
             else:
-                user = Clients.query.filter_by(email=email).first()
-                if user:
-                    errors.append('El correo electrónico ya ha sido registrado')
+                firstname = body['firstname']
 
-            if errors:
-                return jsonify({'success': False, 'message': errors}), 400
+            if 'lastname' not in body:
+                list_errors.append('lastname')
+            else:
+                lastname = body['lastname']
 
-            hash_object = hashlib.sha256()
-            hash_object.update(contrasena.encode('utf-8'))
-            password_hash = hash_object.hexdigest()
+            if 'email' not in body:
+                list_errors.append('email')
+            else:
+                email = body['email']
 
-            new_user = Clients(name, lastname, email, password_hash)
-            db.session.add(new_user)
-            db.session.commit()
+            if 'contrasena' not in body:
+                list_errors.append('contrasena')
+            else:
+                contrasena = body['contrasena']
 
-            return jsonify({'id': new_user.id, 'success': True, 'message': 'Usuario creado exitosamente'}), 200
+            if len(list_errors) > 0:
+                returned_code = 400
+            else:
+                client = Clients(firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
+                db.session.add(client)
+                db.session.commit()
+
+                client_id = client.id
 
         except Exception as e:
-            print(e)
             print(sys.exc_info())
             db.session.rollback()
-            return jsonify({'success': False, 'message': 'Error al crear usuario'}), 500
+            returned_code = 500
 
+        finally:
+            db.session.close()
+
+        if returned_code == 400:
+            return jsonify({'success': False, 'message': 'Error registering client', 'errors': list_errors}), returned_code
+        elif returned_code != 201:
+            abort(returned_code)
+        else:
+            return jsonify({'id': client_id, 'success': True, 'message': 'Client registered successfully!'}), returned_code
 
 
     @dev.route('/login', methods=['POST'])
     def login():
+        returned_code = 201
+        list_errors = []
+
         try:
-            email = request.form.get('correo')
-            contrasena = request.form.get('contrasena')
-            user = Clients.query.filter_by(email=email).first()
+            body = request.json
 
-            if user:
-                hash_object = hashlib.sha256()
-                hash_object.update(contrasena.encode('utf-8'))
-                password_hash = hash_object.hexdigest()
-
-                if user.contrasena == password_hash:
-                    if re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                        response = jsonify({'success': True, 'message': 'Inicio de sesión exitoso'})
-                        response.set_cookie('logged_in', 'true')
-                        response.set_cookie('user_id', str(user.id))
-                        response.set_cookie('user_name', str(user.firstname))
-
-                        return response, 200
-                    else:
-                        return jsonify({'success': False, 'message': 'La contraseña no cumple con los requisitos'}), 400
-                else:
-                    return jsonify({'success': False, 'message': 'Credenciales inválidas'}), 400
+            if 'email' not in body:
+                list_errors.append('email is required')
             else:
-                return jsonify({'success': False, 'message': 'Usuario no encontrado'}), 400
+                email = body['email']
+
+            if 'contrasena' not in body:
+                list_errors.append('contrasena is required')
+            else:
+                contrasena = body['contrasena']
+
+            if len(list_errors) > 0:
+                returned_code = 400
+            else:
+                client = Clients.query.filter_by(email=email).first()
+
+                if client and client.contrasena == contrasena:
+                    response = jsonify({'success': True, 'message': 'Inicio de sesión exitoso'}), 200
+                else:
+                    return jsonify({'success': False, 'message': 'Credenciales inválidas'}), 401
 
         except Exception as e:
-            print(e)
-            return jsonify({'success': False, 'message': 'Error en el inicio de sesión'}), 500
+            print(sys.exc_info())
+            db.session.rollback()
+            returned_code = 500
 
+        finally:
+            db.session.close()
 
+        if returned_code != 201:
+            abort(returned_code)
+        else:
+            return response
+    
     @dev.route('/compra', methods=['POST'])
     def compra():
+        returned_code = 201
+        list_errors = []
         try:
-            # Obtener los datos del formulario
-            creditcard_number = request.form.get('numero_tarjeta')
-            expiration_date = request.form.get('fecha_vencimiento')
-            password = request.form.get('contrasena')
-            # Obtener el ID del cliente actualmente autenticado (puedes modificar esto según tu implementación de autenticación)
-            logged_in = request.cookies.get('logged_in')
-            user_id = request.cookies.get('user_id')
-            monto = random.randint(300, 2000)
-            # Validar los datos del formulario (puedes agregar más validaciones según tus requisitos)
-            if not creditcard_number or not expiration_date or not password:
-                return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
+            body = request.json
 
-            # Crear una nueva instancia de la tarjeta
-            new_tarjeta = Tarjeta(creditcard_number, expiration_date, password, user_id, monto)
-            db.session.add(new_tarjeta)
-            db.session.commit()
+            if 'status' not in body:
+                list_errors.append('status is required')
+            else:
+                status = body['status']
 
-            return jsonify({'success': True, 'message': 'Transacción realizada correctamente'}), 200
+            if 'total_price' not in body:
+                list_errors.append('total_price is required')
+            else:
+                total_price = body['total_price']
+
+            if 'id_product' not in body:
+                list_errors.append('id_product is required')
+            else:
+                id_product = body['id_product']
+
+            if 'id_creditcard' not in body:
+                list_errors.append('id_creditcard is required')
+            else:
+                id_creditcard = body['id_creditcard']
+
+            if len(list_errors) > 0:
+                returned_code = 400
+
+            else:
+                compra = Orden_de_Compra(
+                    status, total_price, id_creditcard, id_product)
+                db.session.add(compra)
+                db.session.commit()
+
+                compra_id = compra.id
 
         except Exception as e:
-            print(e)
-            db.session.rollback()
-            return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
-        
+                print(sys.exc_info())
+                db.session.rollback()
+                returned_code = 500
 
-    @dev.route('/pago', methods=['POST'])
-    def pago():
+        finally:
+                db.session.close()
+
+        if returned_code == 400:
+                return jsonify({'success': False, 'message': 'Error buy product', 'errors': list_errors}), returned_code
+        elif returned_code != 201:
+                abort(returned_code)
+        else:
+                return jsonify({'id': compra_id, 'success': True, 'message': 'product successfully purchased!'}), returned_code
+
+ 
+    @dev.route('/tarjeta', methods=['POST'])
+    def crear_tarjeta():
+        returned_code = 201
+        list_errors = []
+
         try:
-            # Obtener los datos del formulario de pago
-            data = request.get_json()
-            creditcard_number = data.get('numero_tarjeta')
-            expiration_date = data.get('fecha_vencimiento')
-            password = data.get('contrasena')
+            body = request.json
 
-            # Validar los datos del formulario
-            if not creditcard_number or not expiration_date or not password:
-                return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
+            if 'creditcard_number' not in body:
+                list_errors.append('creditcard_number')
+            else:
+                creditcard_number = body['creditcard_number']
 
-            # Obtener el cliente y el administrador correspondientes
-            cliente = Clients.query.get(data.get('user_id'))
-            admin = Transaccion.query.first()
+            if 'expiration_date' not in body:
+                list_errors.append('expiration_date')
+            else:
+                expiration_date = body['expiration_date']
 
-            # Verificar que el cliente y el administrador existan
-            if not cliente or not admin:
-                return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+            if 'password' not in body:
+                list_errors.append('password')
+            else:
+                password = body['password']
 
-            # Verificar que el cliente tenga suficiente saldo para la compra
-            if cliente.saldo < admin.precio_producto:
-                return jsonify({'success': False, 'message': 'Saldo insuficiente'}), 400
+            if 'monto' not in body:
+                list_errors.append('monto')
+            else:
+                monto = body['monto']
 
-            # Realizar la transacción
-            cliente.saldo -= admin.precio_producto
-            admin.monto_total += admin.precio_producto
-            db.session.commit()
+            if 'id_client' not in body:
+                list_errors.append('id_client')
+            else:
+                id_client = body['id_client']
 
-            return jsonify({'success': True, 'message': 'Transacción realizada correctamente'}), 200
+            if len(list_errors) > 0:
+                returned_code = 400
+            else:
+                # Crear la tarjeta de crédito
+                tarjeta = Tarjeta(creditcard_number=creditcard_number, expiration_date=expiration_date, password=password, monto=monto, id_client=id_client)
+                db.session.add(tarjeta)
+                db.session.commit()
+
+                tarjeta_id = tarjeta.id
 
         except Exception as e:
-            print(e)
+            print(sys.exc_info())
             db.session.rollback()
-            return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+            returned_code = 500
+
+        finally:
+            db.session.close()
+
+        if returned_code == 400:
+            return jsonify({'success': False, 'message': 'Error creating credit card', 'errors': list_errors}), returned_code
+        elif returned_code != 201:
+            abort(returned_code)
+        else:
+            return jsonify({'id': tarjeta_id, 'success': True, 'message': 'Credit card created successfully!'}), returned_code
+    
+ 
     
     #-------------------------------------PATCH-------------------------------------#
     #Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
