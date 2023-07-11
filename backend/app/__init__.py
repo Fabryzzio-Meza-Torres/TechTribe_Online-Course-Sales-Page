@@ -6,126 +6,176 @@ from flask import (
     abort
 )
 
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion, crear_datos_por_defecto
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion #,crear_datos_por_defecto
 from flask_cors import CORS
 import re
 import hashlib
 from sqlalchemy import text
-# from .users_controller import users_bp
-# from .authentication import authorize
+from config.local import config
+
 
 import os
 import sys
 
 
+
 def create_app(test_config=None):
     dev = Flask(__name__)
     with dev.app_context():
-        # app.register_blueprint(users_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
-        CORS(dev, origins='*')
-    crear_datos_por_defecto(dev)
+        CORS(dev, origins=['http://localhost:8080'])
+#    crear_datos_por_defecto(dev)
 
-    @dev.after_request
-    def after_request(response):
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Methods',
-                             'GET,PATCH,POST,DELETE,OPTIONS')
-        response.headers.add('Access-Control-Max-Age', '10')
-        return response
+
 
     # Routes
-    # ----------------------------------------------------------GET----------------------------------------------------------------------
+#----------------------------------------------------------GET----------------------------------------------------------------------
     @dev.route('/cursos', methods=['GET'])
-    def showcursos():
-        try:
-            consulta_precio = text("SELECT price FROM products")
-            resultado = db.session.execute(consulta_precio)
-            precios = [row[0] for row in resultado]
+    def get_cursos():
+        returned_code = 200
+        error_message = ''
+        cursos_list = []
 
-            if not precios:
-                returned_code = 404
-                error_message = 'No prices found'
+        try:
+            search_query = request.args.get('search', None)
+            if search_query:
+                cursos = Producto.query.filter(
+                    Producto.name.like('%{}%'.format(search_query))).all()
+
+                cursos_list = [curso.serialize()
+                                  for curso in cursos]
+
             else:
-                returned_code = 200
-                error_message = ''
+                cursos = Producto.query.all()
+                cursos_list = [curso.serialize()
+                                 for curso in cursos]
+
+            if not cursos_list:
+                returned_code = 404
+                error_message = 'No cursos found'
 
         except Exception as e:
+
+            # print(sys.exc_info())
             returned_code = 500
-            error_message = 'Error retrieving prices'
+            error_message = 'Error retrieving cursos'
 
         if returned_code != 200:
             return jsonify({'success': False, 'message': error_message}), returned_code
 
-        return jsonify({'success': True, 'precios': precios}), returned_code
+        return jsonify({'success': True, 'cursos': cursos_list}), returned_code
+
 
     @dev.route('/asesorias', methods=['GET'])
-    def showasesoria():
-        try:
-            consulta_precio = text("SELECT price FROM products")
-            resultado = db.session.execute(consulta_precio)
-            precios = [row[0] for row in resultado]
+    def get_asesorias():
+        returned_code = 200
+        error_message = ''
+        asesorias_list = []
 
-            if not precios:
-                returned_code = 404
-                error_message = 'No prices found'
+        try:
+            search_query = request.args.get('search', None)
+            if search_query:
+                asesorias = Producto.query.filter(
+                    Producto.name.like('%{}%'.format(search_query))).all()
+
+                asesorias_list = [asesoria.serialize()
+                                  for asesoria in asesorias]
+
             else:
-                returned_code = 200
-                error_message = ''
+                asesorias = Producto.query.all()
+                asesorias_list = [asesoria.serialize()
+                                 for asesoria in asesorias]
+
+            if not asesorias_list:
+                returned_code = 404
+                error_message = 'No asesorias found'
 
         except Exception as e:
+
+            # print(sys.exc_info())
             returned_code = 500
-            error_message = 'Error retrieving prices'
+            error_message = 'Error retrieving asesorias'
 
         if returned_code != 200:
             return jsonify({'success': False, 'message': error_message}), returned_code
 
-        return jsonify({'success': True, 'precios': precios}), returned_code
+        return jsonify({'success': True, 'asesorias': asesorias_list}), returned_code
+            
 
     @dev.route('/profesores', methods=['GET'])
     def get_profesores():
-        try:
-            workers_results = Trabajadores.query.all()
-            out = [{'firstname': result.firstname, 'lastname': result.lastname}
-                   for result in workers_results]
+        returned_code = 200
+        error_message = ''
+        profesores_list = []
 
-            if not out:
-                returned_code = 404
-                error_message = 'No workers found'
+        try:
+            search_query = request.args.get('search', None)
+            if search_query:
+                profesores = Trabajadores.query.filter(
+                    Trabajadores.firstname.like('%{}%'.format(search_query))).all()
+
+                profesores_list = [profesor.serialize()
+                                  for profesor in profesores]
+
             else:
-                returned_code = 200
-                error_message = ''
+                profesores = Trabajadores.query.all()
+                profesores_list = [profesor.serialize()
+                                 for profesor in profesores]
+
+            if not profesores_list:
+                returned_code = 404
+                error_message = 'No profesores found'
 
         except Exception as e:
+
+            # print(sys.exc_info())
             returned_code = 500
-            error_message = 'Error retrieving workers'
+            error_message = 'Error retrieving profesores'
 
         if returned_code != 200:
             return jsonify({'success': False, 'message': error_message}), returned_code
 
-        return jsonify({'success': True, 'workers': out}), returned_code
+        return jsonify({'success': True, 'profesores': profesores_list}), returned_code
 
-    @dev.route('/orden_de_compra/<curso_name>', methods=['GET'])
-    def orden_de_compra(curso_name):
+
+    @dev.route('/orden_de_compra', methods=['GET'])
+    def get_orden_de_compra():
+        returned_code = 200
+        error_message = ''
+        orden_de_compras_list = []
+
         try:
-            # Obtener el nombre del producto seleccionado
-            product_name = curso_name
-            product = Producto.query.filter_by(name=product_name).first()
+            search_query = request.args.get('search', None)
+            if search_query:
+                orden_de_compras = Orden_de_Compra.query.filter(
+                    Orden_de_Compra.id_product.like('%{}%'.format(search_query))).all()
 
-            if product:
-                product_name = product.name
-                product_price = product.price
-                product_type = product.type_product
+                orden_de_compras_list = [orden_de_compra.serialize()
+                                  for orden_de_compra in orden_de_compras]
 
-                return jsonify({'success': True, 'product_name': product_name, 'product_price': product_price, 'product_type': product_type}), 200
             else:
-                return jsonify({'success': False, 'message': 'Producto no encontrado'}), 404
+                orden_de_compras = Orden_de_Compra.query.all()
+                orden_de_compras_list = [orden_de_compra.serialize()
+                                 for orden_de_compra in orden_de_compras]
+
+            if not orden_de_compras_list:
+                returned_code = 404
+                error_message = 'No orden de compra found'
 
         except Exception as e:
-            print(e)
-            return jsonify({'success': False, 'message': 'Error al obtener la orden de compra'}), 500
 
-    # ----------------------------------------------------------------POST--------------------------------------------------------------------
+            # print(sys.exc_info())
+            returned_code = 500
+            error_message = 'Error retrieving orden de compra'
+
+        if returned_code != 200:
+            return jsonify({'success': False, 'message': error_message}), returned_code
+
+        return jsonify({'success': True, 'orden_de_compras': orden_de_compras_list}), returned_code
+
+
+    #----------------------------------------------------------------POST--------------------------------------------------------------------
+
     @dev.route('/register', methods=['POST'])
     def register():
         try:
@@ -145,13 +195,11 @@ def create_app(test_config=None):
             elif not email.endswith(('@gmail.com', '@hotmail.es', '@utec.edu.pe')):
                 errors.append('Ingrese un correo de Gmail válido')
             elif not re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                errors.append(
-                    'La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
+                errors.append('La contraseña no cumple con los requisitos, debe ser alfanumérica y tener al menos 8 caracteres')
             else:
                 user = Clients.query.filter_by(email=email).first()
                 if user:
-                    errors.append(
-                        'El correo electrónico ya ha sido registrado')
+                    errors.append('El correo electrónico ya ha sido registrado')
 
             if errors:
                 return jsonify({'success': False, 'message': errors}), 400
@@ -172,6 +220,8 @@ def create_app(test_config=None):
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error al crear usuario'}), 500
 
+
+
     @dev.route('/login', methods=['POST'])
     def login():
         try:
@@ -186,8 +236,7 @@ def create_app(test_config=None):
 
                 if user.contrasena == password_hash:
                     if re.match(r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$', contrasena):
-                        response = jsonify(
-                            {'success': True, 'message': 'Inicio de sesión exitoso'})
+                        response = jsonify({'success': True, 'message': 'Inicio de sesión exitoso'})
                         response.set_cookie('logged_in', 'true')
                         response.set_cookie('user_id', str(user.id))
                         response.set_cookie('user_name', str(user.firstname))
@@ -203,6 +252,7 @@ def create_app(test_config=None):
         except Exception as e:
             print(e)
             return jsonify({'success': False, 'message': 'Error en el inicio de sesión'}), 500
+
 
     @dev.route('/compra', methods=['POST'])
     def compra():
@@ -220,8 +270,7 @@ def create_app(test_config=None):
                 return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
 
             # Crear una nueva instancia de la tarjeta
-            new_tarjeta = Tarjeta(
-                creditcard_number, expiration_date, password, user_id, monto)
+            new_tarjeta = Tarjeta(creditcard_number, expiration_date, password, user_id, monto)
             db.session.add(new_tarjeta)
             db.session.commit()
 
@@ -231,6 +280,7 @@ def create_app(test_config=None):
             print(e)
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+        
 
     @dev.route('/pago', methods=['POST'])
     def pago():
@@ -268,5 +318,6 @@ def create_app(test_config=None):
             print(e)
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+        
 
     return dev
