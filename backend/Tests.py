@@ -21,6 +21,13 @@ class RoutesTests(unittest.TestCase):
         database_path = config['DATABASE_URI']
         self.app = create_app({'database_path': database_path})
         self.client = self.app.test_client()
+        self.new_client = {
+            'firstname': 'test',
+            'lastname': 'test',
+            'email': 'test@gmail.com',
+            'contrasena': 'test'
+        }
+
 ########################################################### GET ####################################################################    
     def test_get_cursos(self):
             response = self.client.get('/cursos')

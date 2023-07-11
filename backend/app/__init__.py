@@ -324,7 +324,7 @@ def create_app(test_config=None):
     #Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
     # ...
 
-    @dev.route('/confirmar', methods=['PATCH'])
+    @dev.route('/transacción', methods=['PATCH'])
     def confirmar_compra():
         try:
             data = request.get_json()
