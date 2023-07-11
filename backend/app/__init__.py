@@ -26,7 +26,7 @@ def create_app(test_config=None):
         crear_datos_por_defecto(dev)
 #    crear_datos_por_defecto(dev)
 
-    # Routes
+    # Routes 
 # ----------------------------------------------------------GET----------------------------------------------------------------------
 
     @dev.route('/cursos', methods=['GET'])
