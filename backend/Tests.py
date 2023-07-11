@@ -86,14 +86,14 @@ class RoutesTests(unittest.TestCase):
 
 ########################################################### GET ####################################################################    
     def test_get_cursos(self):
-            response = self.client.get('/cursos')
+            response = self.client.get('/productos/cursos')
             data = json.loads(response.data)
             self.assertEqual(response.status_code, 200)
             self.assertEqual(data['success'], True)
             self.assertTrue(data['cursos'])
 
     def test_get_asesorias(self):
-            response = self.client.get('/asesorias')
+            response = self.client.get('/productos/asesorias')
             data = json.loads(response.data)
 
             self.assertEqual(response.status_code, 200)
