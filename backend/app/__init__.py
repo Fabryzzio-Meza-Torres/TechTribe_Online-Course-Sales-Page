@@ -296,7 +296,7 @@ def create_app(test_config=None):
                 return jsonify({'success': False, 'message': 'Todos los campos son obligatorios'}), 400
 
             # Obtener el cliente y el administrador correspondientes
-            cliente = Clients.query.get(data.get('user_id'))
+            cliente = Clients.query.get(data.get('id'))
             admin = Administracion.query.first()
 
             # Verificar que el cliente y el administrador existan
@@ -319,5 +319,27 @@ def create_app(test_config=None):
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
         
+    # Error handlers
 
+    @dev.errorhandler(405)
+    def method_not_allowed(error):
+        return jsonify({
+            'success': False,
+            'message': 'Method not allowed'
+        }), 405  
+
+    @dev.errorhandler(404)
+    def not_found(error):
+        return jsonify({
+            'success': False,
+            'message': 'Resource not found'
+        }), 404
+    
+    @dev.errorhandler(500)
+    def internal_server_error(error):
+        return jsonify({
+            'success': False,
+            'message': 'Internal Server error'
+        }), 500
+    
     return dev
