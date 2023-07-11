@@ -76,17 +76,18 @@ class Trabajadores(db.Model):
 class Producto(db.Model):
     __tablename__ = 'products'
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()))
-    #workers = db.relationship('Trabajadores', backref='products', lazy=True)
     name = db.Column(db.String(30), nullable=False)
+    description = db.Column(db.String(350), nullable=False)
     price = db.Column(db.Float(precision=2), nullable=False)
     type_product = db.Column(db.String(30), nullable=False)
     duration = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
 
-    def __init__(self, name, price, type_product, duration):
+    def __init__(self, name, price, description, type_product, duration):
         self.name = name
         self.price = price 
+        self.description = description
         self.type_product = type_product
         self.duration = duration
         self.created_at = datetime.utcnow()
@@ -98,6 +99,7 @@ class Producto(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "description": self.description,
             "price": self.price,
             "type_product": self.type_product,
             "duration": self.duration,
@@ -195,14 +197,14 @@ def crear_datos_por_defecto(dev):
     cursos = Producto.query.all()
     
     if not cursos:
-        curso1=Producto("Python","100","Curso","3 meses")
-        curso2=Producto("C++","100","Curso","3 meses")
-        curso3=Producto("HTML/CSS","100","Curso","3 meses")
-        curso4=Producto("Matematica para CS","100","Curso","3 meses")
-        asesoria1=Producto("Python","100","Asesoria","2 horas")
-        asesoria2=Producto("C++","100","Asesoria","2 horas")
-        asesoria3=Producto("HTML/CSS","100","Asesoria","")
-        asesoria4=Producto("Matematica para CS","100","Asesoria","1 mes")
+        curso1=Producto("Python","100","Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis elegante, fácil de leer y recursos accesibles hacen que el aprendizaje sea divertido","Curso","3 meses")
+        curso2=Producto("C++","100","Únete a nuestro curso de C++ y descubre cómo crear aplicaciones de alto rendimiento con una sintaxis poderosa y eficiente. ¡Aprender es desafiante pero gratificante!","Curso","3 meses")
+        curso3=Producto("HTML/CSS","100","Mejora tu programación con matemáticas. Aprende cálculo, álgebra y estadística aplicada en nuestro curso para CS","Curso","3 meses")
+        curso4=Producto("Matematica para CS","100","Aprende HTML y CSS para crear sitios web impresionantes y atractivos. Únete a nuestro curso para mejorar tus habilidades de diseño web y destacar en el mercado.","Curso","3 meses")
+        asesoria1=Producto("Python","100","En esta asesoría de Python tendrás la oportunidad de resolver tus dudas y problemas con el lenguaje de programación Python. Nuestros expertos te ayudarán a entender conceptos avanzados, resolver errores de código y mejorar tus habilidades de programación.","Asesoria","2 horas")
+        asesoria2=Producto("C++","100","En esta asesoría de C++ tendrás la oportunidad de resolver tus dudas y problemas con el lenguaje de programación C++. Nuestros expertos te ayudarán a entender conceptos avanzados, resolver errores de código y mejorar tus habilidades de programación.","Asesoria","2 horas")
+        asesoria3=Producto("HTML/CSS","100","En esta asesoría de HTML y CSS tendrás la oportunidad de resolver tus dudas al crear páginas web impresionantes. Nuestros expertos te guiarán en el uso de HTML y CSS para crear diseños atractivos y dominar la programación frontend","Asesoria","2 horas")
+        asesoria4=Producto("Matematica para CS","100","En esta asesoría de matemáticas para Computer Science, te brindaremos el conocimiento matemático esencial para enfrentar desafíos en la informática. Nuestros expertos te ayudarán a resolver algoritmos complejos y optimizar tus habilidades de programación.","Asesoria","1 mes")
         db.session.add_all([curso1,curso2,curso3,curso4,asesoria1,asesoria2,asesoria3,asesoria4])
     if not trabajadores:
         curso1 = Producto.query.filter(Producto.name == "Python",Producto.type_product == "Curso").first()

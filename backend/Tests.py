@@ -27,6 +27,12 @@ class RoutesTests(unittest.TestCase):
             'email': 'test@gmail.com',
             'contrasena': 'test'
         }
+        self.invalid_client = {
+            'firstname': 'test',
+            'lastname': 'test',
+            'email': '',
+            'contrasena': 'test'
+        }
 
 ########################################################### GET ####################################################################    
     def test_get_cursos(self):

@@ -29,7 +29,7 @@ def create_app(test_config=None):
 
 
 
-    # Routes
+    # Routes 
 #----------------------------------------------------------GET----------------------------------------------------------------------
     @dev.route('/cursos', methods=['GET'])
     def get_cursos():
