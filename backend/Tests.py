@@ -21,7 +21,6 @@ class RoutesTests(unittest.TestCase):
         database_path = config['DATABASE_URI']
         self.app = create_app({'database_path': database_path})
         self.client = self.app.test_client()
-
 ########################################################### GET ####################################################################    
     def test_get_cursos(self):
             response = self.client.get('/cursos')
@@ -144,6 +143,7 @@ class RoutesTests(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Datos de tarjeta inválidos')
 
-
+#####################################PATCH##############################################
+          
 if __name__ == '__main__':
     unittest.main()

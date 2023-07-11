@@ -6,7 +6,7 @@ from flask import (
     abort
 )
 
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion #,crear_datos_por_defecto
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto#,crear_datos_por_defecto
 from flask_cors import CORS
 import re
 import hashlib
@@ -24,6 +24,7 @@ def create_app(test_config=None):
     with dev.app_context():
         setup_db(dev, test_config['database_path'] if test_config else None)
         CORS(dev, origins=['http://localhost:8080'])
+        crear_datos_por_defecto(dev)
 #    crear_datos_por_defecto(dev)
 
 
@@ -297,7 +298,7 @@ def create_app(test_config=None):
 
             # Obtener el cliente y el administrador correspondientes
             cliente = Clients.query.get(data.get('user_id'))
-            admin = Administracion.query.first()
+            admin = Transaccion.query.first()
 
             # Verificar que el cliente y el administrador existan
             if not cliente or not admin:
@@ -327,41 +328,26 @@ def create_app(test_config=None):
     def confirmar_compra():
         try:
             data = request.get_json()
-
-            # Obtener el ID de la orden de compra a confirmar
-            orden_id = data.get('orden_id')
-            admin_id = data.get('admin_id')
-            monto_tarjeta = data.get('monto_tarjeta')
-
-            # Buscar la orden de compra en la base de datos
+            #Verificar si en el json viene el id de la orden de compra
+            if not data.get('orden_id'):
+                return jsonify({'success': False, 'message': 'No se ha puesto el id del orden'}), 400
+            else:
+                orden_id = data.get('orden_id')
+            
+            #Obtenemos la orden de compra,y por medio de esta el cliente para obtener la tarjeta y disminuir el saldo
             orden = Orden_de_Compra.query.get(orden_id)
-
-            if not orden:
-                return jsonify({'success': False, 'message': 'Orden de compra no encontrada'}), 404
-
-            # Actualizar el estado de la orden de compra
-            orden.status = 'Confirmada'
-
-            # Obtener el cliente y el administrador correspondientes
-            cliente = Clients.query.get(orden.id_client)
-            admin = Administracion.query.get(admin_id)
-
-            if not cliente or not admin:
-                return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
-
-            # Realizar las modificaciones en los registros
-            cliente.saldo -= orden.total_price
-            admin.ganancia += orden.total_price
-
-            # Actualizar el monto de la tarjeta del cliente
-            tarjeta = Tarjeta.query.filter_by(id_client=cliente.id).first()
-            if tarjeta:
-                tarjeta.monto -= monto_tarjeta
-
+            cliente = Clients.query.get(orden.cliente_id)
+            #Obtener el id de la tarjeta por medio del id del cliente
+            tarjeta = Tarjeta.query.get(cliente.id)
+            #Verificamos que el cliente tenga saldo suficiente para la compra
+            if cliente.saldo < orden.total_price:
+                return jsonify({'success': False, 'message': 'Saldo insuficiente'}), 400
+            #Realizamos la transaccion
+            tarjeta.monto += orden.total_price
+            transaccion = Transaccion( orden.producto_id, orden.total_price)
+            db.session.add(transaccion)
             db.session.commit()
-
-            # Aquí puedes enviar un correo al cliente para notificar la confirmación de la compra
-
+            #Enviamos el correo al cliente
             return jsonify({'success': True, 'message': 'Compra confirmada exitosamente'}), 200
 
         except Exception as e:
