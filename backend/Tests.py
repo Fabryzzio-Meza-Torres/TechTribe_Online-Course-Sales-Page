@@ -1,6 +1,6 @@
 import unittest  # libreria de python para realizar test
 from config.qa import config
-from app.models import Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
+from app.models import Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion
 #from app.authentication import authorize
 from app import create_app,db
 from flask_sqlalchemy import SQLAlchemy
@@ -21,18 +21,6 @@ class RoutesTests(unittest.TestCase):
         database_path = config['DATABASE_URI']
         self.app = create_app({'database_path': database_path})
         self.client = self.app.test_client()
-        self.new_client = {
-            'firstname': 'test',
-            'lastname': 'test',
-            'email': 'test@gmail.com',
-            'contrasena': 'test'
-        }
-        self.invalid_client = {
-            'firstname': 'test',
-            'lastname': 'test',
-            'email': '',
-            'contrasena': 'test'
-        }
 
 ########################################################### GET ####################################################################    
     def test_get_cursos(self):

@@ -31,7 +31,7 @@ def create_app(test_config=None):
 
     # Routes 
 #----------------------------------------------------------GET----------------------------------------------------------------------
-    @dev.route('/cursos', methods=['GET'])
+    @dev.route('/productos/cursos', methods=['GET'])
     def get_cursos():
         returned_code = 200
         error_message = ''
@@ -41,23 +41,21 @@ def create_app(test_config=None):
             search_query = request.args.get('search', None)
             if search_query:
                 cursos = Producto.query.filter(
-                    Producto.name.like('%{}%'.format(search_query))).all()
+                    Producto.name.like('%{}%'.format(search_query)),
+                    Producto.type_product == 'Curso'
+                ).all()
 
-                cursos_list = [curso.serialize()
-                                  for curso in cursos]
+                cursos_list = [curso.serialize() for curso in cursos]
 
             else:
-                cursos = Producto.query.all()
-                cursos_list = [curso.serialize()
-                                 for curso in cursos]
+                cursos = Producto.query.filter_by(type_product='Curso').all()
+                cursos_list = [curso.serialize() for curso in cursos]
 
             if not cursos_list:
                 returned_code = 404
                 error_message = 'No cursos found'
 
         except Exception as e:
-
-            # print(sys.exc_info())
             returned_code = 500
             error_message = 'Error retrieving cursos'
 
@@ -67,7 +65,8 @@ def create_app(test_config=None):
         return jsonify({'success': True, 'cursos': cursos_list}), returned_code
 
 
-    @dev.route('/asesorias', methods=['GET'])
+
+    @dev.route('/productos/asesorias', methods=['GET'])
     def get_asesorias():
         returned_code = 200
         error_message = ''
@@ -77,23 +76,21 @@ def create_app(test_config=None):
             search_query = request.args.get('search', None)
             if search_query:
                 asesorias = Producto.query.filter(
-                    Producto.name.like('%{}%'.format(search_query))).all()
+                    Producto.name.like('%{}%'.format(search_query)),
+                    Producto.type_product == 'Asesoria'
+                ).all()
 
-                asesorias_list = [asesoria.serialize()
-                                  for asesoria in asesorias]
+                asesorias_list = [asesoria.serialize() for asesoria in asesorias]
 
             else:
-                asesorias = Producto.query.all()
-                asesorias_list = [asesoria.serialize()
-                                 for asesoria in asesorias]
+                asesorias = Producto.query.filter_by(type_product='Asesoria').all()
+                asesorias_list = [asesoria.serialize() for asesoria in asesorias]
 
             if not asesorias_list:
                 returned_code = 404
                 error_message = 'No asesorias found'
 
         except Exception as e:
-
-            # print(sys.exc_info())
             returned_code = 500
             error_message = 'Error retrieving asesorias'
 
@@ -101,7 +98,7 @@ def create_app(test_config=None):
             return jsonify({'success': False, 'message': error_message}), returned_code
 
         return jsonify({'success': True, 'asesorias': asesorias_list}), returned_code
-            
+                
 
     @dev.route('/profesores', methods=['GET'])
     def get_profesores():

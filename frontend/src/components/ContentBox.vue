@@ -1,5 +1,7 @@
 <template>
   <div class="containerbox" v-if="currentRoute === 'cursos'">
+    <li v-for="product in products" :key="product.id">
+      {{ product.name }} - {{ product.price }}
     <a class="imgCompo">
       <img :src="require('../assets/Cursos/python.jpg')" alt="imgCurso" />
     </a>
@@ -11,6 +13,7 @@
     </p>
     <p>Precio: ${{ precio }}</p>
     <a class="BContainer">Ver curso</a>
+  </li>
   </div>
   <div class="containerbox" v-else-if="currentRoute === 'asesorias'">
     <a class="imgCompo">
@@ -48,10 +51,12 @@
 
 <script>
 export default {
-  data() {
-    return {
-      precio: 99.99, // Puedes asignar aquí el precio correspondiente
-    };
+  name: "ContentBoxProduct",
+  props: {
+    products:{
+      type: Array,
+      required: true,
+    }
   },
   computed: {
     currentRoute() {
