@@ -187,3 +187,39 @@ class Administracion(db.Model):
         self.ganancia = ganancia
         self.created_at = datetime.utcnow()
 
+
+def crear_datos_por_defecto(dev):
+   with dev.app_context():
+    trabajadores = Trabajadores.query.all()
+    cursos = Producto.query.all()
+    
+    if not cursos:
+        curso1=Producto("Python","100","Curso","3 meses")
+        curso2=Producto("C++","100","Curso","3 meses")
+        curso3=Producto("HTML/CSS","100","Curso","3 meses")
+        curso4=Producto("Matematica para CS","100","Curso","3 meses")
+        asesoria1=Producto("Python","100","Asesoria","2 horas")
+        asesoria2=Producto("C++","100","Asesoria","2 horas")
+        asesoria3=Producto("HTML/CSS","100","Asesoria","")
+        asesoria4=Producto("Matematica para CS","100","Asesoria","1 mes")
+        db.session.add_all([curso1,curso2,curso3,curso4,asesoria1,asesoria2,asesoria3,asesoria4])
+    if not trabajadores:
+        curso1 = Producto.query.filter(Producto.name == "Python",Producto.type_product == "Curso").first()
+        curso2 = Producto.query.filter(Producto.name == "C++",Producto.type_product == "Curso").first()
+        curso3 = Producto.query.filter(Producto.name == "HTML/CSS",Producto.type_product == "Curso").first()
+        curso4 = Producto.query.filter(Producto.name == "Matematica para CS",Producto.type_product == "Curso").first()
+        asesoria1 = Producto.query.filter(Producto.name == "Python",Producto.type_product == "Asesoria").first()
+        asesoria2 = Producto.query.filter(Producto.name == "C++",Producto.type_product == "Asesoria").first()
+        asesoria3 = Producto.query.filter(Producto.name == "HTML/CSS",Producto.type_product == "Asesoria").first()
+        asesoria4 = Producto.query.filter(Producto.name == "Matematica para CS",Producto.type_product == "Asesoria").first()
+        profesor1=Trabajadores("Marvin","Abisrror","25",curso1.name)
+        profesor2=Trabajadores("Jesus","Bellido","38",asesoria1.name)
+        profesor3=Trabajadores("Jose","Fiestas","35",curso2.name)
+        profesor4=Trabajadores("Ruben","Rivas","55",asesoria2.name)
+        profesor5=Trabajadores("Alan","Morante","42",curso3.name)
+        profesor6=Trabajadores("Jorge","Villavicencio","36",asesoria3.name)
+        profesor7=Trabajadores("Jose Miguel","Renom","55",curso4.name)
+        profesor8=Trabajadores("Jorge","Tipe","36",asesoria4.name)
+        db.session.add_all([profesor1,profesor2,profesor3,profesor4,profesor5,profesor6,profesor7,profesor8])
+        db.session.commit()
+
