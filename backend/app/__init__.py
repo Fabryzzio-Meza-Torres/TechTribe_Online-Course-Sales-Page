@@ -6,7 +6,7 @@ from flask import (
     abort
 )
 
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto#,crear_datos_por_defecto
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto#
 from flask_cors import CORS
 import re
 import hashlib
@@ -225,7 +225,6 @@ def create_app(test_config=None):
 
 
     @dev.route('/login', methods=['POST'])
-    @authorize
     def login():
         returned_code = 201
         list_errors = []
@@ -267,7 +266,6 @@ def create_app(test_config=None):
             return response
     
     @dev.route('/compra', methods=['POST'])
-    @authorize
     def compra():
         returned_code = 201
         list_errors = []
@@ -320,46 +318,66 @@ def create_app(test_config=None):
         else:
                 return jsonify({'id': compra_id, 'success': True, 'message': 'product successfully purchased!'}), returned_code
 
+ 
+    @dev.route('/tarjeta', methods=['POST'])
+    def crear_tarjeta():
+        returned_code = 201
+        list_errors = []
 
-    @dev.route('/transaccion', methods=['POST'])
-    def transaccion():
         try:
             body = request.json
 
-            # Obtener los datos de la transacción
-            cliente_id = body.get('cliente_id')
-            producto_id = body.get('producto_id')
+            if 'creditcard_number' not in body:
+                list_errors.append('creditcard_number')
+            else:
+                creditcard_number = body['creditcard_number']
 
-            # Buscar el cliente y el producto en la base de datos
-            cliente = Clients.query.get(cliente_id)
-            producto = Producto.query.get(producto_id)
+            if 'expiration_date' not in body:
+                list_errors.append('expiration_date')
+            else:
+                expiration_date = body['expiration_date']
 
-            if not cliente:
-                return jsonify({'success': False, 'message': 'Cliente no encontrado'}), 404
+            if 'password' not in body:
+                list_errors.append('password')
+            else:
+                password = body['password']
 
-            if not producto:
-                return jsonify({'success': False, 'message': 'Producto no encontrado'}), 404
+            if 'monto' not in body:
+                list_errors.append('monto')
+            else:
+                monto = body['monto']
 
-            # Obtener el cliente y el administrador correspondientes
-            cliente = Clients.query.get(data.get('user_id'))
-            admin = Administracion.query.first()
+            if 'id_client' not in body:
+                list_errors.append('id_client')
+            else:
+                id_client = body['id_client']
 
-            # Actualizar el saldo del cliente
-            cliente.saldo -= producto.precio
+            if len(list_errors) > 0:
+                returned_code = 400
+            else:
+                # Crear la tarjeta de crédito
+                tarjeta = Tarjeta(creditcard_number=creditcard_number, expiration_date=expiration_date, password=password, monto=monto, id_client=id_client)
+                db.session.add(tarjeta)
+                db.session.commit()
 
-            # Actualizar el saldo del administrador
-            administrador = Administracion.query.first()
-            administrador.saldo += producto.precio
-
-            # Guardar los cambios en la base de datos
-            db.session.commit()
-
-            return jsonify({'success': True, 'message': 'Transacción realizada correctamente'})
+                tarjeta_id = tarjeta.id
 
         except Exception as e:
             print(sys.exc_info())
             db.session.rollback()
-            return jsonify({'success': False, 'message': 'Error en la transacción'}), 500
+            returned_code = 500
+
+        finally:
+            db.session.close()
+
+        if returned_code == 400:
+            return jsonify({'success': False, 'message': 'Error creating credit card', 'errors': list_errors}), returned_code
+        elif returned_code != 201:
+            abort(returned_code)
+        else:
+            return jsonify({'id': tarjeta_id, 'success': True, 'message': 'Credit card created successfully!'}), returned_code
+    
+ 
     
     #-------------------------------------PATCH-------------------------------------#
     #Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
