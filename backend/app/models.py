@@ -4,6 +4,7 @@ from config.local import config
 import uuid
 import random
 from datetime import datetime
+from sqlalchemy.orm import synonym
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 
@@ -22,15 +23,15 @@ class Clients(db.Model):
     firstname = db.Column(db.String(30), nullable=False)
     lastname = db.Column(db.String(50), nullable=False, unique=False)
     email = db.Column(db.String(99), nullable=False, unique=True)
-    _password = db.Column("password", db.String(255), nullable=False)
+    contrasena = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
 
-    def __init__(self, firstname, lastname, email, password):
+    def __init__(self, firstname, lastname, email, contrasena):
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
-        self.password = password
+        self.contrasena = contrasena
         self.created_at = datetime.utcnow()
 
     def __repr__(self):
@@ -45,14 +46,14 @@ class Clients(db.Model):
 
     @property
     def password(self):
-        raise AttributeError('Password is not readable')
+        return self.contrasena
 
     @password.setter
     def password(self, password):
-        self._password = generate_password_hash(password)
+        self.contrasena = generate_password_hash(password)
 
-    def check_password(self, password):
-        return check_password_hash(self._password, password)
+    password = synonym('contrasena')
+
 
     def insert(self):
         try:
