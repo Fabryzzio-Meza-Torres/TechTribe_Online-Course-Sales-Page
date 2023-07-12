@@ -25,15 +25,17 @@ def create_app(test_config=None):
         dev.register_blueprint(clients_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
         CORS(dev, origins=['http://localhost:8080'])
+
     @dev.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS')
+        response.headers.add('Access-Control-Allow-Methods',
+                             'GET, POST, PATCH, DELETE, OPTIONS')
         return response
 #    crear_datos_por_defecto(dev)
 
-    # Routes 
-#----------------------------------------------------------GET----------------------------------------------------------------------
+    # Routes
+# ----------------------------------------------------------GET----------------------------------------------------------------------
     @dev.route('/productos/cursos', methods=['GET'])
     def get_cursos():
         returned_code = 200
@@ -67,8 +69,6 @@ def create_app(test_config=None):
 
         return jsonify({'success': True, 'cursos': cursos_list}), returned_code
 
-
-
     @dev.route('/productos/asesorias', methods=['GET'])
     def get_asesorias():
         returned_code = 200
@@ -83,11 +83,14 @@ def create_app(test_config=None):
                     Producto.type_product == 'Asesoria'
                 ).all()
 
-                asesorias_list = [asesoria.serialize() for asesoria in asesorias]
+                asesorias_list = [asesoria.serialize()
+                                  for asesoria in asesorias]
 
             else:
-                asesorias = Producto.query.filter_by(type_product='Asesoria').all()
-                asesorias_list = [asesoria.serialize() for asesoria in asesorias]
+                asesorias = Producto.query.filter_by(
+                    type_product='Asesoria').all()
+                asesorias_list = [asesoria.serialize()
+                                  for asesoria in asesorias]
 
             if not asesorias_list:
                 returned_code = 404
@@ -101,7 +104,6 @@ def create_app(test_config=None):
             return jsonify({'success': False, 'message': error_message}), returned_code
 
         return jsonify({'success': True, 'asesorias': asesorias_list}), returned_code
-                
 
     @dev.route('/profesores', methods=['GET'])
     def get_profesores():
@@ -174,7 +176,7 @@ def create_app(test_config=None):
         return jsonify({'success': True, 'orden_de_compras': orden_de_compras_list}), returned_code
 
     # ----------------------------------------------------------------POST--------------------------------------------------------------------
-    """
+
     @dev.route('/register', methods=['POST'])
     def register():
         returned_code = 201
@@ -205,12 +207,12 @@ def create_app(test_config=None):
             if len(list_errors) > 0:
                 returned_code = 400
             else:
-                client = Clients(firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
+                client = Clients(
+                    firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
                 db.session.add(client)
                 db.session.commit()
                 client_id = client.id
 
-    
         except Exception as e:
             print(sys.exc_info())
             db.session.rollback()
@@ -225,7 +227,6 @@ def create_app(test_config=None):
             abort(returned_code)
         else:
             return jsonify({'id': client_id, 'success': True, 'message': 'Client registered successfully!'}), returned_code
-
 
     @dev.route('/login', methods=['POST'])
     def login():
@@ -255,12 +256,12 @@ def create_app(test_config=None):
                 client = Clients.query.filter_by(email=email).first()
 
                 if client and client.check_contrasena(contrasena):
-                        access_token = create_access_token(
-                            identity=client.id_client)
-                        returned_code = 200
+                    access_token = create_access_token(
+                        identity=client.id_client)
+                    returned_code = 200
                 else:
-                        returned_code = 401
-                        list_errors.append('Cliente o contraseña incorrectos')
+                    returned_code = 401
+                    list_errors.append('Cliente o contraseña incorrectos')
 
         except Exception as e:
             print(sys.exc_info())
@@ -270,13 +271,12 @@ def create_app(test_config=None):
             db.session.close()
 
         if returned_code == 400:
-                return jsonify({'success': False, 'message': 'Error buy product', 'errors': list_errors}), returned_code
+            return jsonify({'success': False, 'message': 'Error buy product', 'errors': list_errors}), returned_code
         elif returned_code != 201:
-                abort(returned_code)
+            abort(returned_code)
         else:
-                return jsonify({'token': access_token, 'success': True, 'message': 'product successfully purchased!'}), returned_code
-"""
-    
+            return jsonify({'token': access_token, 'success': True, 'message': 'product successfully purchased!'}), returned_code
+
     @dev.route('/tarjeta/<id_producto>', methods=['POST'])
     @authorize
     def crear_tarjeta(id_producto, client_id):
@@ -305,11 +305,13 @@ def create_app(test_config=None):
                 returned_code = 400
             else:
                 # Crear la tarjeta de crédito
-                tarjeta = Tarjeta(creditcard_number=creditcard_number, expiration_date=expiration_date, password=password, id_client=client_id)
+                tarjeta = Tarjeta(creditcard_number=creditcard_number,
+                                  expiration_date=expiration_date, password=password, id_client=client_id)
                 # Crear orden de compra
                 # Obtener el precio del producto
                 producto = Producto.query.filter_by(id=id_producto).first()
-                orden_de_compra = Orden_de_Compra(status="Pendiente", total_price=producto.price, id_product=id_producto, id_client=client_id)
+                orden_de_compra = Orden_de_Compra(
+                    status="Pendiente", total_price=producto.price, id_product=id_producto, id_client=client_id)
                 db.session.add(tarjeta)
                 db.session.add(orden_de_compra)
                 db.session.commit()
@@ -328,11 +330,10 @@ def create_app(test_config=None):
         else:
             return jsonify({'id': tarjeta_id, 'success': True, 'message': 'Credit card created successfully!'}), returned_code
 
- 
-    
-    #-------------------------------------PATCH-------------------------------------#
-    #Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
+    # -------------------------------------PATCH-------------------------------------#
+    # Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
     # ...
+
     @dev.route('/transacción/<orden_id>', methods=['PATCH'])
     @authorize
     def confirmar_compra(client_id, orden_id):
@@ -358,7 +359,8 @@ def create_app(test_config=None):
 
             # Realizamos la transacción y actualizamos el saldo de la tarjeta
             tarjeta.monto -= orden.total_price
-            transaccion = Transaccion(id_compra=orden.id, ganancia=orden.total_price)
+            transaccion = Transaccion(
+                id_compra=orden.id, ganancia=orden.total_price)
             db.session.add(transaccion)
             db.session.commit()
 
@@ -378,7 +380,7 @@ def create_app(test_config=None):
         return jsonify({
             'success': False,
             'message': 'Method not allowed'
-        }), 405  
+        }), 405
 
     @dev.errorhandler(404)
     @dev.errorhandler(404)
@@ -387,13 +389,12 @@ def create_app(test_config=None):
             'success': False,
             'message': 'Resource not found'
         }), 404
-    
+
     @dev.errorhandler(500)
     def internal_server_error(error):
         return jsonify({
             'success': False,
             'message': 'Internal Server error'
         }), 500
-    
 
     return dev
