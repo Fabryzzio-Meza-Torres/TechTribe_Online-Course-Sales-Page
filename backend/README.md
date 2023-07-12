@@ -171,22 +171,13 @@ localhost
  #### __Errores de Exitoso en nuestro sitio web__:
   ***Ejemplo 1:***
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_200_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error2_200_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_200.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">En estas líneas de código, se genera un hash de la contraseña del usuario, se crea un nuevo usuario en la base de datos con los datos proporcionados y se devuelve un objeto JSON con el ID del nuevo usuario, un estado de éxito y un mensaje indicando que el usuario se creó exitosamente, con un código de estado HTTP 200.</p>
   
   ***Ejemplo 2:***
   <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_200_ejemplo2.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error2_200_ejemplo2.png?raw=true" width="400">
   <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">La función "login" gestiona el inicio de sesión en una aplicación web. Verifica si la solicitud es de tipo "POST", obtiene el correo electrónico y la contraseña proporcionados y consulta la base de datos en busca del usuario. Si se encuentra y las contraseñas coinciden y cumplen los requisitos, devuelve un objeto JSON con un mensaje de inicio de sesión exitoso y código HTTP 200.</p>
-
-***Ejemplo 3:***
-  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error3_200.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">Este código intenta crear una nueva tarjeta en la base de datos con la información proporcionada, confirma la transacción y devuelve una respuesta JSON indicando que la transacción se ha realizado correctamente.</p>
     
 ### __Informacional__:
 <p align="justify">El código de estado 100, específicamente, se utiliza para indicar al cliente que el servidor ha recibido la solicitud inicial y está esperando que el cliente envíe datos adicionales antes de continuar con el proceso.</p>
