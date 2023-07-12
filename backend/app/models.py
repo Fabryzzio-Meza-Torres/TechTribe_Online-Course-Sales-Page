@@ -2,7 +2,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from config.local import config
 import uuid
+import random
 from datetime import datetime
+from sqlalchemy.orm import synonym
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 
@@ -17,32 +19,56 @@ def setup_db(app, database_path):
 #Models
 class Clients(db.Model):
     __tablename__ = 'clients'
-    id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()))
-    firstname= db.Column(db.String(30), nullable=False)
-    lastname= db.Column(db.String(50), nullable=False, unique=False)
-    email= db.Column(db.String(99), nullable=False, unique=True)
+    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    firstname = db.Column(db.String(30), nullable=False)
+    lastname = db.Column(db.String(50), nullable=False, unique=False)
+    email = db.Column(db.String(99), nullable=False, unique=True)
     contrasena = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
-    
-    def __init__(self, firstname, lastname, email,contrasena):
-        self.firstname= firstname
-        self.lastname= lastname
-        self.email= email
+
+    def __init__(self, firstname, lastname, email, contrasena):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email = email
         self.contrasena = contrasena
         self.created_at = datetime.utcnow()
 
     def __repr__(self):
         return '<Clients %r>' % self.email
-    
-    def serialize(self):  
+
+    def serialize(self):
         return {
             "id": self.id,
             "firstname": self.firstname,
             "email": self.email,
         }
-    
-    
+
+    @property
+    def password(self):
+        return self.contrasena
+
+    @password.setter
+    def password(self, password):
+        self.contrasena = generate_password_hash(password)
+
+    password = synonym('contrasena')
+
+
+    def insert(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            client_created_id = self.id
+        except Exception as e:
+            print(sys.exc_info())
+            print('e: ', e)
+            db.session.rollback()
+            raise e
+        finally:
+            db.session.close()
+
+        return client_created_id    
 
 class Trabajadores(db.Model):
     __tablename__ = 'workers'
@@ -124,6 +150,15 @@ class Tarjeta(db.Model):
     def password(self, password):
         self.contrasena = generate_password_hash(password)
     
+    def __init__(self, creditcard_number, expiration_date, password,  id_client):
+        self.creditcard_number = creditcard_number
+        self.expiration_date = expiration_date
+        self.password = password
+        #Se asigna un monto random
+        self.monto = random.randint(100, 1000)
+        self.id_client = id_client
+        self.created_at = datetime.utcnow()
+
     def check_password(self, password):
         return check_password_hash(self.contrasena, password)
     
