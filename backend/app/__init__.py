@@ -11,6 +11,7 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token, ge
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import ForeignKey
+from flask_bcrypt import Bcrypt
 
 import sys
 import uuid
@@ -222,7 +223,7 @@ def create_app(test_config=None):
         else:
             return jsonify({'id': client_id, 'success': True, 'message': 'Client registered successfully!'}), returned_code
 
-    @dev.route('/api/login', methods=['POST'])
+    @dev.route('/login', methods=['POST'])
     def login():
         returned_code = 200
         list_errors = []
