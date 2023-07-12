@@ -72,39 +72,47 @@
 
 ## Componentes:
 ### ContentBox.vue:
-<p align="justify">Es responsable de mostrar y organizar el contenido principal de la página web. Proporciona una caja de contenido que se utiliza para mostrar información relevante sobre los cursos de programación en línea. Puede contener texto, imágenes, enlaces y otros elementos multimedia para proporcionar una experiencia interactiva al usuario. Este componente generalmente se utiliza en varias secciones de la página web para presentar diferentes tipos de contenido.</p>
+<p align="justify">Es responsable de mostrar y organizar el contenido principal de la página web. Proporciona una caja de contenido que se utiliza para mostrar información relevante sobre los cursos de programación en línea. Contiene texto, imágenes, enlaces y otros elementos multimedia para proporcionar una experiencia interactiva al usuario. Este componente generalmente se utiliza en varias secciones de la página web para presentar diferentes tipos de contenido.</p>
 
 ### Inicio.vue:
-<p align="justify">Representa la página de inicio de la página web. Este componente suele contener una introducción a la plataforma de cursos de programación en línea, destacando sus características clave y beneficios. Puede incluir texto descriptivo, imágenes atractivas, llamadas a la acción y enlaces a secciones importantes de la página web. El componente 'Inicio' es esencial para captar la atención de los visitantes y proporcionarles una visión general del contenido y las oportunidades que ofrece el sitio web.</p>
+<p align="justify">Representa la página de inicio de la página web. Este componente contiene una introducción a la plataforma de cursos de programación en línea, destacando sus características clave y beneficios.Incluye texto descriptivo, imágenes atractivas, llamadas a la acción y enlaces a secciones importantes de la página web. El componente 'Inicio' es esencial para captar la atención de los visitantes y proporcionarles una visión general del contenido y las oportunidades que ofrece el sitio web.</p>
+
+
 
 ### Menu.vue:
-<p align="justify">Es responsable de mostrar y manejar el menú de navegación de la página web. Proporciona una estructura visual para los diferentes enlaces y secciones del sitio. El menú suele ser una lista de elementos o botones que permiten al usuario acceder a diferentes partes de la página web, como la página de inicio, los cursos disponibles, las opciones de perfil y otras secciones relevantes. El componente Menu.vue facilita la navegación del usuario y mejora la usabilidad del sitio web.</p>
+<p align="justify">Es responsable de mostrar y manejar el menú de navegación de la página web. Proporciona una estructura visual para los diferentes enlaces y secciones del sitio. El menú usa una lista de elementos o botones que permiten al usuario acceder a diferentes partes de la página web. El componente Menu.vue facilita la navegación del usuario y mejora la usabilidad del sitio web.</p>
 
 ### NewUser.vue:
-<p align="justify">es una sección o formulario que permite a los usuarios nuevos registrarse en la página web para acceder a los cursos de programación en línea. Este componente generalmente incluye campos para que el usuario ingrese su nombre, dirección de correo electrónico, contraseña y otros detalles necesarios para crear una cuenta. También puede contener botones para enviar el formulario de registro y proporcionar mensajes de confirmación o error. El componente 'NewUser.vue' es fundamental para permitir que nuevos usuarios se unan a la plataforma y accedan a los cursos.</p>
+<p align="justify">Es una sección o formulario que permite a los usuarios nuevos registrarse en la página web para acceder a los cursos de programación en línea. Este componente incluye campos para que el usuario ingrese su nombre, apellido, correo electrónico y su contraseña. También contiene botones para enviar el formulario de registro y proporcionar mensajes de confirmación o error. El componente 'NewUser.vue' es fundamental para permitir que nuevos usuarios se unan a la plataforma y accedan a los cursos.</p>
 
 ### TextMenu.vue:
-<p align="justify"> es un elemento de texto utilizado en el menú de navegación de la página web. Proporciona etiquetas o descripciones breves para cada enlace o sección del menú. Estos textos suelen ser concisos y descriptivos, permitiendo al usuario identificar rápidamente la función o el contenido asociado con cada enlace. El componente 'TextMenu.vue' se utiliza para mejorar la legibilidad y la comprensión del menú de navegación.</p>
+<p align="justify">Es un elemento de texto utilizado en el menú de navegación de la página web. Proporciona etiquetas o descripciones breves para cada enlace o sección del menú. Estos textos suelen ser concisos y descriptivos, permitiendo al usuario identificar rápidamente la función o el contenido asociado con cada enlace. El componente 'TextMenu.vue' se utiliza para mejorar la legibilidad y la comprensión del menú de navegación.</p>
 
 ### TextSec.vue:
-<p align="justify">se utiliza para mostrar texto descriptivo en secciones específicas de la página web. Puede contener párrafos de texto, títulos, subtítulos u otros elementos relacionados con la información que se muestra en esa sección en particular. Este componente se utiliza para proporcionar contexto y detalles adicionales sobre el contenido presentado en la página web. El componente 'TextSec.vue' mejora la comprensión y la comunicación de la información al usuario.</p>
+<p align="justify">Se utiliza para mostrar texto descriptivo en secciones específicas de la página web.Contiene párrafos de texto, títulos, subtítulos u otros elementos relacionados con la información que se muestra en esa sección en particular. Este componente se utiliza para proporcionar contexto y detalles adicionales sobre el contenido presentado en la página web. El componente 'TextSec.vue' mejora la comprensión y la comunicación de la información al usuario.</p>
 
 
 ## Vistas:
-### __FormRegis.vue__:
-<p align="justify"></p>
-### __HomeView.vue__:
-<p align="justify"></p>
-### __Signln.vue__:
-<p align="justify"></p>
-### __VistaAses.vue__:
-<p align="justify"></p>
-### __VistaContend.vue__:
-<p align="justify"></p>
-### __VistaCursos.vue__:
-<p align="justify"></p>
-### __VistaPrfs.vue__:
-<p align="justify"></p>
+### FormRegis.vue:
+<p align="justify">Representa la vista de registro en TechTribe. Esta vista contiene un formulario en el que los usuarios pueden ingresar la información requerida para crear una cuenta en el sitio web. El formulario incluye campos como nombre, apellido, email y contraseña. También puede contener botones para enviar el formulario y cancelar el proceso de registro. La vista FormRegis.vue permite a los usuarios registrarse y acceder a los cursos y funcionalidades de la página web.</p>
+
+### HomeView.vue:
+<p align="justify">Representa a la página de inicio de TechTribe. Esta vista contiene una presentación general del sitio web, destacando sus características, beneficios y cursos disponibles.Incluye imágenes, texto descriptivo, animaciones, llamadas a la acción y secciones destacadas. La vista 'HomeView.vue' tiene como objetivo principal captar el interés de los visitantes y brindarles una visión general del contenido y las oportunidades que ofrece el sitio web.</p>
+
+### Signln.vue:
+<p align="justify">Representa a la página de inicio de sesión de TechTribe. Esta vista contiene un formulario en el que los usuarios pueden ingresar sus credenciales de inicio de sesión. También incluye registrarse si el usuario no tiene una cuenta. La vista 'Signln.vue' permite a los usuarios autenticarse en el sitio web y acceder a su perfil y cursos.</p>
+
+### VistaAses.vue:
+<p align="justify">Es la sección en donde los usuarios pueden acceder a servicios de asesoría. Esta vista proporciona información detallada sobre los servicios de asesoría disponibles. También proporciona información sobre los costos o tarifas asociadas. La vista 'VistaAsesoria.vue' permite a los usuarios obtener apoyo adicional y orientación personalizada para su aprendizaje.</p>
+
+### VistaContend.vue:
+<p align="justify">Es la sección en donde se muestra el contenido detallado de cada curso en específico. Esta vista proporciona información detallada sobre cada curso. La vista 'VistaContend.vue' permite a los usuarios explorar y sumergirse en el contenido específico de un curso en particular.</p>
+
+### VistaCursos.vue:
+<p align="justify">Representa a una sección que muestra una lista de los cursos disponibles. En esta vista se presentan los cursos de forma organizada, mostrando detalles como el título, descripción, nivel de dificultad, precio, duración y un video introductorio de cada curso. La vista 'VistaCursos.vue' brinda a los usuarios una visión general de los cursos disponibles y les permite acceder a la información detallada de cada uno.</p>
+
+### VistaProfs.vue:
+<p align="justify">Representa a una sección que muestra información y perfiles de los profesores o instructores de la empresa TechTribe. Esta vista proporciona detalles sobre la experiencia, áreas de especialización, logros y tal vez testimonios de los profesores. También puede incluye opciones para contactar o enviar consultas a los profesores. La vista 'VistaProfs.vue' permite a los usuarios conocer y familiarizarse con los profesores y obtener información sobre sus credenciales y competencias en la enseñanza de los cursos de programación.</p>
 
 
 ## El nombre del script a ejecutar para iniciar la base de datos con datos:
