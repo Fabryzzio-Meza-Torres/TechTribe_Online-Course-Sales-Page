@@ -22,45 +22,49 @@ def create_client():
         body = request.get_json()
 
         if 'firstname' not in body:
-            error_list.append('firstname')
+            error_list.append('firstname is required')
         else:
-            firstname = body['firstname']
+            firstname = body.get('firstname')
 
         if 'lastname' not in body:
-            error_list.append('lastname')
+            error_list.append('lastname is required')
         else:
-            lastname = body['lastname']
+            lastname = body.get('lastname')
 
         if 'email' not in body:
-            error_list.append('email')
+            error_list.append('email is required')
         else:
-            email = body['email']
+            email = body.get('email')
 
-        if 'contrasena' not in body:
-            error_list.append('contrasena')
+        if 'password' not in body:
+            error_list.append('password is required')
         else:
-            contrasena = body['contrasena']
+            password = body.get('password')
 
         client_db= Clients.query.filter_by(email=email).first()
 
         if client_db is not None:
             if client_db.email == email:
                 error_list.append('email already exists')
+        else:
+            if len(password) < 8:
+                error_list.append('Password must have at least 8 characters')
         
         if len(error_list) > 0:
             returned_code = 400
         else:
-            client = Clients(firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
+            client = Clients(firstname=firstname, lastname=lastname, email=email, password=password)
             client_created_id= client.insert()
 
             token = jwt.encode({'client_id': client_created_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, config['SECRET_KEY'], config['ALGORITHM'])
     except Exception as e:
-        print(e)
-        abort(500) 
+        print('e: ', e)
+        returned_code = 500
+
     if returned_code == 400:
         return jsonify({
             'success': False,
-            'error': error_list,
+            'errors': error_list,
             'message': 'Error creating a new user'
         })
     elif returned_code != 201:
