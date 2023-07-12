@@ -55,7 +55,7 @@ export default {
       axios
         .post("/login", {
           email: this.email,
-          password: this.password,
+          contrasena: this.contrasena,
         })
         .then((response) => {
           const access_token = response.data.access_token;
@@ -128,7 +128,10 @@ input {
   border: 2px solid #17133f;
   border-radius: 10px;
   padding: 0 8px;
-  color: #fff;
+  color: #000;
+  /* Cambiado a color negro */
+  background-color: #fff;
+  /* Agregado color de fondo blanco */
 }
 
 .btn-submit {
