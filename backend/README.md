@@ -1,4 +1,4 @@
-<div align="center">
+![image](https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/assets/129927386/fabc1388-3526-4da0-ae0e-daa84722d136)<div align="center">
   <img src=https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Logo2.png?raw=true?alt="texto alternativo">
 </div>
 
@@ -130,16 +130,9 @@ localhost
 #### __Errores de Exitoso en nuestro sitio web__:
  ***Ejemplo 1:***
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error1_500_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">En caso de que ocurra una excepción, se imprime la información de la excepción y se realiza un rollback en la sesión de la base de datos. Se devuelve un objeto JSON indicando el fallo en la creación del usuario, con un mensaje de error y un código de estado HTTP 500.</p>
-  
- ***Ejemplo 2:***
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_500.png?raw=true" alt="texto alternativo" width="400">
-   <p align="justify">Este código captura excepciones, imprime el mensaje de error, realiza un rollback en la transacción de base de datos y devuelve una respuesta JSON indicando que ha ocurrido un error en la transacción.</p>
-  
+
 
 ### __Errores en el Cliente__:
 <p align="justify">El código de estado 400 generalmente indica un problema con la sintaxis de la solicitud realizada.</p>
@@ -147,59 +140,26 @@ localhost
 #### __Errores de Cliente en nuestro sitio web__:
 ***Ejemplo 1:***
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
-  
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error1_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">La función "register" valida y procesa el registro de usuarios en una aplicación web. Retorna un objeto JSON con el estado de éxito o fallo del registro, así como los mensajes de error, si los hay, en un código de estado HTTP 400 en caso de errores.</p>
-  
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error1_400_ejemplo1.png?raw=true" width="400">
+
  ***Ejemplo 2:***
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400_ejemplo2.png?raw=true" alt="texto alternativo" width="400">
-  
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error2_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">La salida de este código es un objeto JSON que indica que la contraseña no cumple con los requisitos, con un estado de éxito establecido en "False" y un mensaje de error correspondiente. Este objeto JSON se devuelve con un código de estado HTTP 400.</p>
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error2_400_ejemplo2.png?raw=true" width="400">
   
  ***Ejemplo 3:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error3_400_ejemplo3.png?raw=true" alt="texto alternativo" width="400">
-  
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error3_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">El código "else" devuelve un objeto JSON indicando credenciales inválidas con un estado de éxito "False" y un mensaje de error. Se devuelve con un código de estado HTTP 400.</p>
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error3_400_ejemplo3.png?raw=true" alt="texto alternativo" width="400">
+
    
  ***Ejemplo 4:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400_ejemplo4.png?raw=true" alt="texto alternativo" width="400">
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error4_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">La salida de este código es un objeto JSON que indica que el usuario no fue encontrado, con un estado de éxito establecido en "False" y un mensaje de error correspondiente. Se devuelve con un código de estado HTTP 400.</p>
-   
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error4_400_ejemplo4.png?raw=true" alt="texto alternativo" width="400">
+
   ***Ejemplo 5:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error5_400_ejemplo5.png?raw=true" alt="texto alternativo" width="400">
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error5_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">La salida de este código es una lista llamada "errors" que se actualiza agregando un mensaje de error indicando que el correo electrónico ya ha sido registrado. Este mensaje de error se agrega al final de la lista.</p>
-   
- ***Ejemplo 6:***
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error6_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify">Este código define una ruta en Flask para una solicitud GET a /orden_de_compra/<curso_name>. Busca un producto en la base de datos según el nombre proporcionado y devuelve información sobre el producto si se encuentra. Si no se encuentra el producto, devuelve un mensaje de error en una respuesta JSON.</p>
-  
- ***Ejemplo 7:***
-<div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Error7_400.png?raw=true" alt="texto alternativo" width="400">
-</div>
-<p align="justify"> Si alguna de las variables creditcard_number, expiration_date o password está vacía o es nula, el código devuelve una respuesta JSON con un mensaje de error 400 indicando que todos los campos son obligatorios.</p>
-  
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error5_400_ejemplo5.png?raw=true" alt="texto alternativo" width="400">
+
+
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
 
