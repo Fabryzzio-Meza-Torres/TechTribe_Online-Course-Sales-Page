@@ -1,34 +1,27 @@
 <template>
   <div class="containerbox" v-if="currentRoute === 'cursos'">
-    <li v-for="product in products" :key="product.id">
-      {{ product.name }} - {{ product.price }}
-    <a class="imgCompo">
-      <img :src="require('../assets/Cursos/python.jpg')" alt="imgCurso" />
-    </a>
-    <h2>Python</h2>
-    <p>
-      Domina Python y crea aplicaciones poderosas con nuestro curso. Sintaxis
-      elegante, fácil de leer y recursos accesibles hacen que el aprendizaje sea
-      divertido
-    </p>
-    <p>Precio: ${{ precio }}</p>
-    <a class="BContainer">Ver curso</a>
-  </li>
+    <div v-for="curso in cursos" :key="curso.id" class="item-product">
+      <a class="imgCompo">
+        <img :src="getCursosImageUrl(curso.id)" alt="imgCurso" />
+      </a>
+      <h2>{{ curso.name }}</h2>
+      <p>
+        {{ curso.description }}
+      </p>
+      <p>Precio del curso: S/.{{ curso.price }}</p>
+      <a class="BContainer">Ver curso</a>
+    </div>
   </div>
   <div class="containerbox" v-else-if="currentRoute === 'asesorias'">
-    <a class="imgCompo">
-      <img
-        :src="require('../assets/Asesorias/asesoria.jpg')"
-        alt="imgAsesoria"
-      />
-    </a>
-    <h2>Asesoria de Python</h2>
-    <p>
-      Domina Python con asesoría experta. Código eficiente, soluciones creativas
-      y proyectos destacados. Desarrolla tu potencial en programación.
-    </p>
-    <p>Precio: ${{ precio }}</p>
-    <a class="BContainer">Ver Asesoria</a>
+    <div v-for="asesoria in asesorias" :key="asesoria.id" class="item-product">
+      <a class="imgCompo">
+        <img :src="getAsesoriasImageUrl(asesoria.id)" alt="imgAsesoria" />
+      </a>
+      <h2>{{ asesoria.name }}</h2>
+      <p>{{ asesoria.description }}</p>
+      <p>Precio de la asesoría: S/.{{ asesoria.price }}</p>
+      <a class="BContainer">Ver asesoría</a>
+    </div>
   </div>
   <div class="containerprof" v-else-if="currentRoute === 'profesores'">
     <div id="worker_1" class="workers">
@@ -50,13 +43,45 @@
 </template>
 
 <script>
+import { getAllAsesorias } from "@/services/asesorias.api.js";
+import { getAllCursos } from "@/services/cursos.api.js";
 export default {
   name: "ContentBoxProduct",
-  props: {
-    products:{
-      type: Array,
-      required: true,
-    }
+  components: {},
+  mounted() {
+    this.loadCursos();
+    this.loadAsesorias();
+  },
+  data() {
+    return {
+      cursos: [],
+      asesorias: [],
+    };
+  },
+  created() {
+    this.loadCursos();
+    this.loadAsesorias();
+    console.log(this.cursos);
+  },
+  methods: {
+    async loadCursos() {
+      const data = await getAllCursos();
+      if (data.data.success) {
+        this.cursos = data.data.cursos;
+      }
+    },
+    async loadAsesorias() {
+      const data = await getAllAsesorias();
+      if (data.data.success) {
+        this.asesorias = data.data.asesorias;
+      }
+    },
+    getCursosImageUrl(cursoName) {
+      return require(`@/assets/Cursos/${cursoName}.jpg`);
+    },
+    getAsesoriasImageUrl(asesoriaName) {
+      return require(`@/assets/Asesorias/${asesoriaName}.jpg`);
+    },
   },
   computed: {
     currentRoute() {
@@ -67,8 +92,13 @@ export default {
 </script>
 <style>
 .containerbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.item-product {
   background-color: #e0115f;
-  display: inline-block;
   width: 275px;
   margin: 10px;
   padding: 10px;
