@@ -71,17 +71,22 @@
 <p align="justify">Es una librería estándar que proporciona funciones para trabajar con datos en formato JSON (JavaScript Object Notation). </p>
 
 ## Componentes:
-### __ContentBox.vue__:
+### ContentBox.vue:
 <p align="justify">Es responsable de mostrar y organizar el contenido principal de la página web. Proporciona una caja de contenido que se utiliza para mostrar información relevante sobre los cursos de programación en línea. Puede contener texto, imágenes, enlaces y otros elementos multimedia para proporcionar una experiencia interactiva al usuario. Este componente generalmente se utiliza en varias secciones de la página web para presentar diferentes tipos de contenido.</p>
-### __Inicio.vue__:
+
+### Inicio.vue:
 <p align="justify">Representa la página de inicio de la página web. Este componente suele contener una introducción a la plataforma de cursos de programación en línea, destacando sus características clave y beneficios. Puede incluir texto descriptivo, imágenes atractivas, llamadas a la acción y enlaces a secciones importantes de la página web. El componente 'Inicio' es esencial para captar la atención de los visitantes y proporcionarles una visión general del contenido y las oportunidades que ofrece el sitio web.</p>
-### __Menu.vue__:
+
+### Menu.vue:
 <p align="justify">Es responsable de mostrar y manejar el menú de navegación de la página web. Proporciona una estructura visual para los diferentes enlaces y secciones del sitio. El menú suele ser una lista de elementos o botones que permiten al usuario acceder a diferentes partes de la página web, como la página de inicio, los cursos disponibles, las opciones de perfil y otras secciones relevantes. El componente Menu.vue facilita la navegación del usuario y mejora la usabilidad del sitio web.</p>
-### __NewUser.vue__:
+
+### NewUser.vue:
 <p align="justify">es una sección o formulario que permite a los usuarios nuevos registrarse en la página web para acceder a los cursos de programación en línea. Este componente generalmente incluye campos para que el usuario ingrese su nombre, dirección de correo electrónico, contraseña y otros detalles necesarios para crear una cuenta. También puede contener botones para enviar el formulario de registro y proporcionar mensajes de confirmación o error. El componente 'NewUser.vue' es fundamental para permitir que nuevos usuarios se unan a la plataforma y accedan a los cursos.</p>
-### __TextMenu.vue__:
+
+### TextMenu.vue:
 <p align="justify"> es un elemento de texto utilizado en el menú de navegación de la página web. Proporciona etiquetas o descripciones breves para cada enlace o sección del menú. Estos textos suelen ser concisos y descriptivos, permitiendo al usuario identificar rápidamente la función o el contenido asociado con cada enlace. El componente 'TextMenu.vue' se utiliza para mejorar la legibilidad y la comprensión del menú de navegación.</p>
-### __TextSec.vue__:
+
+### TextSec.vue:
 <p align="justify">se utiliza para mostrar texto descriptivo en secciones específicas de la página web. Puede contener párrafos de texto, títulos, subtítulos u otros elementos relacionados con la información que se muestra en esa sección en particular. Este componente se utiliza para proporcionar contexto y detalles adicionales sobre el contenido presentado en la página web. El componente 'TextSec.vue' mejora la comprensión y la comunicación de la información al usuario.</p>
 
 
