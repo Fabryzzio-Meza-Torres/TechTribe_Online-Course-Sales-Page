@@ -130,22 +130,9 @@ class RoutesTests(unittest.TestCase):
             self.assertEqual(response.status_code, 404)
             self.assertEqual(data['message'], 'Resource not found')
     
-    def test_crear_tarjeta_error(self):
-            self.new_tarjeta = {
-                'id_client': '32332323',
-                'creditcard_number': '1234567890123456',
-                'password': '123456',
-                'monto': 1000.0
-            }
 
-            response = self.client.post('/tarjeta', json=self.new_tarjeta)
-            data = json.loads(response.data)
-            self.assertEqual(response.status_code, 500)
-            self.assertEqual(data['message'], 'Resource not found')
-
-
-    def test_crear_tarjeta_error(self):
-        response = self.client.post('/tarjet', json={
+    def test_crear_orden_de_compra_error(self):
+        response = self.client.post('/compraz', json={
             'creditcard_number': '1234567890123456',
             'expiration_date': '12/24',
             'password': '123456',
@@ -153,6 +140,54 @@ class RoutesTests(unittest.TestCase):
         })
         data = response.json
 
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource not found')
+
+    def test_crear_profesor_error(self):
+        response = self.client.post('/profesor', json={
+            'firstname': 'John',
+            'lastname': 'Doe',
+            'email': '',
+            'contrasena': 'password123'
+        })
+        data = response.json
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource not found')
+
+    def test_crear_asesoria_error(self):
+        response = self.client.post('/asesoria', json={
+            'creditcard_number': '1234567890123456',
+            'expiration_date': '12/24',
+            'password': '123456',
+            'monto': 1000.0
+        })
+        data = response.json
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource not found')
+
+    def test_crear_curso_error(self):
+        response = self.client.post('/curso', json={
+            'creditcard_number': '1234567890123456',
+            'expiration_date': '12/24',
+            'password': '123456',
+            'monto': 1000.0
+        })
+        data = response.json
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Resource not found')
+    
+    def test_crear_transaccion_error(self):
+        response = self.client.post('/transaccion', json={
+            'creditcard_number': '1234567890123456',
+            'expiration_date': '12/24',
+            'password': '123456',
+            'monto': 1000.0
+        })
+        data = response.json
         self.assertEqual(response.status_code, 404)
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Resource not found')
@@ -189,25 +224,25 @@ class RoutesTests(unittest.TestCase):
             data = json.loads(response.data)
             self.assertEqual(response.status_code, 404)
             
-    def test_get_cursos(self):
-            response = self.client.get('/productos/cursos')
-            data = json.loads(response.data)
-            self.assertEqual(response.status_code, 404)
-        
-        
-    def test_get_asesorias(self):
-            response = self.client.get('/productos/asesorias')
+    def test_get_tarjeta_failed_404(self):
+                
+                response = self.client.get('/tarjetas')
+                data = json.loads(response.data)
+                self.assertEqual(response.status_code, 404)
 
-            data =response.data
+    def test_get_clientes_failed_404(self):
+                    
+                    response = self.client.get('/clientes')
+                    data = json.loads(response.data)
+                    self.assertEqual(response.status_code, 404)
 
-            self.assertEqual(response.status_code, 404)
-            
+    def test_get_transacciones_failed_404(self):
+                            
+                            response = self.client.get('/transacciones')
+                            data = json.loads(response.data)
+                            self.assertEqual(response.status_code, 404)
 
-    def test_get_profesores(self):
-            response = self.client.get('/profesores')
-            data = json.loads(response.data)
-
-            self.assertEqual(response.status_code, 404)
+ 
 
 
 
