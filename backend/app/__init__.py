@@ -1,4 +1,4 @@
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion
+from .models import db, setup_db, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion
 from flask_cors import CORS
 
 from flask import (
@@ -12,18 +12,24 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import ForeignKey
 from flask_bcrypt import Bcrypt
+from .client_controller import clients_bp
+from .authentication import authorize
 
 import sys
-import uuid
-import json
-from datetime import datetime
+import os
 
 
 def create_app(test_config=None):
     dev = Flask(__name__)
     with dev.app_context():
+        dev.register_blueprint(clients_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
         CORS(dev, origins=['http://localhost:8080'])
+    @dev.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS')
+        return response
 #    crear_datos_por_defecto(dev)
 
     # Routes 
@@ -168,7 +174,7 @@ def create_app(test_config=None):
         return jsonify({'success': True, 'orden_de_compras': orden_de_compras_list}), returned_code
 
     # ----------------------------------------------------------------POST--------------------------------------------------------------------
-
+    """
     @dev.route('/register', methods=['POST'])
     def register():
         returned_code = 201
@@ -269,10 +275,11 @@ def create_app(test_config=None):
                 abort(returned_code)
         else:
                 return jsonify({'token': access_token, 'success': True, 'message': 'product successfully purchased!'}), returned_code
-
- 
-    @dev.route('/tarjeta', methods=['POST'])
-    def crear_tarjeta():
+"""
+    
+    @dev.route('/tarjeta/<id_producto>', methods=['POST'])
+    @authorize
+    def crear_tarjeta(id_producto, client_id):
         returned_code = 201
         list_errors = []
 
@@ -294,23 +301,17 @@ def create_app(test_config=None):
             else:
                 password = body['password']
 
-            if 'monto' not in body:
-                list_errors.append('monto')
-            else:
-                monto = body['monto']
-
-            if 'id_client' not in body:
-                list_errors.append('id_client')
-            else:
-                id_client = body['id_client']
-
             if len(list_errors) > 0:
                 returned_code = 400
             else:
                 # Crear la tarjeta de crédito
-                tarjeta = Tarjeta(creditcard_number=creditcard_number, expiration_date=expiration_date, password=password, monto=monto, id_client=id_client)
-            
+                tarjeta = Tarjeta(creditcard_number=creditcard_number, expiration_date=expiration_date, password=password, id_client=client_id)
+                # Crear orden de compra
+                # Obtener el precio del producto
+                producto = Producto.query.filter_by(id=id_producto).first()
+                orden_de_compra = Orden_de_Compra(status="Pendiente", total_price=producto.price, id_product=id_producto, id_client=client_id)
                 db.session.add(tarjeta)
+                db.session.add(orden_de_compra)
                 db.session.commit()
 
                 tarjeta_id = tarjeta.id
@@ -320,44 +321,49 @@ def create_app(test_config=None):
             db.session.rollback()
             returned_code = 500
 
-
         if returned_code == 400:
             return jsonify({'success': False, 'message': 'Error creating credit card', 'errors': list_errors}), returned_code
         elif returned_code != 201:
             abort(returned_code)
         else:
             return jsonify({'id': tarjeta_id, 'success': True, 'message': 'Credit card created successfully!'}), returned_code
-    
+
  
     
     #-------------------------------------PATCH-------------------------------------#
     #Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
     # ...
-
-    @dev.route('/transacción', methods=['PATCH'])
-    def confirmar_compra():
+    @dev.route('/transacción/<orden_id>', methods=['PATCH'])
+    @authorize
+    def confirmar_compra(client_id, orden_id):
         try:
             data = request.get_json()
-            #Verificar si en el json viene el id de la orden de compra
-            if not data.get('orden_id'):
-                return jsonify({'success': False, 'message': 'No se ha puesto el id del orden'}), 400
-            else:
-                orden_id = data.get('orden_id')
-            
-            #Obtenemos la orden de compra,y por medio de esta el cliente para obtener la tarjeta y disminuir el saldo
+            # Verificar si en el json viene el id de la orden de compra
+            if not orden_id:
+                return jsonify({'success': False, 'message': 'No se ha proporcionado el ID de la orden'}), 400
+
+            # Obtenemos la orden de compra y verificamos que pertenezca al cliente autenticado
             orden = Orden_de_Compra.query.get(orden_id)
-            cliente = Clients.query.get(orden.cliente_id)
-            #Obtener el id de la tarjeta por medio del id del cliente
-            tarjeta = Tarjeta.query.get(cliente.id)
-            #Verificamos que el cliente tenga saldo suficiente para la compra
-            if cliente.saldo < orden.total_price:
+            if orden is None or orden.id_cliente != client_id:
+                return jsonify({'success': False, 'message': 'La orden de compra no existe o no pertenece al cliente autenticado'}), 404
+
+            # Obtener la tarjeta del cliente
+            tarjeta = Tarjeta.query.filter_by(id_client=client_id).first()
+            if tarjeta is None:
+                return jsonify({'success': False, 'message': 'La tarjeta del cliente no existe'}), 404
+
+            # Verificamos que el cliente tenga saldo suficiente para la compra
+            if tarjeta.monto < orden.total_price:
                 return jsonify({'success': False, 'message': 'Saldo insuficiente'}), 400
-            #Realizamos la transaccion
-            tarjeta.monto += orden.total_price
-            transaccion = Transaccion( orden.producto_id, orden.total_price)
+
+            # Realizamos la transacción y actualizamos el saldo de la tarjeta
+            tarjeta.monto -= orden.total_price
+            transaccion = Transaccion(id_compra=orden.id, ganancia=orden.total_price)
             db.session.add(transaccion)
             db.session.commit()
-            #Enviamos el correo al cliente
+
+            # Enviamos el correo al cliente
+
             return jsonify({'success': True, 'message': 'Compra confirmada exitosamente'}), 200
 
         except Exception as e:
@@ -365,7 +371,6 @@ def create_app(test_config=None):
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error al confirmar la compra'}), 500
 
-    
      # Error handlers
 
     @dev.errorhandler(405)
