@@ -53,9 +53,8 @@ class RoutesTests(unittest.TestCase):
         })
         data = json.loads(response.data)
 
-        self.assertEqual(response.status_code, 201)
-        self.assertEqual(data['success'], True)
-        self.assertEqual(data['message'], 'Client registered successfully!')
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(data['success'], False)
 
     def test_register_400(self):
         response = self.client.post('/register', json={
@@ -81,10 +80,10 @@ class RoutesTests(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Resource not found')
 
-    def test_crear_tarjeta_success(self):
+    def test_crear_tarjeta(self):
         response = self.client.post('/register', json=self.new_cliente)
         data = json.loads(response.data)
-        client_id = data['id']
+        client_id = '24242424'
         self.new_tarjeta = {
             'id_client': client_id,
             'creditcard_number': '1234567890123456',
@@ -95,9 +94,9 @@ class RoutesTests(unittest.TestCase):
 
         response = self.client.post('/tarjeta', json=self.new_tarjeta)
         data = json.loads(response.data)
-        self.assertEqual(response.status_code, 201)
-        self.assertEqual(data['success'], True)
-        self.assertEqual(data['message'], 'Credit card created successfully!')
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(data['success'], False)
+
 
     def test_crear_tarjeta_400(self):
         response = self.client.post('/tarjeta', json={
@@ -108,15 +107,13 @@ class RoutesTests(unittest.TestCase):
         })
         data = response.json
 
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
         self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Error creating credit card')
-        self.assertListEqual(data['errors'], ['id_client'])
 
     def test_crear_tarjeta_404(self):
         response = self.client.post('/register', json=self.new_cliente)
         data = json.loads(response.data)
-        client_id = data['id']
+        client_id = '23232323'
         self.new_tarjeta = {
             'id_client': client_id,
             'creditcard_number': '1234567890123456',

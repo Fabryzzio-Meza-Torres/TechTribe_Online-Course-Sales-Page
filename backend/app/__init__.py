@@ -1,4 +1,4 @@
-from .models import db, setup_db, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion
+from .models import db, setup_db, Clients,Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion
 from flask_cors import CORS
 
 from flask import (
@@ -228,6 +228,7 @@ def create_app(test_config=None):
         else:
             return jsonify({'id': client_id, 'success': True, 'message': 'Client registered successfully!'}), returned_code
 
+
     @dev.route('/login', methods=['POST'])
     def login():
         returned_code = 200
@@ -276,6 +277,7 @@ def create_app(test_config=None):
             abort(returned_code)
         else:
             return jsonify({'token': access_token, 'success': True, 'message': 'product successfully purchased!'}), returned_code
+
 
     @dev.route('/tarjeta/<id_producto>', methods=['POST'])
     @authorize
