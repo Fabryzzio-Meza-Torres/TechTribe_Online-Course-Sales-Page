@@ -1,4 +1,5 @@
-![image](https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Logo2.png?raw=true)<div align="center">
+<div align="center">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Logo2.png?raw=true" alt="Logo" />
 </div>
 
 ## Integrantes:
