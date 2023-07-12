@@ -1,4 +1,4 @@
-![image](https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/assets/129927386/fabc1388-3526-4da0-ae0e-daa84722d136)<div align="center">
+![image](https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Logo2.png?raw=true)<div align="center">
   <img src=https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Logo2.png?raw=true?alt="texto alternativo">
 </div>
 
