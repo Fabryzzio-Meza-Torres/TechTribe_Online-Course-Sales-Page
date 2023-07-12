@@ -73,7 +73,7 @@
 ## Componentes:
 ### __ContentBox.vue__:
 <p align="justify">Es responsable de mostrar y organizar el contenido principal de la página web. Proporciona una caja de contenido que se utiliza para mostrar información relevante sobre los cursos de programación en línea. Puede contener texto, imágenes, enlaces y otros elementos multimedia para proporcionar una experiencia interactiva al usuario. Este componente generalmente se utiliza en varias secciones de la página web para presentar diferentes tipos de contenido.</p>
-### __Inicio__:
+### __Inicio.vue__:
 <p align="justify">Representa la página de inicio de la página web. Este componente suele contener una introducción a la plataforma de cursos de programación en línea, destacando sus características clave y beneficios. Puede incluir texto descriptivo, imágenes atractivas, llamadas a la acción y enlaces a secciones importantes de la página web. El componente 'Inicio' es esencial para captar la atención de los visitantes y proporcionarles una visión general del contenido y las oportunidades que ofrece el sitio web.</p>
 ### __Menu.vue__:
 <p align="justify">Es responsable de mostrar y manejar el menú de navegación de la página web. Proporciona una estructura visual para los diferentes enlaces y secciones del sitio. El menú suele ser una lista de elementos o botones que permiten al usuario acceder a diferentes partes de la página web, como la página de inicio, los cursos disponibles, las opciones de perfil y otras secciones relevantes. El componente Menu.vue facilita la navegación del usuario y mejora la usabilidad del sitio web.</p>
