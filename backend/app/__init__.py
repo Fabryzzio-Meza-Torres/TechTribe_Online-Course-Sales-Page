@@ -1,20 +1,22 @@
-import random
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
+from flask_cors import CORS
+
 from flask import (
     Flask,
     request,
     jsonify,
     abort
 )
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from sqlalchemy import ForeignKey
+from flask_bcrypt import Bcrypt
 
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto
-from flask_cors import CORS
-import re
-import hashlib
-from sqlalchemy import text
-from config.local import config
-
-import os
 import sys
+import uuid
+import json
+from datetime import datetime
 
 
 def create_app(test_config=None):
@@ -142,13 +144,13 @@ def create_app(test_config=None):
                 orden_de_compras = Orden_de_Compra.query.filter(
                     Orden_de_Compra.id_product.like('%{}%'.format(search_query))).all()
 
-                orden_de_compras_list = [orden_de_compra.serialize()
-                                         for orden_de_compra in orden_de_compras]
+                orden_de_compras_list = [
+                    orden_de_compra.serialize()for orden_de_compra in orden_de_compras]
 
             else:
                 orden_de_compras = Orden_de_Compra.query.all()
-                orden_de_compras_list = [orden_de_compra.serialize()
-                                         for orden_de_compra in orden_de_compras]
+                orden_de_compras_list = [
+                    orden_de_compra.serialize()for orden_de_compra in orden_de_compras]
 
             if not orden_de_compras_list:
                 returned_code = 404
@@ -171,7 +173,6 @@ def create_app(test_config=None):
     def register():
         returned_code = 201
         list_errors = []
-
         try:
             body = request.json
 
@@ -201,14 +202,16 @@ def create_app(test_config=None):
                 client = Clients(firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
                 db.session.add(client)
                 db.session.commit()
-
                 client_id = client.id
 
+        except Exception as e:
         except Exception as e:
             print(sys.exc_info())
             db.session.rollback()
             returned_code = 500
 
+        finally:
+            db.session.close()
         finally:
             db.session.close()
 
@@ -222,12 +225,11 @@ def create_app(test_config=None):
 
     @dev.route('/login', methods=['POST'])
     def login():
-        returned_code = 201
+        returned_code = 200
         list_errors = []
 
         try:
             body = request.json
-
             if 'email' not in body:
                 list_errors.append('email is required')
             else:
@@ -238,74 +240,30 @@ def create_app(test_config=None):
             else:
                 contrasena = body['contrasena']
 
+                if len(list_errors) > 0:
+                    returned_code = 400
+
+                else:
+                    client = Clients.query.filter_by(correo=correo).first()
             if len(list_errors) > 0:
                 returned_code = 400
             else:
                 client = Clients.query.filter_by(email=email).first()
 
-                if client and client.contrasena == contrasena:
-                    response = jsonify({'success': True, 'message': 'Inicio de sesión exitoso'}), 200
-                else:
-                    return jsonify({'success': False, 'message': 'Credenciales inválidas'}), 401
+                    if client and client.check_contrasena(contrasena):
+                        access_token = create_access_token(
+                            identity=client.id_client)
+                        returned_code = 200
+                    else:
+                        returned_code = 401
+                        list_errors.append('Cliente o contraseña incorrectos')
 
         except Exception as e:
             print(sys.exc_info())
             db.session.rollback()
             returned_code = 500
-
         finally:
             db.session.close()
-
-        if returned_code != 201:
-            abort(returned_code)
-        else:
-            return response
-    
-    @dev.route('/compra', methods=['POST'])
-    def compra():
-        returned_code = 201
-        list_errors = []
-        try:
-            body = request.json
-
-            if 'status' not in body:
-                list_errors.append('status is required')
-            else:
-                status = body['status']
-
-            if 'total_price' not in body:
-                list_errors.append('total_price is required')
-            else:
-                total_price = body['total_price']
-
-            if 'id_product' not in body:
-                list_errors.append('id_product is required')
-            else:
-                id_product = body['id_product']
-
-            if 'id_product' not in body:
-                list_errors.append('id_product is required')
-            else:
-                id_product = body['id_product']
-
-            if len(list_errors) > 0:
-                returned_code = 400
-
-            else:
-                compra = Orden_de_Compra(
-                    status, total_price, id_product, id_product)
-                db.session.add(compra)
-                db.session.commit()
-
-                compra_id = compra.id
-
-        except Exception as e:
-                print(sys.exc_info())
-                db.session.rollback()
-                returned_code = 500
-
-        finally:
-                db.session.close()
 
         if returned_code == 400:
                 return jsonify({'success': False, 'message': 'Error buy product', 'errors': list_errors}), returned_code
@@ -419,6 +377,7 @@ def create_app(test_config=None):
             'message': 'Method not allowed'
         }), 405  
 
+    @dev.errorhandler(404)
     @dev.errorhandler(404)
     def not_found(error):
         return jsonify({
