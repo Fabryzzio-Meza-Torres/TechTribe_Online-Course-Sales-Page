@@ -25,14 +25,14 @@
 
 ## Información acerca de las librerías/frameworks/plugins utilizadas en Front-end, Back-end y Base de datos:
 
+### __Vue__:
+<p align="justify">Vue es un framework de JavaScript de código abierto utilizado para construir interfaces de usuario interactivas y de una sola página (SPA, por sus siglas en inglés). Fue creado por Evan You y lanzado por primera vez en 2014. Vue se centra en ser simple, flexible y escalable, lo que lo hace muy popular entre los desarrolladores web.</p>
+
 ### __Flask__:
 <p align="justify">Es un micro-framework de Python utilizado para desarrollar aplicaciones web. Es ligero y tiene una amplia gama de extensiones disponibles. En el proyecto de TechTribe, Flask se emplea para crear el servidor web que aloja la plataforma de cursos y asesorías en programación. Permite a los usuarios interactuar con la plataforma, realizar compras seguras, registrarse y acceder a los cursos y asesorías. Flask es importante porque facilita la creación de aplicaciones web eficientes y escalables.</p>
 
 ### __Flask-SQLAlchemy__:
 <p align="justify">Es una extensión de Flask que proporciona una capa de abstracción sobre SQLAlchemy, una biblioteca de mapeo objeto-relacional para Python. Permite a los desarrolladores crear y administrar fácilmente bases de datos en sus aplicaciones web de Flask. En el proyecto de TechTribe, Flask-SQLAlchemy se emplea para almacenar y proteger de manera segura la información de los clientes,sus tarjetas de credito,los trabajadores, los cursos ofrecidos en la plataforma. También ayuda a estructurar y acceder de manera más eficiente a los datos en la aplicación. En resumen, Flask-SQLAlchemy es una herramienta clave para garantizar la calidad y seguridad de la información en el servicio web de TechTribe.</p>
-
-### __Flask-Migrate__:
-<p align="justify">Es un plugin para Flask que proporciona herramientas para facilitar la gestión de las migraciones de la base de datos en aplicaciones web Flask que utilizan SQLAlchemy. Es importante porque permite la actualización y modificación de los modelos de la base de datos sin tener que eliminar y crearla nuevamente, lo cual puede ser costoso en términos de tiempo y recursos. En el proyecto TechTribe, Flask-Migrate se utiliza para realizar migraciones en la base de datos PostgreSQL de la empresa.</p>
 
 ### __UUID__:
 <p align="justify">Universally Unique Identifier es una biblioteca de Python que se utiliza para generar identificadores únicos para objetos. En el proyecto de TechTribe, se utiliza UUID para generar identificadores únicos para cada objeto que se almacena en la base de datos a través de Flask-SQLAlchemy. Esto garantiza la unicidad de los registros y evita problemas de duplicidad en la base de datos.</p>
@@ -69,6 +69,38 @@
 
 ### __json__:
 <p align="justify">Es una librería estándar que proporciona funciones para trabajar con datos en formato JSON (JavaScript Object Notation). </p>
+
+## Componentes:
+### __ContentBox.vue__:
+<p align="justify">Es responsable de mostrar y organizar el contenido principal de la página web. Proporciona una caja de contenido que se utiliza para mostrar información relevante sobre los cursos de programación en línea. Puede contener texto, imágenes, enlaces y otros elementos multimedia para proporcionar una experiencia interactiva al usuario. Este componente generalmente se utiliza en varias secciones de la página web para presentar diferentes tipos de contenido.</p>
+### __Inicio__:
+<p align="justify">Representa la página de inicio de la página web. Este componente suele contener una introducción a la plataforma de cursos de programación en línea, destacando sus características clave y beneficios. Puede incluir texto descriptivo, imágenes atractivas, llamadas a la acción y enlaces a secciones importantes de la página web. El componente 'Inicio' es esencial para captar la atención de los visitantes y proporcionarles una visión general del contenido y las oportunidades que ofrece el sitio web.</p>
+### __Menu.vue__:
+<p align="justify">Es responsable de mostrar y manejar el menú de navegación de la página web. Proporciona una estructura visual para los diferentes enlaces y secciones del sitio. El menú suele ser una lista de elementos o botones que permiten al usuario acceder a diferentes partes de la página web, como la página de inicio, los cursos disponibles, las opciones de perfil y otras secciones relevantes. El componente Menu.vue facilita la navegación del usuario y mejora la usabilidad del sitio web.</p>
+### __NewUser.vue__:
+<p align="justify">es una sección o formulario que permite a los usuarios nuevos registrarse en la página web para acceder a los cursos de programación en línea. Este componente generalmente incluye campos para que el usuario ingrese su nombre, dirección de correo electrónico, contraseña y otros detalles necesarios para crear una cuenta. También puede contener botones para enviar el formulario de registro y proporcionar mensajes de confirmación o error. El componente 'NewUser.vue' es fundamental para permitir que nuevos usuarios se unan a la plataforma y accedan a los cursos.</p>
+### __TextMenu.vue__:
+<p align="justify"> es un elemento de texto utilizado en el menú de navegación de la página web. Proporciona etiquetas o descripciones breves para cada enlace o sección del menú. Estos textos suelen ser concisos y descriptivos, permitiendo al usuario identificar rápidamente la función o el contenido asociado con cada enlace. El componente 'TextMenu.vue' se utiliza para mejorar la legibilidad y la comprensión del menú de navegación.</p>
+### __TextSec.vue__:
+<p align="justify">se utiliza para mostrar texto descriptivo en secciones específicas de la página web. Puede contener párrafos de texto, títulos, subtítulos u otros elementos relacionados con la información que se muestra en esa sección en particular. Este componente se utiliza para proporcionar contexto y detalles adicionales sobre el contenido presentado en la página web. El componente 'TextSec.vue' mejora la comprensión y la comunicación de la información al usuario.</p>
+
+
+## Vistas:
+### __FormRegis.vue__:
+<p align="justify"></p>
+### __HomeView.vue__:
+<p align="justify"></p>
+### __Signln.vue__:
+<p align="justify"></p>
+### __VistaAses.vue__:
+<p align="justify"></p>
+### __VistaContend.vue__:
+<p align="justify"></p>
+### __VistaCursos.vue__:
+<p align="justify"></p>
+### __VistaPrfs.vue__:
+<p align="justify"></p>
+
 
 ## El nombre del script a ejecutar para iniciar la base de datos con datos:
 serverproject.py
@@ -189,4 +221,4 @@ localhost
 2. Correr en el terminal para instalar todas las dependencias:
 pip install -r requirements.txt
 3. Correr el codigo python principal
-python serverproject.py            
+python serverproject.py
