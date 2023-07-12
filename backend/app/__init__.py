@@ -1,4 +1,4 @@
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Administracion
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion
 from flask_cors import CORS
 
 from flask import (
@@ -204,14 +204,12 @@ def create_app(test_config=None):
                 db.session.commit()
                 client_id = client.id
 
-        except Exception as e:
+    
         except Exception as e:
             print(sys.exc_info())
             db.session.rollback()
             returned_code = 500
 
-        finally:
-            db.session.close()
         finally:
             db.session.close()
 
@@ -244,17 +242,17 @@ def create_app(test_config=None):
                     returned_code = 400
 
                 else:
-                    client = Clients.query.filter_by(correo=correo).first()
+                    client = Clients.query.filter_by(email=email).first()
             if len(list_errors) > 0:
                 returned_code = 400
             else:
                 client = Clients.query.filter_by(email=email).first()
 
-                    if client and client.check_contrasena(contrasena):
+                if client and client.check_contrasena(contrasena):
                         access_token = create_access_token(
                             identity=client.id_client)
                         returned_code = 200
-                    else:
+                else:
                         returned_code = 401
                         list_errors.append('Cliente o contraseña incorrectos')
 
@@ -270,7 +268,7 @@ def create_app(test_config=None):
         elif returned_code != 201:
                 abort(returned_code)
         else:
-                return jsonify({'id': compra_id, 'success': True, 'message': 'product successfully purchased!'}), returned_code
+                return jsonify({'token': access_token, 'success': True, 'message': 'product successfully purchased!'}), returned_code
 
  
     @dev.route('/tarjeta', methods=['POST'])
