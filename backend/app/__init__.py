@@ -6,7 +6,7 @@ from flask import (
     abort
 )
 
-from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto#
+from .models import db, setup_db, Clients, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, crear_datos_por_defecto
 from flask_cors import CORS
 import re
 import hashlib
@@ -22,7 +22,6 @@ def create_app(test_config=None):
     with dev.app_context():
         setup_db(dev, test_config['database_path'] if test_config else None)
         CORS(dev, origins=['http://localhost:8080'])
-        crear_datos_por_defecto(dev)
 #    crear_datos_por_defecto(dev)
 
     # Routes 
@@ -284,17 +283,17 @@ def create_app(test_config=None):
             else:
                 id_product = body['id_product']
 
-            if 'id_creditcard' not in body:
-                list_errors.append('id_creditcard is required')
+            if 'id_product' not in body:
+                list_errors.append('id_product is required')
             else:
-                id_creditcard = body['id_creditcard']
+                id_product = body['id_product']
 
             if len(list_errors) > 0:
                 returned_code = 400
 
             else:
                 compra = Orden_de_Compra(
-                    status, total_price, id_creditcard, id_product)
+                    status, total_price, id_product, id_product)
                 db.session.add(compra)
                 db.session.commit()
 
@@ -322,7 +321,7 @@ def create_app(test_config=None):
         list_errors = []
 
         try:
-            body = request.json
+            body = request.get_json()
 
             if 'creditcard_number' not in body:
                 list_errors.append('creditcard_number')
@@ -354,6 +353,7 @@ def create_app(test_config=None):
             else:
                 # Crear la tarjeta de crédito
                 tarjeta = Tarjeta(creditcard_number=creditcard_number, expiration_date=expiration_date, password=password, monto=monto, id_client=id_client)
+            
                 db.session.add(tarjeta)
                 db.session.commit()
 
@@ -364,8 +364,6 @@ def create_app(test_config=None):
             db.session.rollback()
             returned_code = 500
 
-        finally:
-            db.session.close()
 
         if returned_code == 400:
             return jsonify({'success': False, 'message': 'Error creating credit card', 'errors': list_errors}), returned_code
@@ -411,7 +409,29 @@ def create_app(test_config=None):
             db.session.rollback()
             return jsonify({'success': False, 'message': 'Error al confirmar la compra'}), 500
 
-    # ...
+    
+     # Error handlers
 
+    @dev.errorhandler(405)
+    def method_not_allowed(error):
+        return jsonify({
+            'success': False,
+            'message': 'Method not allowed'
+        }), 405  
+
+    @dev.errorhandler(404)
+    def not_found(error):
+        return jsonify({
+            'success': False,
+            'message': 'Resource not found'
+        }), 404
+    
+    @dev.errorhandler(500)
+    def internal_server_error(error):
+        return jsonify({
+            'success': False,
+            'message': 'Internal Server error'
+        }), 500
+    
 
     return dev

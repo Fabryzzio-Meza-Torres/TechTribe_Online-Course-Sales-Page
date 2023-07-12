@@ -113,7 +113,7 @@ class Tarjeta(db.Model):
     password = db.Column(db.String(30), nullable=False)
     monto= db.Column(db.Float(), nullable=False)
     id_client = db.Column(db.String(36), db.ForeignKey('clients.id'), nullable=False)
-    created_at = db.Column(db.DateTime(timezone=True), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True), nullable=False, default=lambda:datetime.utcnow())
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
 
     @property
@@ -130,12 +130,6 @@ class Tarjeta(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.contrasena, password)
 
-    def __init__(self, creditcard_number, expiration_date,password, id_client):
-        self.creditcard_number = creditcard_number
-        self.expiration_date = expiration_date
-        self.password = password
-        self.id_client = id_client
-        self.created_at = datetime.utcnow()
     
     def __repr__(self):
         return '<Tarjeta %r>' % self.creditcard_number
@@ -191,8 +185,9 @@ class Transaccion(db.Model):
         self.created_at = datetime.utcnow()
 
 
-def crear_datos_por_defecto(dev):
+def crear_datos_por_defecto(dev,db):
    with dev.app_context():
+    setup_db(dev, db)
     trabajadores = Trabajadores.query.all()
     cursos = Producto.query.all()
     
