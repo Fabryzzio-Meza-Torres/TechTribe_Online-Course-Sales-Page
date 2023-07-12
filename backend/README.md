@@ -130,7 +130,7 @@ localhost
 #### __Errores de Exitoso en nuestro sitio web__:
  ***Ejemplo 1:***
 <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error1_500_ejemplo1.png?raw=true" alt="texto alternativo" width="400">
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error1_500_ejemplo1.png?raw=true" width="400">
 <div align="left">
 
 
@@ -141,24 +141,26 @@ localhost
 ***Ejemplo 1:***
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error1_400_ejemplo1.png?raw=true" width="400">
-
+<div align="left">
+  
  ***Ejemplo 2:***
 <div align="left">
   <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error2_400_ejemplo2.png?raw=true" width="400">
   
  ***Ejemplo 3:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error3_400_ejemplo3.png?raw=true" alt="texto alternativo" width="400">
-
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error3_400_ejemplo3.png?raw=true" width="400">
+<div align="left">
    
  ***Ejemplo 4:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error4_400_ejemplo4.png?raw=true" alt="texto alternativo" width="400">
-
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error4_400_ejemplo4.png?raw=true" width="400">
+<div align="left">
+  
   ***Ejemplo 5:***
  <div align="left">
-  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error5_400_ejemplo5.png?raw=true" alt="texto alternativo" width="400">
-
+  <img src="https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Error5_400_ejemplo5.png?raw=true" width="400">
+<div align="left">
 
 ### __Redirección__:
 <p align="justify">El código de estado 300 se utiliza principalmente para casos en los que un recurso ha cambiado de ubicación de forma permanente o temporalmente.</p>
