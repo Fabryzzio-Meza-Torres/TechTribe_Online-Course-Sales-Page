@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/static/images/Logo2.png?raw=true alt="texto alternativo">
+  <img src=https://github.com/Fabryzzio-Meza-Torres/TechTribe_ProyectoDBP/blob/TechTribe/backend/static/images/Logo2.png?raw=true?alt="texto alternativo">
 </div>
 
 ## Integrantes:
