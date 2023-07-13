@@ -4,7 +4,7 @@
       <h2 class="form-title">INICIAR SESIÓN</h2>
 
       <!-- Formulario de inicio de sesión -->
-      <form @submit.prevent="login" class="form-container">
+      <form @submit.prevent="loginEvent" class="form-container">
         <div class="form-group">
           <label for="email" class="input-label">Correo Electrónico</label>
           <input
@@ -31,7 +31,11 @@
       </form>
 
       <!-- Mensaje de éxito o error -->
-      <div v-if="message" :class="{ success: success, error: !success }">
+      <div
+        v-if="message"
+        :class="{ success: success, error: !success }"
+        class="message"
+      >
         {{ message }}
       </div>
     </div>
@@ -39,38 +43,45 @@
 </template>
 
 <script>
-import axios from "axios";
+import { signIn } from "@/services/users.api";
 
 export default {
+  name: "SignIn",
   data() {
     return {
       email: "",
       password: "",
-      success: false,
       message: "",
+      success: false,
     };
   },
   methods: {
-    login() {
-      axios
-        .post("/login", {
+    async loginEvent() {
+      try {
+        const response = await signIn({
           email: this.email,
-          contrasena: this.contrasena,
-        })
-        .then((response) => {
-          const access_token = response.data.access_token;
-          // Guardar el token en las cookies
-          this.$cookies.set("access_token", access_token);
-          // Mostrar mensaje de éxito
-          this.success = true;
-          this.message = "Inicio de sesión exitoso.";
-        })
-        .catch((error) => {
-          console.log(error);
-          // Mostrar mensaje de error
-          this.success = false;
-          this.message = "Error al iniciar sesión. Verifica tus credenciales.";
+          password: this.password,
         });
+
+        if (response && response.success) {
+          this.success = true;
+          this.message = "Inicio de sesión exitoso!";
+
+          localStorage.setItem("TOKEN", response.token);
+
+          setTimeout(() => {
+            this.$router.push({ name: "Home" });
+          }, 1000);
+        } else {
+          this.success = false;
+          this.message = "Credenciales incorrectas!";
+        }
+      } catch (error) {
+        this.success = false;
+        this.message =
+          "Error al iniciar sesión. Por favor, inténtelo de nuevo.";
+        console.error(error);
+      }
     },
   },
 };
@@ -129,9 +140,7 @@ input {
   border-radius: 10px;
   padding: 0 8px;
   color: #000;
-  /* Cambiado a color negro */
   background-color: #fff;
-  /* Agregado color de fondo blanco */
 }
 
 .btn-submit {
@@ -148,17 +157,18 @@ input {
   background-color: #0f1c26;
 }
 
-.success {
-  color: #4caf50;
+.message {
+  color: #fff;
   font-size: 14px;
   font-weight: bold;
   margin-top: 10px;
 }
 
+.success {
+  color: #4caf50;
+}
+
 .error {
   color: #f44336;
-  font-size: 14px;
-  font-weight: bold;
-  margin-top: 10px;
 }
 </style>

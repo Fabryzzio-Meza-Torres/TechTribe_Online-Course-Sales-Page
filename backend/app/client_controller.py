@@ -8,6 +8,7 @@ from flask import (
 
 import jwt
 import datetime
+from flask_bcrypt import check_password_hash
 
 from .models import Clients
 from config.local import config
@@ -76,10 +77,10 @@ def create_client():
             'client_created_id': client_created_id,
         }), returned_code
     
-@clients_bp.route('/api/signin', methods=['POST'])
+@clients_bp.route('/clients/login', methods=['POST'])
 def signin():
-    error_list=[]
-    returned_code= 201
+    error_list = []
+    returned_code = 201
     try:
         body = request.get_json()
 
@@ -93,12 +94,12 @@ def signin():
         else:
             password = body.get('password')
 
-        client_db= Clients.query.filter_by(email=email).first()
+        client_db = Clients.query.filter_by(email=email).first()
 
         if client_db is None:
             error_list.append('email does not exist')
         else:
-            if client_db.password != password:
+            if not check_password_hash(client_db.password, password):
                 error_list.append('password is incorrect')
         
         if len(error_list) > 0:

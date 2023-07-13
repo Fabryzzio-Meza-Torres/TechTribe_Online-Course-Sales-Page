@@ -1,4 +1,4 @@
-from .models import db, setup_db, Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, Clients
+from .models import db, setup_db,Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion, Clients
 from flask_cors import CORS
 
 from flask import (
@@ -176,6 +176,59 @@ def create_app(test_config=None):
         return jsonify({'success': True, 'orden_de_compras': orden_de_compras_list}), returned_code
 
     # ----------------------------------------------------------------POST--------------------------------------------------------------------
+
+    @dev.route('/register', methods=['POST'])
+    def register():
+        returned_code = 201
+        list_errors = []
+        try:
+            body = request.json
+
+            if 'firstname' not in body:
+                list_errors.append('firstname')
+            else:
+                firstname = body['firstname']
+
+            if 'lastname' not in body:
+                list_errors.append('lastname')
+            else:
+                lastname = body['lastname']
+
+            if 'email' not in body:
+                list_errors.append('email')
+            else:
+                email = body['email']
+
+            if 'contrasena' not in body:
+                list_errors.append('contrasena')
+            else:
+                contrasena = body['contrasena']
+
+            if len(list_errors) > 0:
+                returned_code = 400
+            else:
+                client = Clients(
+                    firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
+                db.session.add(client)
+                db.session.commit()
+                client_id = client.id
+
+        except Exception as e:
+            print(sys.exc_info())
+            db.session.rollback()
+            returned_code = 500
+
+        finally:
+            db.session.close()
+
+        if returned_code == 400:
+            return jsonify({'success': False, 'message': 'Error registering client', 'errors': list_errors}), returned_code
+        elif returned_code != 201:
+            abort(returned_code)
+        else:
+            return jsonify({'id': client_id, 'success': True, 'message': 'Client registered successfully!'}), returned_code
+
+
     @dev.route('/login', methods=['POST'])
     def login():
         returned_code = 200
@@ -224,6 +277,7 @@ def create_app(test_config=None):
             abort(returned_code)
         else:
             return jsonify({'token': access_token, 'success': True, 'message': 'product successfully purchased!'}), returned_code
+
 
     @dev.route('/tarjeta/<id_producto>', methods=['POST'])
     @authorize
