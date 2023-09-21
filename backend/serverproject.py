@@ -25,7 +25,7 @@ import psycopg2
 dev = Flask(__name__)
 
 dev.config['SECRET_KEY'] = 'pass1234word'
-dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/project'
+dev.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mezatorres123@localhost:5432/project'
 db = SQLAlchemy(dev)
 migrate = Migrate(dev, db)
 
