@@ -179,10 +179,13 @@ def create_app(test_config=None):
 
     @dev.route('/register', methods=['POST'])
     def register():
+        print("waaaaaaaaaaaaaaaaaaaaaa")
         returned_code = 201
         list_errors = []
         try:
             body = request.json
+
+            print(body);
 
             if 'firstname' not in body:
                 list_errors.append('firstname')
@@ -222,7 +225,7 @@ def create_app(test_config=None):
             db.session.close()
 
         if returned_code == 400:
-            return jsonify({'success': False, 'message': 'Error registering client', 'errors': list_errors}), returned_code
+            return jsonify({'success': False, 'message': 'Error registering client', 'errors': list_errors}),400 
         elif returned_code != 201:
             abort(returned_code)
         else:

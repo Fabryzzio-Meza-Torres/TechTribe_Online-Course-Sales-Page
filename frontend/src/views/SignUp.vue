@@ -53,7 +53,6 @@ export default {
   methods: {
     async signUpEvent() {
       const response = await signUp(this.user);
-
       if (response && response.success) {
         this.isUserSubmitted = true;
         localStorage.setItem("TOKEN", response.token);
@@ -63,8 +62,8 @@ export default {
       } else if (response && response.error) {
         this.errorLists = response.error;
       } else {
-        this.errorLists = ["Usuario Creado"];
         console.log("Invalid response:", response);
+        this.errorLists = ["Faltan llenar datos"];
       }
     },
   },
@@ -120,7 +119,7 @@ export default {
 }
 
 .botons {
-  width: 423px;
+  width: 320px;
   background: #1f53c5;
   border: none;
   padding: 12px;
