@@ -4,11 +4,11 @@
       <img :src="require('../assets/Logo2.png')" alt="Logo" />
     </a>
     <div class="navbar-container">
-      <a><router-link to="/cursos">Cursos</router-link></a>
-      <a><router-link to="/asesorias">Asesoria</router-link></a>
-      <a><router-link to="/profesores">Profesores</router-link></a>
-      <a><router-link to="/sign-in">Iniciar Sesión</router-link></a>
-      <a><router-link to="/register">Registrate</router-link></a>
+      <router-link to="/cursos" class="Mienlace">Cursos</router-link>
+      <router-link to="/asesorias" class="Mienlace">Asesoria</router-link>
+      <router-link to="/profesores" class="Mienlace">Profesores</router-link>
+      <router-link to="/sign-in" class="Mienlace">Iniciar Sesión</router-link>
+      <router-link to="/register" class="Mienlace">Registrate</router-link>
     </div>
   </nav>
 </template>
@@ -26,6 +26,11 @@ export default {
   align-items: center;
   color: #fff;
   background-color: #11111f;
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }
 
 .navbar-container a:hover {
@@ -56,8 +61,17 @@ a.logo {
   justify-content: center;
 }
 
-a {
-  color: #fff;
+.Mienlace {
+  color: white;
   text-decoration: none;
+  transition: color 0.3s;
+}
+
+.Mienlace:hover {
+  color: gold;
+}
+
+.Mienlace:visited {
+  color: white;
 }
 </style>

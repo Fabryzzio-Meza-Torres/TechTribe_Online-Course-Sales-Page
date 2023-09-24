@@ -65,7 +65,7 @@ body {
   width: 100%;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 45px;
 }
 
 main {

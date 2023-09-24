@@ -109,13 +109,13 @@ export default {
 }
 
 .user-message-errors a {
-  color: white;
+  color: red;
   text-decoration: none;
 }
 
 .user-message-errors a:hover {
-  color: white;
-  text-decoration: underline;
+  color: lightgreen;
+  text-decoration: none;
 }
 
 .botons {
