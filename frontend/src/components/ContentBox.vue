@@ -9,7 +9,7 @@
         {{ curso.description }}
       </p>
       <p>Precio del curso: S/.{{ curso.price }}</p>
-      <a class="BContainer">Comprar curso</a>
+      <router-link to="/Compra" class="Mienlace">Compra aqui</router-link>
     </div>
   </div>
   <div class="containerbox" v-else-if="currentRoute === 'asesorias'">
@@ -20,7 +20,7 @@
       <h2>{{ asesoria.name }}</h2>
       <p>{{ asesoria.description }}</p>
       <p>Precio de la asesoría: S/.{{ asesoria.price }}</p>
-      <a class="BContainer">Obtener una asesoría</a>
+      <router-link to="/Compra" class="Mienlace">Compra aqui</router-link>
     </div>
   </div>
   <div class="containerboxprof" v-else-if="currentRoute === 'profesores'">
