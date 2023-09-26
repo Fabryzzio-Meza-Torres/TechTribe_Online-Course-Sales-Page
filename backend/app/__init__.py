@@ -336,8 +336,7 @@ def create_app(test_config=None):
             return jsonify({'id': tarjeta_id, 'success': True, 'message': 'Credit card created successfully!'}), returned_code
 
     # -------------------------------------PATCH-------------------------------------#
-    # Hacemos patch, donde cuando se confirme la compra se le envia un correo al cliente, además de modificar los registros, donde se le resta el saldo al cliente y se le suma al administrador
-    # ...
+
 
     @dev.route('/transacción/<orden_id>', methods=['PATCH'])
     @authorize

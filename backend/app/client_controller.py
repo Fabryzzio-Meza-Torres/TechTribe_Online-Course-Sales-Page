@@ -7,6 +7,7 @@ from flask import (
 )
 
 import jwt
+import sys
 import datetime
 from flask_bcrypt import check_password_hash
 
@@ -60,6 +61,7 @@ def create_client():
             token = jwt.encode({'client_id': client_created_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, config['SECRET_KEY'], config['ALGORITHM'])
     except Exception as e:
         print('e: ', e)
+        print(sys.exc_info())
         returned_code = 500
 
     if returned_code == 400:
