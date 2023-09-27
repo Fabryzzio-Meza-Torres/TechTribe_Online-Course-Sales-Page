@@ -1,4 +1,4 @@
-from .models import db, setup_db, Clients,Trabajadores, Producto, Tarjeta, Orden_de_Compra, Transaccion
+from .models import db, setup_db, Clients,Trabajadores, Producto, Tarjeta, Transaccion
 from flask_cors import CORS
 
 from flask import (
@@ -13,13 +13,13 @@ from flask_migrate import Migrate
 from sqlalchemy import ForeignKey
 from flask_bcrypt import Bcrypt
 from .client_controller import clients_bp
-from .authentication import authorize
+#from .authentication import authorize
 
 import sys
 import os
 import uuid
 
-
+#
 def create_app(test_config=None):
     dev = Flask(__name__)
     with dev.app_context():
