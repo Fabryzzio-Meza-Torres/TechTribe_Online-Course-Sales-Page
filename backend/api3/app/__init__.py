@@ -25,7 +25,8 @@ def create_app(test_config=None):
     with dev.app_context():
         dev.register_blueprint(clients_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
-        CORS(dev, origins=['http://localhost:8080'])
+        dev.run(port=5002)
+        CORS(dev, origins='*')
 
     @dev.after_request
     def after_request(response):

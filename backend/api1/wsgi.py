@@ -1,4 +1,6 @@
-from api1.app import dev as api1
+from app import create_app
+
+dev = create_app()
 
 if __name__ == '__main__':
-    api1.run()
+    dev.run()

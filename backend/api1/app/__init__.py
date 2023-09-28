@@ -5,7 +5,8 @@ from flask import (
     Flask,
     request,
     jsonify,
-    abort
+    abort,
+    session,
 )
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 from flask_sqlalchemy import SQLAlchemy
@@ -21,10 +22,13 @@ import os
 #AUTHENTICATION
 def create_app(test_config=None):
     dev = Flask(__name__)
+    #secret key
+    dev.config['SECRET_KEY'] = 'misWebosProfeColchadoTipeEsMejor'
     with dev.app_context():
         dev.register_blueprint(clients_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
-        CORS(dev, origins=['http://localhost:8080'])
+        dev.run(port=5000)
+        CORS(dev, origins='*')
 
     @dev.after_request
     def after_request(response):
@@ -101,24 +105,21 @@ def create_app(test_config=None):
             else:
                 email = body['email']
 
-            if 'contrasena' not in body:
-                list_errors.append('contrasena is required')
+            if 'password' not in body:
+                list_errors.append('password is required')
             else:
-                contrasena = body['contrasena']
+                password = body['password']
 
-                if len(list_errors) > 0:
-                    returned_code = 400
-
-                else:
-                    client = Clients.query.filter_by(email=email).first()
             if len(list_errors) > 0:
                 returned_code = 400
+
             else:
                 client = Clients.query.filter_by(email=email).first()
 
-                if client and client.check_contrasena(contrasena):
-                    access_token = create_access_token(
-                        identity=client.id_client)
+                if client and password == client.contrasena:
+                    session['client_id'] = client.id
+                    # Cookie es el id del cliente encriptado y se devuelve en el json usando session
+                    cookie = session['client_id']
                     returned_code = 200
                 else:
                     returned_code = 401
@@ -128,15 +129,13 @@ def create_app(test_config=None):
             print(sys.exc_info())
             db.session.rollback()
             returned_code = 500
-        finally:
-            db.session.close()
 
         if returned_code == 400:
-            return jsonify({'success': False, 'message': 'Error buy product', 'errors': list_errors}), returned_code
-        elif returned_code != 201:
+            return jsonify({'success': False, 'message': 'Error login', 'errors': list_errors}), returned_code
+        elif returned_code != 200:
             abort(returned_code)
         else:
-            return jsonify({'token': access_token, 'success': True, 'message': 'product successfully purchased!'}), returned_code
+            return jsonify({'success': True, 'message': 'Login successful!', 'cookie': cookie}), returned_code
 
 
 
@@ -149,7 +148,6 @@ def create_app(test_config=None):
             'message': 'Method not allowed'
         }), 405
 
-    @dev.errorhandler(404)
     @dev.errorhandler(404)
     def not_found(error):
         return jsonify({

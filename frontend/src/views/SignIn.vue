@@ -43,8 +43,6 @@
 </template>
 
 <script>
-import { signIn } from "@/services/users.api";
-
 export default {
   name: "SignIn",
   data() {
@@ -57,31 +55,36 @@ export default {
   },
   methods: {
     async loginEvent() {
-      try {
-        const response = await signIn({
-          email: this.email,
-          password: this.password,
-        });
-
-        if (response && response.success) {
-          this.success = true;
-          this.message = "Inicio de sesión exitoso!";
-
-          localStorage.setItem("TOKEN", response.token);
-
-          setTimeout(() => {
-            this.$router.push({ name: "Home" });
-          }, 1000);
-        } else {
-          this.success = false;
-          this.message = "Credenciales incorrectas!";
-        }
-      } catch (error) {
-        this.success = false;
-        this.message =
-          "Error al iniciar sesión. Por favor, inténtelo de nuevo.";
-        console.error(error);
-      }
+      let user = {
+        email: this.email,
+        password: this.password,
+      };
+      fetch("http://127.0.0.1:5000" + "/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data && data.success) {
+            this.success = true;
+            this.message = "Inicio de sesión exitoso!";
+            //imprimir cookie de flask session
+            console.log(data);
+            setTimeout(() => {
+              //window.location.href = "/";
+            }, 1000);
+          } else {
+            this.message = "Credenciales incorrectas!";
+            this.success = false;
+          }
+          return data;
+        })
+        .catch((err) => console.log(err));
     },
   },
 };

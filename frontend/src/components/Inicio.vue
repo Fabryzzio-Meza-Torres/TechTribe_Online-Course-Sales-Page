@@ -10,7 +10,11 @@
 
       <div class="button-container" id="botonmenuin">
         <button class="button">
-          <a>Inscríbete ahora</a>
+          <a
+            ><router-link to="/register" class="link"
+              >Inscríbete ahora</router-link
+            ></a
+          >
         </button>
       </div>
     </main>
@@ -264,6 +268,11 @@ footer {
   height: 150px;
   animation-delay: 0s;
   animation-duration: 11s;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
 }
 
 @keyframes animate {

@@ -4,11 +4,13 @@
       <img :src="require('../assets/Logo2.png')" alt="Logo" />
     </a>
     <div class="navbar-container">
-      <a><router-link to="/cursos">Cursos</router-link></a>
-      <a><router-link to="/asesorias">Asesoria</router-link></a>
-      <a><router-link to="/profesores">Profesores</router-link></a>
-      <a><router-link to="/sign-in">Iniciar Sesión</router-link></a>
-      <a><router-link to="/register">Registrate</router-link></a>
+      <a><router-link to="/cursos" class="link">Cursos</router-link></a>
+      <a><router-link to="/asesorias" class="link">Asesoria</router-link></a>
+      <a><router-link to="/profesores" class="link">Profesores</router-link></a>
+      <a
+        ><router-link to="/sign-in" class="link">Iniciar Sesión</router-link></a
+      >
+      <a><router-link to="/register" class="link">Registrate</router-link></a>
     </div>
   </nav>
 </template>
@@ -56,8 +58,8 @@ a.logo {
   justify-content: center;
 }
 
-a {
-  color: #fff;
+.link {
+  color: white;
   text-decoration: none;
 }
 </style>

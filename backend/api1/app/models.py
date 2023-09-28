@@ -4,17 +4,17 @@ from config.local import config
 import uuid
 import random
 from datetime import datetime
-from sqlalchemy.orm import synonym
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 
 db= SQLAlchemy()
 
 def setup_db(app, database_path):
-    app.config["SQLALCHEMY_DATABASE_URI"] = config['DATABASE_URI'] if database_path is None else database_path
+    app.config["SQLALCHEMY_DATABASE_URI"] = config['DATABASE_URI'] if not database_path else database_path
     db.app = app
     db.init_app(app)
     db.create_all()
+
 
 #Models
 class Clients(db.Model):
@@ -179,7 +179,6 @@ class Tarjeta(db.Model):
 class Transaccion(db.Model):
     __tablename__ = 'administration'
     id = db.Column(db.String(36), primary_key=True, default=lambda:str(uuid.uuid4()))
-    id_compra = db.Column(db.String(36),db.ForeignKey('purchase_order.id'), nullable=False)
     ganancia= db.Column(db.Float(), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
