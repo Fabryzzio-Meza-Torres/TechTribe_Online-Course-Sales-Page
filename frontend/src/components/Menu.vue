@@ -7,10 +7,13 @@
       <a><router-link to="/cursos" class="link">Cursos</router-link></a>
       <a><router-link to="/asesorias" class="link">Asesoria</router-link></a>
       <a><router-link to="/profesores" class="link">Profesores</router-link></a>
-      <a
+      <a class="logreg"
         ><router-link to="/sign-in" class="link">Iniciar Sesión</router-link></a
       >
-      <a><router-link to="/register" class="link">Registrate</router-link></a>
+      <a class="logreg"
+        ><router-link to="/register" class="link">Registrate</router-link></a
+      >
+      <a href="#" style="display: none" id="closeSession">Cerrar sesión</a>
     </div>
   </nav>
 </template>
@@ -18,6 +21,22 @@
 <script>
 export default {
   name: "NavBar",
+};
+
+window.onload = function () {
+  if (document.cookie) {
+    document.getElementById("closeSession").style.display = "inline-block";
+    document.getElementsByClassName("logreg")[0].style.display = "none";
+    document.getElementsByClassName("logreg")[1].style.display = "none";
+    document.getElementById("closeSession").addEventListener("click", () => {
+      //borrar cookie
+      document.cookie =
+        "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = "/";
+    });
+  } else {
+    document.getElementById("closeSession").style.display = "none";
+  }
 };
 </script>
 
@@ -58,7 +77,8 @@ a.logo {
   justify-content: center;
 }
 
-.link {
+.link,
+a {
   color: white;
   text-decoration: none;
 }

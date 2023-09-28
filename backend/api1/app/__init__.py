@@ -23,7 +23,7 @@ import os
 def create_app(test_config=None):
     dev = Flask(__name__)
     #secret key
-    dev.config['SECRET_KEY'] = 'misWebosProfeColchadoTipeEsMejor'
+    dev.config['SECRET_KEY'] = 'Profenomejalep'
     with dev.app_context():
         dev.register_blueprint(clients_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
@@ -44,9 +44,8 @@ def create_app(test_config=None):
         returned_code = 201
         list_errors = []
         try:
-            body = request.json
-
-            print(body);
+            body = request.get_json()
+            print(body)
 
             if 'firstname' not in body:
                 list_errors.append('firstname')
@@ -71,32 +70,30 @@ def create_app(test_config=None):
             if len(list_errors) > 0:
                 returned_code = 400
             else:
-                client = Clients(
-                    firstname=firstname, lastname=lastname, email=email, contrasena=contrasena)
+                client = Clients(firstname, lastname, email, contrasena)
                 db.session.add(client)
                 db.session.commit()
-                client_id = client.id
+                cookie = client.id
 
         except Exception as e:
             print(sys.exc_info())
             db.session.rollback()
             returned_code = 500
 
-        finally:
-            db.session.close()
 
         if returned_code == 400:
             return jsonify({'success': False, 'message': 'Error registering client', 'errors': list_errors}),400 
         elif returned_code != 201:
             abort(returned_code)
         else:
-            return jsonify({'id': client_id, 'success': True, 'message': 'Client registered successfully!'}), returned_code
+            return jsonify({'cookie': cookie, 'success': True, 'message': 'Client registered successfully!', 'usuario': client.serialize()}), returned_code
 
 
     @dev.route('/login', methods=['POST'])
     def login():
         returned_code = 200
         list_errors = []
+
 
         try:
             body = request.json
@@ -117,9 +114,8 @@ def create_app(test_config=None):
                 client = Clients.query.filter_by(email=email).first()
 
                 if client and password == client.contrasena:
-                    session['client_id'] = client.id
                     # Cookie es el id del cliente encriptado y se devuelve en el json usando session
-                    cookie = session['client_id']
+                    cookie = client.id
                     returned_code = 200
                 else:
                     returned_code = 401

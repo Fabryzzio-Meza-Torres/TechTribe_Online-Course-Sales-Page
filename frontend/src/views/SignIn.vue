@@ -75,8 +75,10 @@ export default {
             this.message = "Inicio de sesión exitoso!";
             //imprimir cookie de flask session
             console.log(data);
+            //guardar la cookie en cookie
+            document.cookie = "session=" + data.cookie;
             setTimeout(() => {
-              //window.location.href = "/";
+              window.location.href = "/";
             }, 1000);
           } else {
             this.message = "Credenciales incorrectas!";

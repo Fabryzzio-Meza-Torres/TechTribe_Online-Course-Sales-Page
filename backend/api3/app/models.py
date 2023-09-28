@@ -136,18 +136,10 @@ class Tarjeta(db.Model):
     expiration_date= db.Column(db.String(36), nullable=False)
     password = db.Column(db.String(30), nullable=False)
     monto= db.Column(db.Float(), nullable=False)
-    id_client = db.Column(db.String(36), db.ForeignKey('clients.id'), nullable=False)
+    id_client = db.Column(db.String(36), db.ForeignKey('clients.id'), nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, default=lambda:datetime.utcnow())
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
-
-    @property
-    def password(self):
-        raise AttributeError('password is not a readable attribute')
-    
-    @password.setter    
-    def password(self, password):
-        self.contrasena = generate_password_hash(password)
-    
+  
     def __init__(self, creditcard_number, expiration_date, password,  id_client):
         self.creditcard_number = creditcard_number
         self.expiration_date = expiration_date
@@ -183,7 +175,7 @@ class Transaccion(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
 
-    def __init__(self, id_compra,ganancia):
-        self.id_compra = id_compra
+    def __init__(self,ganancia):
         self.ganancia = ganancia
         self.created_at = datetime.utcnow()
+

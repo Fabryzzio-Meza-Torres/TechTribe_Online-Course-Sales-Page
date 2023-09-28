@@ -40,6 +40,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "signUp" */ "../views/SignUp.vue"),
   },
+  {
+    path: "/compra/:id",
+    name: "compra",
+    component: () =>
+      import(/* webpackChunkName: "compra" */ "../views/ContentProduct.vue"),
+    params: true,
+  },
 ];
 
 const router = createRouter({

@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
           <label>Password:</label>
-          <input type="password" v-model="user.password" class="controls" />
+          <input type="password" v-model="user.contrasena" class="controls" />
         </div>
         <button class="botons" type="submit">Submit</button>
       </form>
@@ -44,7 +44,7 @@ export default {
         firstname: "",
         lastname: "",
         email: "",
-        password: "",
+        contrasena: "",
       },
       errorLists: [],
       isUserSubmitted: false,
@@ -55,9 +55,12 @@ export default {
       const response = await signUp(this.user);
       if (response && response.success) {
         this.isUserSubmitted = true;
-        localStorage.setItem("TOKEN", response.token);
+        document.cookie = `session=${response.cookie}`;
         setTimeout(() => {
           this.$router.push({ name: "cursos" });
+          setTimeout(() => {
+            this.$router.go();
+          }, 1000);
         }, 2000);
       } else if (response && response.error) {
         this.errorLists = response.error;

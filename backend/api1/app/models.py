@@ -26,13 +26,6 @@ class Clients(db.Model):
     contrasena = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
-    @property
-    def password(self):
-        return self.contrasena
-
-    @password.setter
-    def password(self, password):
-        self.contrasena = generate_password_hash(password)
 
 
     
@@ -40,7 +33,7 @@ class Clients(db.Model):
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
-        self.password = password
+        self.contrasena = password
         self.created_at = datetime.utcnow()
 
     def __repr__(self):

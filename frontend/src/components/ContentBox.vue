@@ -9,7 +9,8 @@
         {{ curso.description }}
       </p>
       <p>Precio del curso: S/.{{ curso.price }}</p>
-      <a class="BContainer">Comprar curso</a>
+      <!-- boton con función comprar(id) -->
+      <button class="BContainer" @click="comprar(curso.id)">Comprar</button>
     </div>
   </div>
   <div class="containerbox" v-else-if="currentRoute === 'asesorias'">
@@ -124,6 +125,10 @@ export default {
       return this.asesorias.filter(
         (asesoria) => asesoria.id === profesor_producto_id
       );
+    },
+    comprar(id) {
+      this.$router.push({ name: "compra", params: { id: id } });
+      console.log(id);
     },
   },
   computed: {
