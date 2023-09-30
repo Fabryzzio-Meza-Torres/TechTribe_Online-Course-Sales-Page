@@ -15,7 +15,7 @@ def setup_db(app, database_path):
     db.app = app
     db.init_app(app)
     db.create_all()
-    
+
 #Models
 class Clients(db.Model):
     __tablename__ = 'clients'
@@ -136,7 +136,6 @@ class Tarjeta(db.Model):
     expiration_date= db.Column(db.String(36), nullable=False)
     password = db.Column(db.String(30), nullable=False)
     monto= db.Column(db.Float(), nullable=False)
-    id_client = db.Column(db.String(36), db.ForeignKey('clients.id'), nullable=True)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False, default=lambda:datetime.utcnow())
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
   
@@ -147,12 +146,6 @@ class Tarjeta(db.Model):
         self.monto = random.randint(100, 1000)
         self.id_client = id_client
         self.created_at = datetime.utcnow()
-
-    def check_password(self, password):
-        return check_password_hash(self.contrasena, password)
-    
-    def verify_password(self, password):
-        return check_password_hash(self.contrasena, password)
 
     
     def __repr__(self):
@@ -174,14 +167,10 @@ class Transaccion(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     modified_at = db.Column(db.DateTime(timezone=True), nullable=True)
 
-    def __init__(self,ganancia):
-        self.ganancia = ganancia
-        self.created_at = datetime.utcnow()
 
 
-def crear_datos_por_defecto(dev,db):
+def crear_datos_por_defecto(dev, db):
    with dev.app_context():
-    setup_db(dev, db)
     tarjetas = Tarjeta.query.all()
 
     if not tarjetas:
@@ -192,6 +181,6 @@ def crear_datos_por_defecto(dev,db):
         tarjeta5= Tarjeta("789789789", "12/12/2022", "3333", "5")
         db.session.add_all([tarjeta1, tarjeta2, tarjeta3, tarjeta4, tarjeta5])
         db.session.commit()
-       
+        
   
 

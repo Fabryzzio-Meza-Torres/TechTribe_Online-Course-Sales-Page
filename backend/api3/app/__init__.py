@@ -1,4 +1,4 @@
-from .models import db, setup_db, Clients,Trabajadores, Producto, Tarjeta, Transaccion
+from .models import db, setup_db, Clients,Trabajadores, Producto, Tarjeta, Transaccion, crear_datos_por_defecto
 from flask_cors import CORS
 
 from flask import (
@@ -15,6 +15,7 @@ from flask_bcrypt import Bcrypt
 from .client_controller import clients_bp
 #from .authentication import authorize
 
+import datetime
 import sys
 import os
 import uuid
@@ -27,6 +28,8 @@ def create_app(test_config=None):
         setup_db(dev, test_config['database_path'] if test_config else None)
         dev.run(port=5002)
         CORS(dev, origins='*')
+    
+    crear_datos_por_defecto(dev, db)
 
     @dev.after_request
     def after_request(response):
@@ -68,15 +71,27 @@ def create_app(test_config=None):
             if len(list_errors) > 0:
                 returned_code = 400
             else:
-                transaccion = Transaccion(
-                    creditcard_number=creditcard_number,
-                    expiration_date=expiration_date,
-                    password=password,
-                    monto=monto,
-                    id_client=id_client
-                )
-                db.session.add(transaccion)
-                db.session.commit()
+                tarjeta = Tarjeta.query.filter_by(creditcard_number=creditcard_number).first()
+                if tarjeta:
+                    if tarjeta.password == password:
+                        if tarjeta.monto >= float(monto):
+                            tarjeta.monto = tarjeta.monto - float(monto)
+                            db.session.add(tarjeta)
+                            db.session.commit()
+                        else:
+                            list_errors.append('monto insuficiente')
+                            returned_code = 400
+                    else:
+                        list_errors.append('password incorrect')
+                        returned_code = 400
+                else:
+                    list_errors.append('creditcard_number is not registe')
+                    returned_code = 400
+                
+                if len(list_errors) == 0:
+                    transaccion = Transaccion(pago=monto, id_tarjeta=tarjeta.id, created_at=datetime.datetime.utcnow())
+                    db.session.add(transaccion)
+                    db.session.commit()
 
         except Exception as e:
             print(sys.exc_info())

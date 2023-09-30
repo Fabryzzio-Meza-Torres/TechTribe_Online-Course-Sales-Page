@@ -4,11 +4,11 @@
     <form @submit.prevent="submitCompra">
       <div>
         <label for="creditcard_number">Número de Tarjeta:</label>
-        <input type="text" v-model="creditcard_number" required />
+        <input type="text" v-model="numeroTarjeta" required />
       </div>
       <div>
         <label for="expiration_date">Fecha de Expiración:</label>
-        <input type="text" v-model="expiration_date" required />
+        <input type="text" v-model="expiracion" required />
       </div>
       <div>
         <label for="password">Código de Seguridad (CVV):</label>
@@ -36,7 +36,7 @@ export default {
       const compra = {
         creditcard_number: this.numeroTarjeta,
         expiration_date: this.expiracion,
-        password: this.cvv,
+        password: this.password,
       };
 
       try {
@@ -49,7 +49,8 @@ export default {
           console.log("Compra realizada con éxito", response.data);
 
           setTimeout(() => {
-            this.$router.push({ name: "pagina_de_agradecimiento" });
+            alert("Gracias por tu compra");
+            this.$router.push({ name: "home" });
           }, 2000);
         } else {
           console.error("Error al realizar la compra", response.data.message);
