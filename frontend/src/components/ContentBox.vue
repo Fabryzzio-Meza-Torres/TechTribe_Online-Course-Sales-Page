@@ -9,8 +9,13 @@
         {{ curso.description }}
       </p>
       <p>Precio del curso: S/.{{ curso.price }}</p>
-      <!-- boton con función comprar(id) -->
-      <button class="BContainer" @click="comprar(curso.id)">Comprar</button>
+      <button class="boton">
+        <a
+          ><router-link to="/transactions" class="link"
+            >Compra aqui</router-link
+          ></a
+        >
+      </button>
     </div>
   </div>
   <div class="containerbox" v-else-if="currentRoute === 'asesorias'">
@@ -21,7 +26,13 @@
       <h2>{{ asesoria.name }}</h2>
       <p>{{ asesoria.description }}</p>
       <p>Precio de la asesoría: S/.{{ asesoria.price }}</p>
-      <a class="BContainer">Obtener una asesoría</a>
+      <button class="boton">
+        <a
+          ><router-link to="/transactions" class="link"
+            >Compra aqui</router-link
+          ></a
+        >
+      </button>
     </div>
   </div>
   <div class="containerboxprof" v-else-if="currentRoute === 'profesores'">
@@ -264,5 +275,20 @@ export default {
 .containerprof p {
   line-height: 1.5;
   text-align: center;
+}
+
+.boton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  background-color: goldenrod;
+  color: #fff;
+  margin: 0;
 }
 </style>

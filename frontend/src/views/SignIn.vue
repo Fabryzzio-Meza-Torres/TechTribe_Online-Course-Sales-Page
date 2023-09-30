@@ -135,7 +135,7 @@ body {
 }
 
 .input-label {
-  font-weight: bold;
+  font-weight: "calibri";
   color: #fff;
 }
 

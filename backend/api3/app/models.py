@@ -15,7 +15,7 @@ def setup_db(app, database_path):
     db.app = app
     db.init_app(app)
     db.create_all()
-
+    
 #Models
 class Clients(db.Model):
     __tablename__ = 'clients'
@@ -144,7 +144,6 @@ class Tarjeta(db.Model):
         self.creditcard_number = creditcard_number
         self.expiration_date = expiration_date
         self.password = password
-        #Se asigna un monto random
         self.monto = random.randint(100, 1000)
         self.id_client = id_client
         self.created_at = datetime.utcnow()
@@ -178,4 +177,21 @@ class Transaccion(db.Model):
     def __init__(self,ganancia):
         self.ganancia = ganancia
         self.created_at = datetime.utcnow()
+
+
+def crear_datos_por_defecto(dev,db):
+   with dev.app_context():
+    setup_db(dev, db)
+    tarjetas = Tarjeta.query.all()
+
+    if not tarjetas:
+        tarjeta1= Tarjeta("123456789", "12/12/2022", "1234", "1")
+        tarjeta2= Tarjeta("987654321", "12/12/2022", "4321", "2")
+        tarjeta3= Tarjeta("123123123", "12/12/2022", "1111", "3")
+        tarjeta4= Tarjeta("456456456", "12/12/2022", "2222", "4")
+        tarjeta5= Tarjeta("789789789", "12/12/2022", "3333", "5")
+        db.session.add_all([tarjeta1, tarjeta2, tarjeta3, tarjeta4, tarjeta5])
+        db.session.commit()
+       
+  
 
