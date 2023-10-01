@@ -1,4 +1,4 @@
-from .models import db, setup_db, Clients,Trabajadores, Producto, Tarjeta, Transaccion
+from .models import db, setup_db, Clients,Trabajadores, Producto, Tarjeta, Transaccion, crear_datos_por_defecto
 from flask_cors import CORS
 
 from flask import (
@@ -26,6 +26,7 @@ def create_app(test_config=None):
         setup_db(dev, test_config['database_path'] if test_config else None)
         dev.run(port=5001)
         CORS(dev, origins='*')
+    crear_datos_por_defecto(dev, db)     
 
     @dev.after_request
     def after_request(response):

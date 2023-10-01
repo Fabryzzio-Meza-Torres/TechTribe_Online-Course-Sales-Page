@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://CP-Proyecto-1649315824.us-east-1.elb.amazonaws.com:5000/register";
+const BASE_URL =
+  "http://CP-Proyecto-1649315824.us-east-1.elb.amazonaws.com:5000/register";
 
 export const signUp = async (user) => {
   try {

@@ -59,13 +59,17 @@ export default {
         email: this.email,
         password: this.password,
       };
-      fetch("http://CP-Proyecto-1649315824.us-east-1.elb.amazonaws.com:5000" + "/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
+      fetch(
+        "http://CP-Proyecto-1649315824.us-east-1.elb.amazonaws.com:5000" +
+          "/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      )
         .then((res) => {
           return res.json();
         })
