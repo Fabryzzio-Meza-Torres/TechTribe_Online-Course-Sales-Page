@@ -59,7 +59,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      fetch("http://127.0.0.1:5000" + "/login", {
+      fetch("http://CP-Proyecto-1649315824.us-east-1.elb.amazonaws.com:5000" + "/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

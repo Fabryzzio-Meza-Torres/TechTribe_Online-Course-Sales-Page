@@ -41,7 +41,7 @@ export default {
 
       try {
         const response = await axios.post(
-          "http://localhost:5002/transactions",
+          "http://CP-Proyecto-1649315824.us-east-1.elb.amazonaws.com:5002/transactions",
           compra
         );
 
