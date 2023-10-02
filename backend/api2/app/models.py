@@ -192,7 +192,6 @@ class Transaccion(db.Model):
 
 def crear_datos_por_defecto(dev,db):
    with dev.app_context():
-    setup_db(dev, db)
     trabajadores = Trabajadores.query.all()
     cursos = Producto.query.all()
     

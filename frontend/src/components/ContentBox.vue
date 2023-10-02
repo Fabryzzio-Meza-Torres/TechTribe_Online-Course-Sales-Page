@@ -2,7 +2,7 @@
   <div class="containerbox" v-if="currentRoute === 'cursos'">
     <div v-for="curso in cursos" :key="curso.id" class="item-product">
       <a class="imgCompo">
-        <img :src="getCursosImageUrl(curso.id)" alt="imgCurso" />
+        <img :src="getCursosImageUrl(curso.name)" alt="imgCurso" />
       </a>
       <h2>{{ curso.name }}</h2>
       <p>
@@ -21,7 +21,7 @@
   <div class="containerbox" v-else-if="currentRoute === 'asesorias'">
     <div v-for="asesoria in asesorias" :key="asesoria.id" class="item-product">
       <a class="imgCompo">
-        <img :src="getAsesoriasImageUrl(asesoria.id)" alt="imgAsesoria" />
+        <img :src="getAsesoriasImageUrl(asesoria.name)" alt="imgAsesoria" />
       </a>
       <h2>{{ asesoria.name }}</h2>
       <p>{{ asesoria.description }}</p>
@@ -48,7 +48,10 @@
         </div>
       </div>
       <a class="imgCompo">
-        <img :src="getProfesoresImageUrl(profesor.id)" alt="imgProfesor" />
+        <img
+          :src="getProfesoresImageUrl(profesor.lastname)"
+          alt="imgProfesor"
+        />
       </a>
       <p>Contenido que dicta:</p>
       <div
@@ -121,10 +124,18 @@ export default {
       }
     },
     getCursosImageUrl(cursoName) {
-      return require(`@/assets/Cursos/${cursoName}.jpg`);
+      if (cursoName == "HTML/CSS") {
+        return require(`@/assets/Cursos/HTMLCSS.jpg`);
+      } else {
+        return require(`@/assets/Cursos/${cursoName}.jpg`);
+      }
     },
     getAsesoriasImageUrl(asesoriaName) {
-      return require(`@/assets/Asesorias/${asesoriaName}.jpg`);
+      if (asesoriaName == "HTML/CSS") {
+        return require(`@/assets/Asesorias/HTMLCSS.jpg`);
+      } else {
+        return require(`@/assets/Asesorias/${asesoriaName}.jpg`);
+      }
     },
     getProfesoresImageUrl(profesorName) {
       return require(`@/assets/Profesores/${profesorName}.png`);

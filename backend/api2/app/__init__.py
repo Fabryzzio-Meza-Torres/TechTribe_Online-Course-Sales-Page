@@ -7,13 +7,11 @@ from flask import (
     jsonify,
     abort
 )
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from sqlalchemy import ForeignKey
-from flask_bcrypt import Bcrypt
-from .client_controller import clients_bp
-from .authentication import authorize
+
+
 
 import sys
 import os
@@ -22,7 +20,6 @@ import os
 def create_app(test_config=None):
     dev = Flask(__name__)
     with dev.app_context():
-        dev.register_blueprint(clients_bp)
         setup_db(dev, test_config['database_path'] if test_config else None)
         dev.run(port=5001)
         CORS(dev, origins='*')
